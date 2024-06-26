@@ -1,0 +1,25 @@
+html {
+  font-size: 16px;
+  line-height: 24px;
+  color-scheme: normal;
+}
+body {
+  @apply bg-gray-0 font-sans text-gray-7;
+}
+
+body:not(.dark) {
+  background-image: conic-gradient(
+    from 90deg at -10% 100%,
+    #e0e3eb 0deg,
+    #e0e3eb 90deg,
+    #fff 1turn
+  );
+  background-attachment: fixed;
+}
+
+.light {
+  color-scheme: light;
+}
+.dark {
+  color-scheme: dark;
+}

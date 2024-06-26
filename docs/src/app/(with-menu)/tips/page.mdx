@@ -1,0 +1,173 @@
+## why `RLayer` is not a `RSource` child
+
+With `RLayer` used as `RSource` child each button click causes `App` to rerender.
+Even if the props of `RSource` have not changed, the `RSource` `children` prop will have changed, which will cause an unnecessary re-rendering of `RSource`
+
+
+```tsx
+const townPaintStyle = {
+  "fill-outline-color": "rgba(0,0,0,0.1)",
+  "fill-color": "rgba(255,0,0,0.3)",
+};
+
+function App() {
+  const [showMarker, setShowMarker] = useState(true);
+
+  return (
+    <>
+      <RMap>
+        {showMarker && <RMarker longitude={marignier.lng} latitude={marignier.lat} />}
+
+        <RSource key="town" id="town" type="geojson" data="/data/town.geojson">
+          <RLayer key="town-fill" id="town-fill" type="fill" paint={townPaintStyle} />
+        </RSource>
+      </RMap>
+      <div className="sidebar">
+        <div>
+          <button onClick={() => setShowMarker((s) => !s)}>
+            {showMarker ? "hide Marker" : "show Marker"}
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}
+```
+
+With `RSource` declared outside `RLayer` each button click causes `App` to rerender.
+In this case the props of `RSource` have not changed, which will not cause an unnecessary re-rendering of `RSource`.
+
+```tsx
+const townPaintStyle = {
+  "fill-outline-color": "rgba(0,0,0,0.1)",
+  "fill-color": "rgba(255,0,0,0.3)",
+};
+
+function App() {
+  const [showMarker, setShowMarker] = useState(true);
+
+  return (
+    <>
+      <RMap>
+        {showMarker && <RMarker longitude={marignier.lng} latitude={marignier.lat} />}
+
+        <RSource key="town" id="town" type="geojson" data="/data/town.geojson" />
+        <RLayer source="town" key="town-fill" id="town-fill" type="fill" paint={townPaintStyle} />
+      </RMap>
+      <div className="sidebar">
+        <div>
+          <button onClick={() => setShowMarker((s) => !s)}>
+            {showMarker ? "hide Marker" : "show Marker"}
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}
+```
+
+
+
+## Error: id should not change. `key` vs `id`
+
+When you have conditional renderers within your `RMap` component you will need to set the prop `key` for your `RSource` to help React maintain its association with the correct component.
+
+Consider `id` prop for MapLibre mapping and `key` prop for React mapping.
+
+```tsx
+export default function App() {
+  const [showCity, setShowCity] = useState(false);
+
+  return (
+    <>
+      <RMap>
+        {showCity && (<RSource
+          key="city"
+          id="city"
+          type="geojson"
+          data="/data/city.geojson"
+        />)}
+
+        <RSource
+          key="raster-tile"
+          id="raster-tile"
+          type="raster"
+          tiles="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+          tileSize={256}
+        />
+      </RMap>
+      <div className="sidebar">
+        <div>
+          <button onClick={() => setShowCity((s) => !s)}>
+            {showCity ? "hide city source" : "show city source"}
+          </button>
+        </div>
+      </div>
+    </>
+
+  );
+};
+```
+
+
+
+## `key` vs `id`
+
+When you have conditional renderers within your `RMap` component you will need to set the prop `key` for your `RLayer` to help React maintain its association with the correct component.
+
+Consider `id` for `maplibre` mapping and `key` for React mapping.
+
+Note: if `maplibre-react-components` detects a mapping error it will throw an exception.
+
+```tsx
+const cityLinePaintStyle = {
+  "line-color": "#ffe64b",
+  "line-width": 5,
+}
+
+const cityFillPaintStyle = {
+  "fill-outline-color": "rgba(0,0,0,0.1)",
+  "fill-color": "rgba(255,0,0,0.3)",
+};
+
+export default function App() {
+  const [showStroke, setShowStroke] = useState(false);
+
+  return (
+    <>
+      <RMap>
+        <RSource
+          key="city"
+          id="city"
+          type="geojson"
+          data="/data/city.geojson"
+        />
+        {showStroke && (
+          <RLayer
+            key="city-line"
+            id="city-line"
+            source="city"
+            type="line"
+            paint={cityLinePaintStyle}
+          />
+        )}
+        <RLayer
+          key="city-fill"
+          id="city-fill"
+          source="city"
+          type="fill"
+          paint={cityFillPaintStyle}
+        />
+      </RMap>
+      <div className="sidebar">
+        <div>
+          <button onClick={() => setShowStroke((s) => !s)}>
+            {showStroke ? "hide city stroke" : "show city stroke"}
+          </button>
+        </div>
+      </div>
+    </>
+
+  );
+};
+```

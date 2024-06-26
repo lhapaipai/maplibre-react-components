@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'fontello';
+  src: url('./fontello.eot?17391538');
+  src: url('./fontello.eot?17391538#iefix') format('embedded-opentype'),
+       url('./fontello.woff2?17391538') format('woff2'),
+       url('./fontello.woff?17391538') format('woff'),
+       url('./fontello.ttf?17391538') format('truetype'),
+       url('./fontello.svg?17391538#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('./fontello.svg?17391538#fontello') format('svg');
+  }
+}
+*/
+[class^="fe-"]:before, [class*=" fe-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.fe-heart:before { content: '\e800'; } /* '' */
+.fe-cancel:before { content: '\e801'; } /* '' */
+.fe-menu:before { content: '\e802'; } /* '' */
+.fe-link:before { content: '\e803'; } /* '' */
+.fe-star:before { content: '\e804'; } /* '' */
+.fe-search:before { content: '\e808'; } /* '' */
+.fe-github:before { content: '\f09b'; } /* '' */

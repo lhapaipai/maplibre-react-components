@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "!node_modules/pentatrion-design/**/*.tsx",
+    "!node_modules/pentatrion-design/**/*.ts",
+    "src/**/*.extract.tsx"
+  ]
+}

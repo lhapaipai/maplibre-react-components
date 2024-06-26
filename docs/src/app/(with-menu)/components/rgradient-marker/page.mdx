@@ -1,0 +1,141 @@
+export const metadata = {
+  title: 'RGradientMarker',
+  description: 'wrapper for the GradientMarker object'
+};
+
+import TwoCols from "~/components/TwoCols.tsx";
+import ShikiContent from "~/components/ShikiContent";
+import { Flash } from "pentatrion-design/components/flash";
+
+# RGradientMarker
+
+This component wraps a MapLibre Marker object. He manages its life cycle and is
+responsible for adding/removing it to the map. For this reason this component
+must be a descendant of `RMap`.
+
+## Usage
+
+import Basic from "./Basic.tsx";
+import basicCode from "./Basic.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={basicCode} />} second={<Basic />} />
+
+If you use a custom marker element don't forgot to memoize the component.
+
+
+## Reactivity
+
+All his props are reactive, feel free to express your creativity !
+
+import Reactivity from "./Reactivity.tsx";
+import reactivityCode from "./Reactivity.extract.tsx?code";
+
+<TwoCols foreground="second" first={<Reactivity />} second={<ShikiContent html={reactivityCode} />} secondClassName="[&_pre]:max-h-96 [&_pre]:overflow-auto" />
+
+
+
+## Draggable reactivity component
+
+If your marker component is draggable, you need to register a handler for the `dragend` or `drag` event
+to update the state. See [RMarker](/rmarker#draggable-controlled-component) documentation for the detail
+of implementation.
+
+
+## Icon / Text content
+
+`RGradientMarker` can contain icon or text content. If you use any font icon kit (fontello, fontawesome,
+etc...), just specify the className and it will be wrapped inside a `<i className={icon} />` element.
+
+Otherwise, you need to specify a factory function who generate your `HTMLElement` or `SVGSVGElement`.
+
+<Flash>
+`RGradientMarker` is a React wrapper of a `GradientMarker` class who extends `Marker` from MapLibre. When the marker is added to the map it is integrated into a DOM node which is not managed
+by React. This is why the generated element must be a DOM element and not a JSX.Element.
+</Flash>
+
+import IconText from "./IconText.tsx";
+import iconTextCode from "./IconText.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={iconTextCode} />} second={<IconText />} />
+
+```ts
+// util.ts
+export const mountainIconFactory = () => {
+  const svgNamespace = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNamespace, "svg");
+
+  svg.setAttribute("xmlns", svgNamespace);
+  svg.setAttribute("viewBox", "0 0 640 512");
+  svg.setAttribute("fill", "currentColor");
+
+  const path = document.createElementNS(svgNamespace, "path");
+  path.setAttribute(
+    "d",
+    "M560 160A80 80 0 1 0 560 0a80 80 0 1 0 0 160zM55.9 512H381.1h75H578.9c33.8 0 61.1-27.4 61.1-61.1c0-11.2-3.1-22.2-8.9-31.8l-132-216.3C495 196.1 487.8 192 480 192s-15 4.1-19.1 10.7l-48.2 79L286.8 81c-6.6-10.6-18.3-17-30.8-17s-24.1 6.4-30.8 17L8.6 426.4C3 435.3 0 445.6 0 456.1C0 487 25 512 55.9 512z",
+  );
+
+  // Ajouter l'élément path à l'élément SVG
+  svg.appendChild(path);
+
+  return svg;
+};
+```
+
+## Reference
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
+<div className="row-span-2">
+```ts
+type RMarkerProps =
+  {
+    longitude: number;
+    latitude: number;
+  } &
+
+
+
+  /**
+   * Reactive marker options.
+   * they have the same name as in MarkerOptions
+   */
+  GradientMarkerReactiveOptions &
+
+
+
+
+  /**
+   * Listenners for marker events
+   * prefixed with "on" + first letter uppercase
+   */
+  GradientMarkerCallbacks;
+
+```
+</div>
+
+```ts
+type GradientMarkerReactiveOptions = {
+  className?: string;
+  clickTolerance?: number;
+  color?: string;
+  icon?: string | HTMLElement | SVGSVGElement | (() => HTMLElement | SVGSVGElement);
+  draggable?: boolean;
+  opacity?: string;
+  opacityWhenCovered?: string;
+  pitchAlignment?: Alignment;
+  rotation?: number;
+  rotationAlignment?: Alignment;
+  scale?: number;
+  text?: string;
+};
+```
+```ts
+type GradientMarkerCallbacks = {
+  onDragStart?: (e: Event<Marker>) => void;
+  onDrag?: (e: Event<Marker>) => void;
+  onDragEnd?: (e: Event<Marker>) => void;
+
+  // native DOM event
+  onClick?: (e: MouseEvent) => void;
+}
+```
+</div>

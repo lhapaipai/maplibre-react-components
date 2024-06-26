@@ -1,0 +1,66 @@
+{
+  "name": "",
+  "css_prefix_text": "fe-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "d73eceadda1f594cec0536087539afbf",
+      "css": "heart",
+      "code": 59392,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "5211af474d3a9848f67f945e2ccaf143",
+      "css": "cancel",
+      "code": 59393,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "474656633f79ea2f1dad59ff63f6bf07",
+      "css": "star",
+      "code": 59396,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "9dd9e835aebe1060ba7190ad2b2ed951",
+      "css": "search",
+      "code": 59400,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "jh3jpcb1t1bcm80gidkadilh080aq79h",
+      "css": "menu",
+      "code": 59394,
+      "src": "typicons"
+    },
+    {
+      "uid": "0f6a2573a7b6df911ed199bb63717e27",
+      "css": "github",
+      "code": 61595,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "815503841e980c848f55e0271deacead",
+      "css": "link",
+      "code": 59395,
+      "src": "entypo"
+    },
+    {
+      "uid": "c4ab4e02333d10843cd478dfb390028f",
+      "css": "circle-exclamation",
+      "code": 59416,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "M500 1000A500 500 0 1 0 500 0 500 500 0 1 0 500 1000ZM500 250C526 250 546.9 270.9 546.9 296.9V515.6C546.9 541.6 526 562.5 500 562.5S453.1 541.6 453.1 515.6V296.9C453.1 270.9 474 250 500 250ZM437.5 687.5A62.5 62.5 0 1 1 562.5 687.5 62.5 62.5 0 1 1 437.5 687.5Z",
+        "width": 1000
+      },
+      "search": [
+        "circle-exclamation"
+      ]
+    }
+  ]
+}

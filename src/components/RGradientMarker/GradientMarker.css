@@ -1,0 +1,259 @@
+.maplibregl-gradient-marker {
+  --marker-size: 50px;
+  --marker-height: var(--marker-size);
+  --marker-width: calc(var(--marker-size) * 0.7);
+  --marker-background-position-hovered: calc(var(--marker-size) * -0.3);
+
+  --marker-color: rgb(var(--color-yellow-3));
+  --marker-color-dark: color-mix(in srgb, var(--marker-color), black 40%);
+  --marker-color-gradient: linear-gradient(120deg, var(--marker-color), var(--marker-color-dark));
+
+  cursor: pointer;
+
+  position: absolute;
+  display: block;
+
+  top: 0;
+  left: 0;
+
+  &,
+  & > .marker,
+  & > .image {
+    width: var(--marker-width);
+    height: var(--marker-height);
+  }
+
+  & > .marker,
+  & > .image {
+    transition: transform 0.2s ease;
+  }
+
+  .target {
+    width: calc(var(--marker-width) * 0.2);
+    height: calc(var(--marker-width) * 0.1);
+    background-color: #b4b4b4;
+    position: absolute;
+    left: calc(50% - var(--marker-width) * 0.1);
+    top: calc(100% - var(--marker-width) * 0.05);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+
+    opacity: 0;
+    transform: scale(0.5);
+
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+
+    box-shadow: 0px 0px 2px #000;
+  }
+
+  &.geolocation .target {
+    animation: geolocation-dot-pulse 2s infinite;
+  }
+
+  &.draggable:active,
+  &.draggable.active {
+    & > .marker {
+      transform: translateY(-5px);
+    }
+
+    .target {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+  }
+
+  & > .marker::before,
+  & > .marker::after {
+    position: absolute;
+    top: 0;
+  }
+
+  /* shadow */
+  & > .marker::before {
+    left: 50%;
+    transform: translateX(-50%);
+
+    content: "";
+    background-image: url("b64---./src/style/assets/marker-shadow-centered.png---");
+    background-size: cover;
+    pointer-events: none;
+    width: var(--marker-size);
+    height: var(--marker-size);
+  }
+
+  /* marker */
+  & > .marker::after {
+    /* fe-marker */
+    left: 0;
+    content: "\e81c";
+    z-index: 1;
+
+    color: transparent;
+
+    /* legacy browser support */
+    background-color: var(--marker-color);
+    -webkit-background-clip: text;
+
+    background-image: var(--marker-color-gradient);
+    background-clip: text;
+
+    background-size: var(--marker-height) var(--marker-height);
+    background-position: var(--marker-background-position-hovered);
+    width: var(--marker-width);
+    height: var(--marker-height);
+  }
+
+  /* fontello default */
+  & > .marker::after,
+  .inactive {
+    font-family: "fontello-mrc", sans-serif;
+  }
+
+  & > .marker::after,
+  .inactive,
+  i::before {
+    font-style: normal;
+    font-weight: normal;
+
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    /* text-transform: none; */
+    margin: 0;
+    display: inline-block;
+    text-decoration: inherit;
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+
+    font-size: var(--marker-size) !important;
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: color 0.3s ease;
+  }
+
+  & > .marker::after {
+    transition: background-position 0.3s ease;
+  }
+
+  & .circle,
+  & .inactive,
+  & i,
+  & svg,
+  & .text {
+    position: absolute;
+    left: calc(var(--marker-size) / 10);
+    top: calc(var(--marker-size) / 10);
+    width: calc(var(--marker-size) / 2) !important;
+    height: calc(var(--marker-size) / 2) !important;
+  }
+
+  & .circle {
+    z-index: 2;
+    border-radius: 50%;
+    background-color: rgb(var(--color-gray-0));
+    transition: background-color 0.3s ease;
+  }
+
+  /* icon */
+  & i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+      font-size: calc(var(--marker-size) / 3) !important;
+      z-index: 3;
+      color: inherit;
+    }
+  }
+
+  & svg {
+    z-index: 3;
+    transform: scale(0.8);
+  }
+
+  & .text {
+    z-index: 3;
+    font-weight: 500;
+    font-size: max(10px, calc(var(--marker-size) * 0.25));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.small-text {
+    .text {
+      font-size: 10px;
+    }
+  }
+
+  & .inactive {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+      z-index: 4;
+      font-size: calc(var(--marker-size) / 2) !important;
+      content: "\e81f";
+      color: rgb(var(--color-red-3));
+    }
+  }
+
+  &:hover > * {
+    /* marker */
+    &::after {
+      background-position: 0px;
+    }
+
+    .circle {
+      background-color: rgb(var(--color-gray-0) / 50%);
+    }
+  }
+
+  &:not(.draggable):active,
+  &:not(.draggable).active {
+    .circle {
+      background-color: rgb(var(--color-gray-0) / 1%);
+    }
+  }
+
+  &.selected > * {
+    /* marker */
+    &::after {
+      background-position: 0px;
+    }
+  }
+
+  &.disabled.disabled {
+    opacity: 1;
+    pointer-events: none;
+    user-select: none;
+
+    /* marker */
+    & > .marker::after {
+      /* fe-marker */
+      content: "\e81c";
+      color: rgb(var(--color-gray-2));
+    }
+  }
+}
+
+@keyframes geolocation-dot-pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  70% {
+    opacity: 0;
+    transform: scale(5);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}

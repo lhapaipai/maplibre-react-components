@@ -1,0 +1,126 @@
+.maplibregl-gradient-marker.pegman {
+  --marker-size: 60px;
+  --marker-height: var(--marker-size);
+  --marker-width: var(--marker-size);
+
+  & .image {
+    &::before {
+      content: "";
+      position: absolute;
+      top: -25%;
+      transform: translateX(-50%);
+      left: 50%;
+
+      content: "";
+      background-image: url(/assets/maplibre/marker-shadow-centered.png);
+      background-size: cover;
+      pointer-events: none;
+      width: var(--marker-size);
+      height: var(--marker-size);
+      z-index: -1;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: var(--marker-size);
+      height: var(--marker-size);
+      background-image: url(/assets/pegman/pegman-rotation-1x.png);
+      background-position: 0px 0px;
+    }
+  }
+
+  & .target {
+    top: calc(75% - var(--marker-width) * 0.05);
+  }
+
+  &:hover,
+  &.hover {
+    & > .image {
+      transform: translateY(-2.5px);
+    }
+
+    .target {
+      opacity: 0.25;
+      transform: scale(0.5);
+    }
+  }
+
+  &:active,
+  &.active {
+    & > .image {
+      transform: translateY(-5px);
+    }
+
+    .target {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+  }
+
+  &.zone-0 .image::after {
+    background-position: 0px 0px;
+  }
+
+  &.zone-1 .image::after {
+    background-position: 0px 60px;
+  }
+
+  &.zone-2 .image::after {
+    background-position: 0px 120px;
+  }
+
+  &.zone-3 .image::after {
+    background-position: 0px 180px;
+  }
+
+  &.zone-4 .image::after {
+    background-position: 0px 240px;
+  }
+
+  &.zone-5 .image::after {
+    background-position: 0px 300px;
+  }
+
+  &.zone-6 .image::after {
+    background-position: 0px 360px;
+  }
+
+  &.zone-7 .image::after {
+    background-position: 0px 420px;
+  }
+
+  &.zone-8 .image::after {
+    background-position: 0px 480px;
+  }
+
+  &.zone-9 .image::after {
+    background-position: 0px 540px;
+  }
+
+  &.zone-10 .image::after {
+    background-position: 0px 600px;
+  }
+
+  &.zone-11 .image::after {
+    background-position: 0px 660px;
+  }
+
+  &.zone-12 .image::after {
+    background-position: 0px 720px;
+  }
+
+  &.zone-13 .image::after {
+    background-position: 0px 780px;
+  }
+
+  &.zone-14 .image::after {
+    background-position: 0px 840px;
+  }
+
+  &.zone-15 .image::after {
+    background-position: 0px 900px;
+  }
+}

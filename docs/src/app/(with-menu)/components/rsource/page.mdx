@@ -1,0 +1,142 @@
+export const metadata = {
+  title: 'RSource',
+  description: 'wrapper for the source object'
+}
+
+# RSource
+
+This component wraps a MapLibre Source object. He manages its life cycle and is
+responsible for adding/removing it to the map. For this reason this component
+must be a descendant of `RMap`.
+
+The `id` and the `type` props are **readonly**. This allows us to manage
+reactivity on the same instance throughout its lifecycle. In some cases you'll have
+to add a `key` prop to maintain this state. see below [Error: RSource id should not change](#error-rsource-id-should-not-change).
+
+A `RSource` component may not
+contain `RLayer` components as children. If you want to know why
+see [Tips: why RLayer is not a RSource child](/tips#why-rlayer-is-not-a-rsource-child).
+
+## Usage
+
+```tsx
+import { RMap, RSource } from "maplibre-react-components";
+
+import { Coordinates } from "maplibre-gl";
+
+/* always use stable object (outside App component) */
+const orthoCoordinates: Coordinates = [
+  [6.44, 46.12],
+  [6.54, 46.12],
+  [6.54, 46.05],
+  [6.44, 46.05],
+];
+
+export default function App() {
+  return (
+    <RMap>
+      <RSource
+        id="city"
+        type="geojson"
+        data="/data/city.geojson"
+      />
+
+      <RSource
+        id="ortho"
+        type="image"
+        url="/data/ortho.jpg"
+        coordinates={orthoCoordinates}
+      />
+
+      <RSource
+        id="raster-tile"
+        type="raster"
+        tiles="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        tileSize={256}
+      />
+    </RMap>
+  );
+};
+```
+
+## Reactivity
+
+Some props are reactive, it depends on the source type
+
+<div className="columns-2 gap-4">
+```ts
+// type: "image"
+type ImageSourceReactiveOptions = {
+  url: string;
+  coordinates: [
+    [number, number],
+    [number, number],
+    [number, number],
+    [number, number]
+  ]
+}
+```
+```ts
+// type: "video"
+type VideoSourceReactiveOptions = {
+  coordinates: [
+    [number, number],
+    [number, number],
+    [number, number],
+    [number, number]
+  ]
+}
+```
+```ts
+// type: "geojson"
+type GeoJSONSourceReactiveOptions = {
+  "data": GeoJSON.GeoJSON | string;
+  "cluster"?: boolean;
+  "clusterRadius"?: number;
+  "clusterMaxZoom"?: number;
+}
+```
+```ts
+// type: "raster" | "raster-dem" | "vector"
+type RasterOrVectorSourceReactiveOptions = {
+  "url"?: string;
+  "tiles"?: Array<string>;
+}
+```
+</div>
+
+## Error: RSource id should not change.
+
+When you have conditional renderers within your `RMap` component you will need to set the
+prop `key` for your `RSource` to help React maintain its association with the correct component.
+
+Consider `id` prop for MapLibre mapping and `key` prop for React mapping. If you want to know
+why see [Tips: key vs id](/tips#error-rsource-id-should-not-change-key-vs-id).
+
+## Reference
+
+```ts
+type RSourceProps = SourceSpecification & {
+  readonly id: string;
+};
+
+import {
+  VectorSourceSpecification,
+  RasterSourceSpecification,
+  RasterDEMSourceSpecification,
+  GeoJSONSourceSpecification,
+  VideoSourceSpecification,
+  ImageSourceSpecification,
+} from "maplibre-gl";
+
+type SourceSpecification =
+  | VectorSourceSpecification
+  | RasterSourceSpecification
+  | RasterDEMSourceSpecification
+  | GeoJSONSourceSpecification
+  | VideoSourceSpecification
+  | ImageSourceSpecification;
+```
+
+
+

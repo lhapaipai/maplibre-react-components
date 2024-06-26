@@ -1,0 +1,65 @@
+export const metadata = {
+  title: 'Getting Started',
+  description: 'Installation of Maplibre React components'
+};
+
+# Getting started
+
+
+## Prerequisites
+
+This package requires to install this peer dependencies as prerequisite.
+
+```bash
+# >= 4.0.0
+npm install maplibre-gl
+
+# >= 16.8.0
+npm install react react-dom
+```
+
+## Install
+
+After you can install the library with this npm package.
+
+```bash
+npm install maplibre-react-components
+```
+
+## Styling
+
+Like the Vanilla MapLibre library, you will need to add one MapLibre compatible stylesheet.
+
+```tsx
+import "maplibre-gl/dist/maplibre-gl.css";
+```
+
+If you want to add one modern stylesheet, you can install `maplibre-theme`.
+
+```bash
+npm install maplibre-theme
+```
+
+And use his `modern` style.
+
+```tsx
+import "maplibre-theme/modern.css";
+```
+
+## Compatibility
+
+One of the objectives of this library was to offer as little abstraction as possible
+with `MapLibre`. If you use `TypeScript` you will quickly realize that in many cases you
+are manipulating the latter's native types. However this also has a cost, this library is
+not compatible with `mapbox-gl`.
+
+However, you can use the library with a fork of mapLibre by adding these lines in
+your `package.json`.
+
+```json
+{
+  "dependencies": {
+    "maplibre-gl": "npm:<your-maplibre-fork>"
+  }
+}
+```

@@ -1,0 +1,43 @@
+export const metadata = {
+  title: 'RTerrain',
+  description: 'wrapper for the terrain object'
+};
+
+import TwoCols from "~/components/TwoCols.tsx";
+import ShikiContent from "~/components/ShikiContent";
+
+# RTerrain
+
+## Usage
+
+import Basic from "./Basic.tsx";
+import basicCode from "./Basic.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={basicCode} />} second={<Basic />} firstClassName="[&_pre]:max-h-96 [&_pre]:overflow-auto" />
+
+## Incompatibility `RTerrain` / `RTerrainControl`.
+
+The `RTerrainControl` component is a wrapper of MapLibre `TerrainControl`.
+When you use this control, the maplibre instance will be modified without
+your map app being aware of it, this could result map's state to deviate from its props.
+So use either `RTerrain` or `RTerrainControl` but never both components at the
+same time.
+
+Generally speaking, you use `RTerrain` if you want to benefit from reactivity
+ with the exaggeration option.
+
+
+## Reference
+
+`RTerrain` accept same props as `TerrainSpecification`, all his props are reactives.
+
+```ts
+type RTerrainProps = TerrainSpecification;
+
+type TerrainSpecification = {
+	"source": string;
+	"exaggeration"?: number;
+};
+```
+
+

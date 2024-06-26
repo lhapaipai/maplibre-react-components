@@ -1,0 +1,29 @@
+.maplibregl-ctrl-mrc-logo a {
+  color: rgb(var(--ml-c-gray-0, 255 255 255));
+  display: inline-block;
+  transition-property: transform, color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+
+  &:hover {
+    color: rgb(var(--ml-c-gray-1, 240 240 240));
+    transform: scale(1.1);
+  }
+
+  &:active {
+    color: rgb(var(--ml-c-gray-2, 215 215 215));
+    transform: scale(0.9);
+  }
+}
+
+.dark .maplibregl-ctrl-mrc-logo a {
+  color: rgb(var(--ml-c-gray-0, 17 23 37));
+
+  &:hover {
+    color: rgb(var(--ml-c-gray-1, 65 72 83));
+  }
+
+  &:active {
+    color: rgb(var(--ml-c-gray-2, 50 54 63));
+  }
+}

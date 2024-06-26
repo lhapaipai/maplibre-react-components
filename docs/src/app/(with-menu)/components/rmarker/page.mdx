@@ -1,0 +1,123 @@
+export const metadata = {
+  title: 'RMarker',
+  description: 'wrapper for the Marker object'
+};
+
+import TwoCols from "~/components/TwoCols.tsx";
+import ShikiContent from "~/components/ShikiContent";
+
+# RMarker
+
+This component wraps a MapLibre Marker object. He manages its life cycle and is
+responsible for adding/removing it to the map. For this reason this component
+must be a descendant of `RMap`.
+
+## Usage
+
+import Basic from "./Basic.tsx";
+import basicCode from "./Basic.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={basicCode} />} second={<Basic />} />
+
+If you use a custom marker element don't forgot to memoize the component.
+
+```tsx
+// CustomMarker.tsx
+import { memo } from "react";
+
+// https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.
+const ICON = `M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z`;
+
+function CustomMarker() {
+  return (
+    <svg
+      height={30}
+      viewBox="0 0 384 512"
+      style={{ cursor: "pointer", fill: "#DBA726" }}
+    >
+      <path d={ICON} />
+    </svg>
+  );
+}
+export default memo(CustomMarker);
+```
+
+## Draggable controlled component
+
+If your marker component is draggable, you need to register a handler for the `dragend` or `drag` event
+to update the state.
+
+import Controlled from "./Controlled.tsx";
+import controlledCode from "./Controlled.extract.tsx?code";
+
+<TwoCols foreground="second" first={<Controlled />} second={<ShikiContent html={controlledCode} />} />
+
+
+
+## Reference
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
+<div className="row-span-3">
+```ts
+type RMarkerProps =
+  {
+    longitude: number;
+    latitude: number;
+    /**
+     * for custom element
+     */
+    children?: ReactNode;
+  } &
+
+  /**
+   * Non reactive marker options (only used during instantiation)
+   * prefixed with "initial" + first letter uppercase
+   */
+  MarkerInitialOptions &
+
+
+  /**
+   * Reactive marker options.
+   * they have the same name as in MarkerOptions
+   */
+  MarkerReactiveOptions &
+
+
+  /**
+   * Listenners for marker events
+   * prefixed with "on" + first letter uppercase
+   */
+  MarkerCallbacks;
+```
+</div>
+```ts
+type MarkerInitialOptions = {
+  initialAnchor?: PositionAnchor;
+  initialColor?: string;
+  initialScale?: number;
+};
+```
+```ts
+type MarkerReactiveOptions = {
+  className?: string;
+  offset?: PointLike;
+  draggable?: boolean;
+  clickTolerance?: number;
+  rotation?: number;
+  rotationAlignment?: Alignment;
+  pitchAlignment?: Alignment;
+  opacity?: string;
+  opacityWhenCovered?: string;
+};
+```
+```ts
+type MarkerCallbacks = {
+  onDragStart?: (e: Event<Marker>) => void;
+  onDrag?: (e: Event<Marker>) => void;
+  onDragEnd?: (e: Event<Marker>) => void;
+
+  // native DOM event
+  onClick?: (e: MouseEvent) => void;
+}
+```
+</div>

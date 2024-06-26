@@ -1,0 +1,12 @@
+{
+  "root": true,
+  "extends": ["next/core-web-vitals"],
+  "overrides": [
+    {
+      "files": ["*.extract.tsx"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off"
+      }
+    }
+  ]
+}

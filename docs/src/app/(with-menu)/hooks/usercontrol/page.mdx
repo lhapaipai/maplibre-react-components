@@ -1,0 +1,47 @@
+export const metadata = {
+  title: 'useRControl',
+  description: 'hook to add React Control inside RMap'
+};
+
+import TwoCols from "~/components/TwoCols.tsx";
+import ShikiContent from "~/components/ShikiContent";
+import { Flash } from "pentatrion-design/components/flash"
+
+# useRControl
+
+Hook to add React Control inside MapLibre.
+
+Although it is possible to add components as children of `RMap` these will be added
+as children of the `div.maplibregl-children` element (see [RMap: Children components](/rmap#children-components)
+
+This hook combined with [createPortal](https://react.dev/reference/react-dom/createPortal) allows you to create custom controls that will integrate perfectly into your map.
+
+<Flash color="orange">
+As this hook use React Context internally you can't use this hook in the component using `RMap` but only in child component.
+</Flash>
+
+## Usage
+
+import Basic from "./Basic.tsx";
+import basicCode from "./Basic.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={basicCode} />} second={<Basic />} />
+
+
+
+## Reference
+
+```ts
+type RControlHookOptions = {
+  position: ControlPosition;
+  /**
+   * default: "maplibregl-ctrl maplibregl-ctrl-group"
+   * if you define another value it will overwrite default className.
+   */
+  className?: string;
+}
+
+type RControlHookReturn = {
+  container: HTMLDivElement;
+};
+```

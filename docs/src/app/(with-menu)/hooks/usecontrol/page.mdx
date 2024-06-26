@@ -1,0 +1,66 @@
+export const metadata = {
+  title: 'useControl',
+  description: 'Hook to add Vanilla MapLibre Control inside RMap'
+};
+
+import TwoCols from "~/components/TwoCols.tsx";
+import ShikiContent from "~/components/ShikiContent";
+
+# useControl
+
+Hook allowing you to integrate controls implementing the IControl interface
+into your Map. This hook return your Control instance.
+
+
+## Usage
+
+import Basic from "./Basic.tsx";
+import basicCode from "./Basic.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={basicCode} />} second={<Basic />} />
+
+```tsx
+// CustomControl.ts
+import { ControlPosition, IControl, Map } from "maplibre-gl";
+
+export class CustomControl implements IControl {
+  declare _map: Map;
+  declare _container: HTMLDivElement;
+
+  getDefaultPosition(): ControlPosition {
+    return "top-right";
+  }
+
+  onAdd(map: Map) {
+    this._map = map;
+    this._container = document.createElement("div");
+    this._container.classList.add(
+      "maplibregl-ctrl",
+      "maplibregl-ctrl-group",
+      "bg-gray-0",
+      "p-4",
+    );
+    this._container.innerText = "Custom control";
+    this._container.style.display = "block";
+
+    return this._container;
+  }
+
+  onRemove() {
+    this._container.remove();
+  }
+}
+
+```
+
+## Reference
+
+```ts
+type ControlHookOptions = {
+  position: ControlPosition;
+  factory: (map: Map) => IControl;
+  onRemove?: (map: Map) => void;
+};
+
+type ControlHookReturn = IControl;
+```

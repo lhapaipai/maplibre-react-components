@@ -1,0 +1,327 @@
+export const metadata = {
+  title: 'RMap',
+  description: 'Base component'
+}
+
+import TwoCols from "~/components/TwoCols.tsx";
+import ShikiContent from "~/components/ShikiContent";
+import { Flash } from "pentatrion-design/components/flash"
+
+# RMap
+
+Principal component. All others components described in this library need to be defined as children of this one.
+This component take his props from `MapOptions`, map events, and some extra configuration options.
+
+It instantiates a Map object and register event listeners to it. Only a few props are responsive (see [reference](#reference) below).
+
+## Hello world.
+
+The `RMap` component accepts the `style` and `mapStyle` props to respectively define the style attribute of the
+containing element `div.maplibregl-map` and the style to apply to the Map instance.
+
+import HelloWorld from "./HelloWorld.tsx";
+import helloWorldCode from "./HelloWorld.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={helloWorldCode} />} second={<HelloWorld />} />
+
+
+
+```ts
+interface RMapProps {
+  style?: CSSProperties;
+  mapStyle?: StyleSpecification | string;
+  // ...
+}
+```
+
+Internally the `style` prop is wrapped inside a `useMemo`, you can therefore define this object inline without affecting performance.
+
+```ts
+// extract of source code : /src/components/RMap/RMap.tsx
+const completeStyle: CSSProperties = useMemo(
+  () => ({
+    position: "relative",
+    width: "100%",
+    height: "100%",
+    ...style,
+  }),
+  [style],
+);
+```
+
+The `mapStyle` is a reactive value. You can specify the url of a style file or directly an object. If we propose an object
+be careful to give a stable object for performance reasons the verification is done with a strict equal and not a deepEqual.
+
+## `MapProps` vs `MapOptions`
+
+You can use all options from the MapLibre `MapOptions` type as props for the `RMap` component. Some of these options are responsive and some are not. To distinguish them, non-reactive options have been prefixed with `initial` and event handlers are prefixed with `on`.
+This set constitutes a new type : `MapProps`.
+
+import Options from "./Options.tsx";
+import optionsCode from "./Options.extract.tsx?code";
+
+<TwoCols first={<Options />} second={<ShikiContent html={optionsCode} />} foreground="second"  />
+
+<Flash>
+For performance reasons, if your prop is an array or an object, define your variable outside your component if it's a readonly value or inside a `useMemo` to skip re-rendering of components.
+
+You can free yourself from this rule for callbacks (type `MapCallbacks`). They were implemented following the React principle of [useEffectEvents](https://react.dev/reference/react/experimental_useEffectEvent).
+</Flash>
+
+## Manipulating the map instance
+
+Using the `ref` prop you get the original MapLibre Map instance. You can also listen to the `onMounted` event which is called as soon as your map object is accessible.
+
+<Flash>
+`onMounted` is called just after instantiating a Map object while `onLoad` is called later when the style is loaded.
+</Flash>
+
+import Ref from "./Ref.tsx";
+import refCode from "./Ref.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={refCode} />} second={<Ref />} />
+
+
+## Children components
+
+the `RMap` component accepts child components.
+
+import Children from "./Children.tsx";
+import childrenCode from "./Children.extract.tsx?code";
+
+<TwoCols first={<Children />} second={<ShikiContent html={childrenCode} />} foreground="second"  />
+
+Native controls added with their wrapper components (like `RNavigationControl`) are added
+in the same place as with the vanilla MapLibre lib. Other components are added as children of the `div.maplibregl-children` element.
+
+<Flash color="red">
+It is not recommended to add content in this way because you can quickly have overlaps with native controls. A best practice is to use the [useRControl](/hooks/usercontrol) hook to add components that will not conflict with vanilla content.
+</Flash>
+
+```html
+<div class="maplibregl-map">
+  <div class="maplibregl-canvas-container">
+    <canvas class="maplibregl-canvas"></canvas>
+  </div>
+  <div class="maplibregl-control-container">
+    <div class="maplibregl-ctrl-top-left">
+      <!-- begin:RNavigationControl -->
+      <div class="maplibregl-ctrl maplibregl-ctrl-group">
+        <button>+</button>
+        <button>-</button>
+        <button>rotation</button>
+      </div>
+      <!-- end:RNavigationControl -->
+    </div>
+
+    <!-- other positions -->
+  </div>
+  <div class="maplibregl-children" style="height: 100%">
+    <!-- children of RMap are append here -->
+    <div class="absolute bottom-4 left-4 rounded-2xl bg-gray-0 p-4">
+      Inlined Control
+    </div>
+  </div>
+</div>
+```
+
+## Reference
+
+The `RMap` component accept principally `MapProps` as props but also some additional options. You will find complete details here.
+
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
+```ts
+type RMapProps =
+  /**
+   * options for the class that controls the map instance, including
+   * behavior when changing styles
+   */
+  ManagerOptions &
+
+  /**
+   * props of the <div> wrapper component
+   */
+  RMapComponentProps &
+
+  /* props mapped to maplibre MapOptions*/
+  MapProps;
+```
+```ts
+type ManagerOptions = {
+  mapStyle?: StyleSpecification | string;
+  styleDiffing?: boolean;
+  styleTransformStyle?: TransformStyleFunction;
+  padding?: PaddingOptions;
+}
+
+type RMapComponentProps = {
+  children?: ReactNode;
+  style?: CSSProperties;
+  id?: string;
+  className?: string;
+  onMounted?: (map: Map) => void;
+}
+```
+</div>
+
+
+`MapProps` type come from the MapLibre `MapOptions` type. They have been renamed following the conventions described below.
+
+Check the [official documentation](https://maplibre.org/maplibre-gl-js/docs/API/type-aliases/MapOptions/) to get more details.
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
+<div className="row-span-2">
+```ts
+type MapProps =
+  /**
+   * Reactive map options.
+   * they have the same name as in MapOptions
+   */
+  MapReactiveOptions &
+
+  /**
+   * Reactive map handler options.
+   * they have the same name as in MapOptions
+   */
+  MapHandlerOptions &
+
+  /**
+   * Listenners for map events
+   * prefixed with "on" + first letter uppercase
+   */
+  MapCallbacks &
+
+  /**
+   * Non reactive map options (only used during instantiation)
+   * prefixed with "initial" + first letter uppercase
+   */
+  MapInitialOptions;
+```
+</div>
+```ts
+type MapReactiveOptions = {
+  maxBounds?: LngLatBoundsLike;
+  minZoom?: number | null;
+  maxZoom?: number | null;
+  minPitch?: number | null;
+  maxPitch?: number | null;
+  renderWorldCopies?: boolean;
+  pixelRatio?: number;
+}
+
+```
+```ts
+type MapHandlerOptions = {
+  scrollZoom?: boolean | AroundCenterOptions;
+  boxZoom?: boolean;
+  dragRotate?: boolean;
+  dragPan?: boolean | DragPanOptions;
+  keyboard?: boolean;
+  doubleClickZoom?: boolean;
+  touchZoomRotate?: boolean | AroundCenterOptions;
+  touchPitch?: boolean | AroundCenterOptions;
+  cooperativeGestures?: GestureOptions;
+}
+```
+<div className="[&_pre]:max-h-96">
+```ts
+type MapCallbacks = {
+  /** Compatible with `layerId` */
+  onMouseDown?: (e: MapLayerMouseEvent) => void;
+  onMouseUp?: (e: MapLayerMouseEvent) => void;
+  onMouseOver?: (e: MapLayerMouseEvent) => void;
+  onMouseOut?: (e: MapLayerMouseEvent) => void;
+  onMouseMove?: (e: MapLayerMouseEvent) => void;
+  onMouseEnter?: (e: MapLayerMouseEvent) => void;
+  onMouseLeave?: (e: MapLayerMouseEvent) => void;
+  onClick?: (e: MapLayerMouseEvent) => void;
+  onDblClick?: (e: MapLayerMouseEvent) => void;
+  onContextMenu?: (e: MapLayerMouseEvent) => void;
+  onTouchStart?: (e: MapLayerTouchEvent) => void;
+  onTouchEnd?: (e: MapLayerTouchEvent) => void;
+  onTouchCancel?: (e: MapLayerTouchEvent) => void;
+  onTouchMove?: (e: MapLayerTouchEvent) => void;
+
+  /** Not compatible with `layerId` */
+  onWheel?: (e: MapWheelEvent) => void;
+  onResize?: (e: MapLibreEvent) => void;
+  onRemove?: (e: MapLibreEvent) => void;
+
+  onMoveStart?: (e: MapLibreEvent<MouseEvent | TouchEvent | WheelEvent | undefined>) => void;
+  onMove?: (e: MapLibreEvent<MouseEvent | TouchEvent | WheelEvent | undefined>) => void;
+  onMoveEnd?: (e: MapLibreEvent<MouseEvent | TouchEvent | WheelEvent | undefined>) => void;
+  onDragStart?: (e: MapLibreEvent<MouseEvent | TouchEvent | undefined>) => void;
+  onDrag?: (e: MapLibreEvent<MouseEvent | TouchEvent | undefined>) => void;
+  onDragEnd?: (e: MapLibreEvent<MouseEvent | TouchEvent | undefined>) => void;
+  onZoomStart?: (e: MapLibreEvent<MouseEvent | TouchEvent | WheelEvent | undefined>) => void;
+  onZoom?: (e: MapLibreEvent<MouseEvent | TouchEvent | WheelEvent | undefined>) => void;
+  onZoomEnd?: (e: MapLibreEvent<MouseEvent | TouchEvent | WheelEvent | undefined>) => void;
+  onRotateStart?: (e: MapLibreEvent<MouseEvent | TouchEvent | undefined>) => void;
+  onRotate?: (e: MapLibreEvent<MouseEvent | TouchEvent | undefined>) => void;
+  onRotateEnd?: (e: MapLibreEvent<MouseEvent | TouchEvent | undefined>) => void;
+  onPitchStart?: (e: MapLibreEvent<MouseEvent | TouchEvent | undefined>) => void;
+  onPitch?: (e: MapLibreEvent<MouseEvent | TouchEvent | undefined>) => void;
+  onPitchEnd?: (e: MapLibreEvent<MouseEvent | TouchEvent | undefined>) => void;
+
+  onBoxZoomStart?: (e: MapLibreZoomEvent) => void;
+  onBoxZoomEnd?: (e: MapLibreZoomEvent) => void;
+  onBoxZoomCancel?: (e: MapLibreZoomEvent) => void;
+  onWebglContextLost?: (e: MapContextEvent) => void;
+  onWebglContextRestored?: (e: MapContextEvent) => void;
+  onLoad?: (e: MapLibreEvent) => void;
+  onRender?: (e: MapLibreEvent) => void;
+  onIdle?: (e: MapLibreEvent) => void;
+  onError?: (e: ErrorEvent) => void;
+  onData?: (e: MapDataEvent) => void;
+  onStyleData?: (e: MapStyleDataEvent) => void;
+  onSourceData?: (e: MapSourceDataEvent) => void;
+  onDataLoading?: (e: MapDataEvent) => void;
+  onStyleDataLoading?: (e: MapStyleDataEvent) => void;
+  onSourceDataLoading?: (e: MapSourceDataEvent) => void;
+  onTileDataLoading?: (e: MapDataEvent) => void;
+  onStyleImageMissing?: (e: MapStyleImageMissingEvent) => void;
+  onDataAbort?: (e: MapDataEvent) => void;
+  onSourceDataAbort?: (e: MapSourceDataEvent) => void;
+  onTerrain?: (e: MapTerrainEvent) => void;
+};
+```
+</div>
+<div className="[&_pre]:max-h-96">
+```ts
+type MapInitialOptions = {
+  initialHash?: boolean | string;
+  initialInteractive?: boolean;
+  initialBearingSnap?: number;
+  initialAttributionControl?: false | AttributionControlOptions;
+  initialMaplibreLogo?: boolean;
+  initialLogoPosition?: ControlPosition;
+  initialFailIfMajorPerformanceCaveat?: boolean;
+  initialPreserveDrawingBuffer?: boolean;
+  initialAntialias?: boolean;
+  initialRefreshExpiredTiles?: boolean;
+  initialTrackResize?: boolean;
+  initialMaxTileCacheSize?: number;
+  initialMaxTileCacheZoomLevels?: number;
+  initialTransformRequest?: RequestTransformFunction;
+  initialTransformCameraUpdate?: CameraUpdateTransformFunction;
+  initialLocale?: any;
+  initialFadeDuration?: number;
+  initialCrossSourceCollisions?: boolean;
+  initialCollectResourceTiming?: boolean;
+  initialClickTolerance?: number;
+  initialValidateStyle?: boolean;
+  initialMaxCanvasSize?: [number, number];
+  initialCancelPendingTileRequestsWhileZooming?: boolean;
+  initialCenter?: LngLatLike;
+  initialZoom?: number;
+  initialBearing?: number;
+  initialPitch?: number;
+  initialBounds?: LngLatBoundsLike;
+  initialFitBoundsOptions?: FitBoundsOptions;
+  initialLocalIdeographFontFamily?: string | false;
+  initialPitchWithRotate?: boolean;
+}
+```
+</div>
+</div>

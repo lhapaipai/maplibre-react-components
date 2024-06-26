@@ -1,0 +1,45 @@
+export const metadata = {
+  title: 'useMap',
+  description: 'hook to get map instance inside RMap'
+};
+
+import { Flash } from "pentatrion-design/components/flash"
+
+# useMap
+
+Hook to get map instance inside RMap.
+
+<Flash color="orange">
+As this hook use React Context internally you can't use this hook in the component using `RMap` but only in child component.
+</Flash>
+
+## Usage
+
+```tsx
+import { RMap, useMap } from "maplibre-react-components";
+
+function ChildComponent() {
+  // your MapLibre map instance
+  const map = useMap();
+
+  return null;
+}
+
+export default function App() {
+  return (
+    <RMap>
+      <ChildComponent />
+    </RMap>
+  );
+}
+
+```
+
+
+## Reference
+
+```ts
+import { type Map} from "maplibre-gl";
+
+type RMapHookReturn = Map;
+```

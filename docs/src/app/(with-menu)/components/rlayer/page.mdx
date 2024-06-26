@@ -1,0 +1,88 @@
+export const metadata = {
+  title: 'RLayer',
+  description: 'wrapper for the layer object'
+};
+
+import TwoCols from "~/components/TwoCols.tsx";
+import ShikiContent from "~/components/ShikiContent";
+
+# RLayer
+
+This component wraps a MapLibre Layer object. He manages its life cycle and is
+responsible for adding/removing it to the map. For this reason this component
+must be a descendant of `RMap`.
+
+The `id` and the `type` props are **readonly**. This allows us to manage
+reactivity on the same instance throughout its lifecycle. In some cases you'll have
+to add a `key` prop to maintain this state. see below [Error: RLayer id should not change](#error-rlayer-id-should-not-change).
+
+
+## Usage
+
+```tsx
+import { RMap, RSource, RLayer } from "maplibre-react-components";
+
+const townPaintStyle = {
+  "fill-outline-color": "rgba(0,0,0,0.1)",
+  "fill-color": "rgba(255,0,0,0.3)",
+};
+
+export default function App() {
+  return (
+    <RMap>
+      <RSource id="thyez" type="geojson" data="/data/thyez.geojson" />
+      <RLayer
+        source="thyez"
+        id="thyez-fill"
+        type="fill"
+        paint={townPaintStyle}
+      />
+    </RMap>
+  );
+};
+```
+
+## Reactivity
+
+Some props are reactives. Here is the complete list, it applies depending on whether or not the layer
+has this prop in its options.
+
+```ts
+type LayerReactiveOptions = {
+  layout?: any;
+  paint?: any;
+  filter?: FilterSpecification;
+  minzoom?: number;
+  maxzoom?: number;
+  beforeId?: string;
+}
+```
+
+Be careful to define stable objects for `layout`, `paint` and `filter` props to avoid multiplying renderings.
+
+import LayoutPaint from "./LayoutPaint.tsx";
+import layoutPaintCode from "./LayoutPaint.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={layoutPaintCode} />} second={<LayoutPaint />} />
+
+## Error: RLayer id should not change.
+
+When you have conditional renderers within your `RMap` component you will need to set the
+prop `key` for your `RLayer` to help React maintain its association with the correct component.
+
+Consider `id` prop for MapLibre mapping and `key` prop for React mapping. If you want to know
+why see [Tips: key vs id](/tips#error-id-should-not-change-key-vs-id).
+
+
+## Reference
+
+`RLayer` accept same props as `Layer` options plus `beforeId`.
+
+```tsx
+type RLayerProps = LayerOptions & {
+  beforeId?: string;
+};
+
+type LayerOptions = LayerSpecification | CustomLayerInterface;
+```
+

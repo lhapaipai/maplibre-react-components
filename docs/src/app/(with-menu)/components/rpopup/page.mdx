@@ -1,0 +1,102 @@
+export const metadata = {
+  title: 'RPopup',
+  description: 'wrapper for the popup object'
+};
+
+import TwoCols from "~/components/TwoCols.tsx";
+import ShikiContent from "~/components/ShikiContent";
+
+
+# RPopup
+
+## Usage
+
+import Basic from "./Basic.tsx";
+import basicCode from "./Basic.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={basicCode} />} second={<Basic />} />
+
+
+## Closable Popup
+
+For compatibility some options from `PopupOptions` are not
+available : `closeButton`, `closeOnClick`, `closeOnMove`. Without these
+deactivations, this could result map's state to deviate from its props.
+
+As an alternative, you can listen to events `onMapClick`, `onMapMove`.
+
+import Closable from "./Closable.tsx";
+import closableCode from "./Closable.extract.tsx?code";
+
+<TwoCols foreground="second" first={<Closable />} second={<ShikiContent html={closableCode} />} />
+
+rather use these listeners on the `RPopup` component rather than on `RMap` because they are unregistered when the popup is hidden.
+
+## Popup with Marker
+
+import WithMarker from "./WithMarker.tsx";
+import withMarkerCode from "./WithMarker.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={withMarkerCode} />} second={<WithMarker />} />
+
+you can import the `markerPopupOffset` utility object from the lib, based on default MapLibre Marker height.
+
+
+
+## Reference
+
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
+<div className="row-span-3">
+```ts
+type RPopupProps =
+  {
+    longitude: number;
+    latitude: number;
+    /**
+     * for popup element
+     */
+    children?: ReactNode;
+  } &
+  /**
+   * Non reactive popup options (only used during instantiation)
+   * prefixed with "initial" + first letter uppercase
+   */
+  PopupInitialOptions &
+  /**
+   * Reactive popup options.
+   * they have the same name as in MapOptions
+   */
+  PopupReactiveOptions &
+  /**
+   * Listenners for popup events
+   * prefixed with "on" + first letter uppercase
+   */
+  PopupCallbacks;
+```
+</div>
+```ts
+type PopupInitialOptions = {
+  initialFocusAfterOpen?: boolean;
+  initialAnchor?: PositionAnchor;
+  initialSubpixelPositioning?: boolean;
+};
+
+```
+```ts
+type PopupReactiveOptions = {
+  className?: string;
+  offset?: PointLike;
+  maxWidth?: string;
+};
+
+```
+```ts
+type PopupCallbacks = {
+  onMapClick?: (e: MapLayerMouseEvent) => void;
+  onMapMove?: (e: MapLibreEvent<MouseEvent | TouchEvent | WheelEvent | undefined>) => void;
+}
+
+
+```
+</div>

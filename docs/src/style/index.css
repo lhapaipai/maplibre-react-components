@@ -1,0 +1,12 @@
+@import "./vars.css";
+@import "./tailwind.css";
+@import "./layout.css";
+
+@import "./icons/fontello.css";
+@import "./shiki.css";
+
+@import "maplibre-theme/modern.scoped.css";
+@import "maplibre-theme/classic.scoped.css";
+@import "maplibre-react-components/style.css";
+
+@import "./maplibre-extra.css";
