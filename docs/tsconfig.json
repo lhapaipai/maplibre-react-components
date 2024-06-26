@@ -35,13 +35,6 @@
       "~/*": ["./src/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "node_modules/pentatrion-design/**/*.tsx",
-    "node_modules/pentatrion-design/**/*.ts"
-  ],
-  "exclude": ["node_modules", "!node_modules/pentatrion-design"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

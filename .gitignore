@@ -4,3 +4,7 @@ storybook-static/
 
 .fontello
 dist/
+
+Makefile
+
+sandbox/public/assets

@@ -17,7 +17,7 @@
     "maplibre-theme": "^0.0.6",
     "next": "14.2.3",
     "nprogress": "^0.2.0",
-    "pentatrion-design": "^0.0.12",
+    "pentatrion-design": "^0.0.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

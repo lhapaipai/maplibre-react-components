@@ -9,7 +9,7 @@ const projectDir = dirname(fileURLToPath(import.meta.url));
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    // tsconfigPath: "./tsconfig.build.json",
+    tsconfigPath: "./tsconfig.build.json",
   },
   output: "export",
   pageExtensions: ["mdx", "ts", "tsx"],
@@ -21,19 +21,6 @@ const nextConfig = {
     ];
 
     config.module.rules.push(
-      // {
-      //   test: /\.(ts|tsx)$/,
-      //   include: [
-      //     resolve(projectDir, 'src'),
-      //     resolve(projectDir, 'node_modules/pentatrion-design')
-      //   ],
-      //   use: {
-      //     loader: 'babel-loader',
-      //     options: {
-      //       presets: ['next/babel'],
-      //     },
-      //   },
-      // },
       {
         test: /\.mdx$/,
         use: [

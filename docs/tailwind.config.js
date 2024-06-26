@@ -11,10 +11,10 @@ const config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
 
-    "./node_modules/pentatrion-design/lib/**/*.{ts,tsx}",
-    "./node_modules/pentatrion-design/components/**/*.{ts,tsx}",
-    "./node_modules/pentatrion-design/hooks/**/*.{ts,tsx}",
-    "./node_modules/pentatrion-design/redux/**/*.{ts,tsx}",
+    "./node_modules/pentatrion-design/lib/**/*.js",
+    "./node_modules/pentatrion-design/components/**/*.js",
+    "./node_modules/pentatrion-design/hooks/**/*.js",
+    "./node_modules/pentatrion-design/redux/**/*.js",
   ],
   darkMode: ["class"],
   theme: {

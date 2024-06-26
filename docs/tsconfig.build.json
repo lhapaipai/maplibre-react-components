@@ -7,10 +7,5 @@
       }
     ]
   },
-  "exclude": [
-    "node_modules",
-    "!node_modules/pentatrion-design/**/*.tsx",
-    "!node_modules/pentatrion-design/**/*.ts",
-    "src/**/*.extract.tsx"
-  ]
+  "exclude": ["node_modules", "src/**/*.extract.tsx"]
 }
