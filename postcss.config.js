@@ -16,23 +16,7 @@ const config = {
     autoprefixer(),
     postcssInlineSvg(),
     cssnanoPlugin({
-      preset: [
-        "default",
-        {
-          svgo: {
-            plugins: [
-              {
-                name: "preset-default",
-                params: {
-                  overrides: {
-                    removeViewBox: false,
-                  },
-                },
-              },
-            ],
-          },
-        },
-      ],
+      preset: ["default"],
     }),
   ],
 };

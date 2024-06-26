@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "fontello": "fontello"
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.17",
@@ -33,6 +34,7 @@
     "@types/react-dom": "^18.3.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.3",
+    "pentatrion-fontello-cli": "^0.0.5",
     "postcss": "^8.4.38",
     "postcss-input-range": "^5.0.0",
     "postcss-load-config": "^5.1.0",

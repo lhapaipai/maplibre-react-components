@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "{{FONT_FAMILY}}";
+  src: url("{{URL_DATA}}");
+  font-weight: normal;
+  font-style: normal;
+}
+/* If you don't want inline font use this instead */
+/*
+@font-face {
+  font-family: 'fontello';
+  src: url('./fontello.woff2?{{TIMESTAMP}}');;
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+
+{{CODES}}

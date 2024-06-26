@@ -16,3 +16,8 @@ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command was killed with SIGBUS (Bus error 
 ## Questions
 
 est-ce que cela vaut la peine de memoiser RMap alors que de toute façon il aura des enfants et la props `children` sera différente à chaque rendu ce qui entrainera un re rendu de RMap.
+
+
+## Bug
+
+map has not control pour la doc sous nextJS.

@@ -30,5 +30,5 @@
       "~/*": ["./src/*"]
     }
   },
-  "include": ["./src", "./*.ts", "./.storybook"]
+  "include": ["./src", "./*.ts", "./*.js", "./.storybook"]
 }

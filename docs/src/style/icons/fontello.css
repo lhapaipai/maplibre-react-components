@@ -1,34 +1,28 @@
 @font-face {
-  font-family: 'fontello';
-  src: url('./fontello.eot?17391538');
-  src: url('./fontello.eot?17391538#iefix') format('embedded-opentype'),
-       url('./fontello.woff2?17391538') format('woff2'),
-       url('./fontello.woff?17391538') format('woff'),
-       url('./fontello.ttf?17391538') format('truetype'),
-       url('./fontello.svg?17391538#fontello') format('svg');
+  font-family: "fontello";
+  src: url("data:font/woff2;charset=utf-8;base64,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");
   font-weight: normal;
   font-style: normal;
 }
-/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
-/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/* If you don't want inline font use this instead */
 /*
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: 'fontello';
-    src: url('./fontello.svg?17391538#fontello') format('svg');
-  }
+@font-face {
+  font-family: 'fontello';
+  src: url('./fontello.woff2?1719425364861');;
+  font-weight: normal;
+  font-style: normal;
 }
 */
-[class^="fe-"]:before, [class*=" fe-"]:before {
+[class^="fe-"]:before,
+[class*=" fe-"]:before {
   font-family: "fontello";
   font-style: normal;
   font-weight: normal;
-  
 
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
-  margin-right: .2em;
+  margin-right: 0.2em;
   text-align: center;
   /* opacity: .8; */
 
@@ -41,7 +35,7 @@
 
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
-  margin-left: .2em;
+  margin-left: 0.2em;
 
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; */
@@ -53,6 +47,7 @@
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
+
 
 .fe-heart:before { content: '\e800'; } /* '' */
 .fe-cancel:before { content: '\e801'; } /* '' */
