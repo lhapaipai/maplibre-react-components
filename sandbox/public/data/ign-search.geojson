@@ -1,0 +1,113 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.497886,
+          46.091857
+        ]
+      },
+      "properties": {
+        "label": "65 Impasse des perrières 74970 Marignier",
+        "score": 0.9543052116229088,
+        "housenumber": "65",
+        "id": "74164_0561_00065",
+        "name": "65 Impasse des perrières",
+        "postcode": "74970",
+        "citycode": "74164",
+        "x": 970171.46,
+        "y": 6560659.64,
+        "city": "Marignier",
+        "context": "74, Haute-Savoie, Auvergne-Rhône-Alpes",
+        "type": "housenumber",
+        "importance": 0.46324,
+        "street": "Impasse des perrières",
+        "distance": 5395,
+        "truegeometry": "{\"type\":\"Point\",\"coordinates\":[6.497886,46.091857]}",
+        "_type": "address"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.870274,
+          45.927129
+        ]
+      },
+      "properties": {
+        "label": "Rue Joseph Vallot 74400 Chamonix-Mont-Blanc",
+        "score": 0.6942209090909089,
+        "id": "74056_0680",
+        "name": "Rue Joseph Vallot",
+        "postcode": "74400",
+        "citycode": "74056",
+        "x": 999808.48,
+        "y": 6543730.4,
+        "city": "Chamonix-Mont-Blanc",
+        "context": "74, Haute-Savoie, Auvergne-Rhône-Alpes",
+        "type": "street",
+        "importance": 0.63643,
+        "street": "Rue Joseph Vallot",
+        "_type": "address"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.868516,
+          45.917877
+        ]
+      },
+      "properties": {
+        "label": "Chamonix Sud 74400 Chamonix-Mont-Blanc",
+        "score": 0.8575436363636363,
+        "type": "locality",
+        "importance": 0.43298,
+        "id": "74056_qfefwb",
+        "name": "Chamonix Sud",
+        "postcode": "74400",
+        "citycode": "74056",
+        "x": 999722.72,
+        "y": 6542697.52,
+        "city": "Chamonix-Mont-Blanc",
+        "context": "74, Haute-Savoie, Auvergne-Rhône-Alpes",
+        "locality": "Chamonix Sud",
+        "_type": "address"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.893163,
+          45.948385
+        ]
+      },
+      "properties": {
+        "label": "Chamonix-Mont-Blanc",
+        "score": 0.8543927272727272,
+        "id": "74056",
+        "type": "municipality",
+        "name": "Chamonix-Mont-Blanc",
+        "postcode": "74400",
+        "citycode": "74056",
+        "x": 1001463.8,
+        "y": 6546175.18,
+        "population": 8644,
+        "city": "Chamonix-Mont-Blanc",
+        "context": "74, Haute-Savoie, Auvergne-Rhône-Alpes",
+        "importance": 0.39832,
+        "municipality": "Chamonix-Mont-Blanc",
+        "_type": "address"
+      }
+    }
+  ]
+}

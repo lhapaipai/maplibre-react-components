@@ -1,0 +1,9 @@
+/* @import "pentatrion-design/fontello.css"; */
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* @import "pentatrion-geo/fontello-geo-inline.css";
+@import "pentatrion-geo/maplibre/Marker.css"; */
+/* @import "./maplibregl-css/index.css"; */

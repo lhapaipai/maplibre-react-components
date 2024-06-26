@@ -1,0 +1,19 @@
+html,
+body,
+#root,
+#map {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, .1);
+  background: #fff;
+  border-radius: 4px;
+}
