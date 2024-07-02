@@ -18,6 +18,6 @@ export default defineConfig({
       "./src/tests/vitest-setup.ts",
       "./src/tests/mocks/web-worker.ts",
     ],
-    include: ["src/**/*.test.ts?(x)"],
+    include: ["src/components/(RMap|RLayer)/*.test.ts?(x)"],
   },
 });

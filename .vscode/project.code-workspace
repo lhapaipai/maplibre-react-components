@@ -8,5 +8,9 @@
       "name": "maplibre-react-components",
       "path": "../",
     },
+    {
+      "name": "sandbox",
+      "path": "../sandbox",
+    },
   ],
 }

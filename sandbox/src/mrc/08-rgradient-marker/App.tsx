@@ -18,7 +18,15 @@ function App() {
           longitude={marignierChurch.lng}
           latitude={marignierChurch.lat}
         />
+        <RGradientMarker
+          longitude={marignier.lng}
+          latitude={marignier.lat}
+          icon="fe-star"
+        />
       </RMap>
+      <div className="absolute left-5 top-5">
+        <i className="fe-star"></i>
+      </div>
     </>
   );
 }

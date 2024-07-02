@@ -1,9 +1,7 @@
-import ReactDOM from "react-dom/client";
-
-import App from "./App.tsx";
-
-import "~/shared/tailwind.css";
 import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import "~/shared/tailwind.css";
 
 const strict = false;
 
