@@ -1,6 +1,7 @@
 ## Next
 
 - Fix RGradientMarker duplicate circle in StrictMode
+- Fix RTerrain error when defined before RSource.
 
 ## 0.0.8
 

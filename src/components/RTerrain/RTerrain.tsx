@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { mapLibreContext } from "../../context";
 import { TerrainSpecification } from "maplibre-gl";
 
@@ -18,9 +18,10 @@ export const RTerrain = (props: RTerrainProps) => {
   const prevOptions = context.mapManager.getControlledTerrain() ?? props;
 
   const [, setVersion] = useState(0);
+  const reRender = useCallback(() => setVersion((v) => v + 1), []);
 
   useEffect(() => {
-    const reRender = () => void setVersion((v) => v + 1);
+    map.on("styledata", reRender);
 
     if (map.style._loaded) {
       // in case layer is loaded between first render and useEffect call
@@ -29,17 +30,20 @@ export const RTerrain = (props: RTerrainProps) => {
     }
 
     return () => {
+      map.off("styledata", reRender);
+
       if (map.style?._loaded && map.getTerrain()) {
         map.setTerrain(null);
       }
 
       context.mapManager?.setControlledTerrain(null);
     };
-  }, [map, context]);
+  }, [map, context, reRender]);
 
   // when map not loaded getTerrain return null event if map style contain terrain
   // specification.
-  const terrain = map.style?._loaded && map.getSource(terrainOptions.source) && map.getTerrain();
+  const terrain =
+    map.style?._loaded && (map.getSource(terrainOptions.source) ? map.getTerrain() : false);
 
   if (terrain) {
     if (
@@ -51,8 +55,7 @@ export const RTerrain = (props: RTerrainProps) => {
   } else if (map.style?._loaded) {
     if (map.getSource(terrainOptions.source)) {
       map.setTerrain(terrainOptions);
-    } else {
-      throw new Error(`Unable to find Terrain source ${terrainOptions.source}`);
+      map.off("styledata", reRender);
     }
   }
 
