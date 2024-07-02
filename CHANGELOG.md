@@ -1,3 +1,7 @@
+## Next
+
+- Fix RGradientMarker duplicate circle in StrictMode
+
 ## 0.0.8
 
 - Fix "map has not control" when RMap cleanup is called before useControl cleanup.

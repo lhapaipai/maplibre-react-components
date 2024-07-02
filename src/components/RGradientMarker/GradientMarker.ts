@@ -19,8 +19,9 @@ export class GradientMarker extends Marker {
   // @ts-ignore
   _popup?: FloatingPopup | Popup;
 
-  _iconElement?: HTMLElement | SVGSVGElement;
-  _textElement?: HTMLDivElement;
+  _circleElement: HTMLElement | null = null;
+  _iconElement: HTMLElement | SVGSVGElement | null = null;
+  _textElement: HTMLDivElement | null = null;
   _markerElement?: HTMLElement;
 
   constructor(options?: GradientMarkerOptions) {
@@ -56,11 +57,8 @@ export class GradientMarker extends Marker {
 
       this._markerElement = DOM.create("div", "marker");
       if (this._text) {
-        DOM.create("div", "circle", this._markerElement);
-        this._textElement = DOM.create("div", "text", this._markerElement);
-        this._textElement.innerText = this._text;
+        this.setText(this._text);
       } else if (this._icon) {
-        DOM.create("div", "circle", this._markerElement);
         this.setIcon(this._icon);
       }
 
@@ -104,16 +102,16 @@ export class GradientMarker extends Marker {
   }
 
   setIcon(icon?: string | HTMLElement | SVGSVGElement | (() => HTMLElement | SVGSVGElement)): this {
+    this.resetIconText();
     this._icon = icon;
-    if (this._iconElement) {
-      this._iconElement.remove();
-    }
+
     if (!icon) {
       return this;
     }
 
+    this._circleElement = DOM.create("div", "circle", this._markerElement);
+
     if (typeof icon === "string") {
-      DOM.create("div", "circle", this._markerElement);
       this._iconElement = DOM.create("i", icon, this._markerElement);
       this._iconElement.className = icon || "";
     } else if (typeof icon === "function") {
@@ -131,11 +129,27 @@ export class GradientMarker extends Marker {
     return this._icon;
   }
 
+  resetIconText() {
+    this._circleElement?.remove();
+    this._iconElement?.remove();
+    this._textElement?.remove();
+    this._circleElement = null;
+    this._iconElement = null;
+    this._textElement = null;
+  }
+
   setText(text?: string): this {
+    this.resetIconText();
     this._text = text;
-    if (this._textElement) {
-      this._textElement.innerText = this._text || "";
+
+    if (!text) {
+      return this;
     }
+
+    this._circleElement = DOM.create("div", "circle", this._markerElement);
+    this._textElement = DOM.create("div", "text", this._markerElement);
+    this._textElement.innerText = text;
+
     return this;
   }
 
