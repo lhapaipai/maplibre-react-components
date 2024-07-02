@@ -5,8 +5,8 @@
 @import "./icons/fontello.css";
 @import "./shiki.css";
 
-@import "maplibre-theme/modern.scoped.css";
-@import "maplibre-theme/classic.scoped.css";
+@import "maplibre-theme/extra/modern.scoped.css";
+@import "maplibre-theme/extra/classic.scoped.css";
 @import "maplibre-react-components/style.css";
 
 @import "./maplibre-extra.css";
