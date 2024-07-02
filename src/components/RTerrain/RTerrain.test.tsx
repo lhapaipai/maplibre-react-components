@@ -7,7 +7,7 @@ import { RTerrain } from "./RTerrain";
 import { RefObject } from "react";
 import { Map, Source } from "maplibre-gl";
 
-import { beforeMapTest } from "~/tests/util";
+import { beforeMapTest } from "~tests/util";
 
 const rasterDemTiles = ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"];
 

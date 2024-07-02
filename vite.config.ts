@@ -9,14 +9,15 @@ export default defineConfig({
   resolve: {
     alias: {
       "~": resolve(projectDir, "src"),
+      "~tests": resolve(projectDir, "tests"),
     },
   },
   test: {
     environment: "jsdom",
     setupFiles: [
       "vitest-webgl-canvas-mock",
-      "./src/tests/vitest-setup.ts",
-      "./src/tests/mocks/web-worker.ts",
+      "./tests/vitest-setup.ts",
+      "./tests/mocks/web-worker.ts",
     ],
     include: ["src/components/**/*.test.ts?(x)"],
   },

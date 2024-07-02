@@ -27,8 +27,9 @@
     "types": ["react/experimental", "@testing-library/jest-dom", "offscreencanvas"],
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "~tests/*": ["./tests/*"]
     }
   },
-  "include": ["./src", "./*.ts", "./*.js", "./.storybook"]
+  "include": ["./src", "./tests", "./*.ts", "./*.js", "./.storybook"]
 }

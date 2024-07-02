@@ -5,7 +5,7 @@ import {
   GradientMarkerReactiveOptionName,
   RGradientMarker,
 } from "./RGradientMarker";
-import { beforeMapTest } from "~/tests/util";
+import { beforeMapTest } from "~tests/util";
 import { cleanup, render } from "@testing-library/react";
 
 import { GradientMarkerOptions } from "./GradientMarker";

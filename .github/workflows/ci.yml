@@ -1,0 +1,41 @@
+name: "ci"
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+defaults:
+  run:
+    working-directory: .
+
+jobs:
+  lint:
+    name: Eslint and Tsc
+    strategy:
+      fail-fast: true
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: "Install JS dependencies"
+        run: "pnpm i --frozen-lockfile"
+
+      - name: "Eslint"
+        run: "pnpm run lint:check"
+
+      - name: "Tsc"
+        run: "pnpm run tsc:check"
+
+      - name: "Test"
+        run: "pnpm run test-run"

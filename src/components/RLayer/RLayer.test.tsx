@@ -7,7 +7,7 @@ import { Point } from "geojson";
 import { RSource } from "../RSource";
 import { RLayer, StyleLayer } from "./RLayer";
 
-import { beforeMapTest } from "~/tests/util";
+import { beforeMapTest } from "~tests/util";
 import { emptyStyle } from "~/lib/util";
 
 beforeEach(() => {
