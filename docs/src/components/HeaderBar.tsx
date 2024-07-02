@@ -35,7 +35,7 @@ export default function HeaderBar() {
         color="gray"
         icon
         size="large"
-        href="https://github.com/lhapaipai/lonlat"
+        href="https://github.com/lhapaipai/maplibre-react-components"
       >
         <i className="fe-github text-3xl"></i>
       </LinkButton>

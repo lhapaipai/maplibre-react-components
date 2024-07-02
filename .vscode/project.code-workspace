@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "name": "docs",
+      "path": "../docs",
+    },
+    {
+      "name": "maplibre-react-components",
+      "path": "../",
+    },
+  ],
+}

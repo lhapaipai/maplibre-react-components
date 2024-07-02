@@ -1,29 +1,5 @@
 {
-  // https://stackoverflow.com/questions/68163385/parsing-error-cannot-find-module-next-babel
-  "eslint.workingDirectories": [".", "./docs"],
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
-  "editor.quickSuggestions": {
-    "strings": "on"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "tailwindCSS.experimental.configFile": {
-    // "apps/sandbox/tailwind.config.js": "apps/sandbox/**",
-    "docs/tailwind.config.js": "docs/**"
+  "files.exclude": {
+    "docs/": true
   }
 }
