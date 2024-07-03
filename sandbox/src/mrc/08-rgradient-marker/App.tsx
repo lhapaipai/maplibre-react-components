@@ -1,6 +1,6 @@
 import "maplibre-theme/classic.css";
 import "maplibre-react-components/style.css";
-import { RMap, RGradientMarker } from "maplibre-react-components/index.dev";
+import { RMap, RGradientMarker } from "maplibre-react-components";
 import "./App.scss";
 
 const marignier = { lng: 6.498, lat: 46.089 };

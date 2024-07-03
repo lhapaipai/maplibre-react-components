@@ -1,4 +1,11 @@
-import { FillLayerSpecification, CustomLayerInterface, Map, LayerSpecification } from "maplibre-gl";
+import {
+  FillLayerSpecification,
+  CustomLayerInterface,
+  Map,
+  LayerSpecification,
+  MapLayerMouseEvent,
+  MapLayerTouchEvent,
+} from "maplibre-gl";
 import {
   forwardRef,
   memo,
@@ -10,10 +17,51 @@ import {
   useState,
 } from "react";
 import { mapLibreContext } from "../../context";
+import { prepareEventDep, transformPropsToOptions } from "~/lib";
 
 export type LayerOptions = LayerSpecification | CustomLayerInterface;
 
-export type RLayerProps = LayerOptions & {
+const eventNameToCallbackName = {
+  mousedown: "onMouseDown",
+  mouseup: "onMouseUp",
+  mouseover: "onMouseOver",
+  mouseout: "onMouseOut",
+  mousemove: "onMouseMove",
+  mouseenter: "onMouseEnter",
+  mouseleave: "onMouseLeave",
+  click: "onClick",
+  dblclick: "onDblClick",
+  contextmenu: "onContextMenu",
+  touchstart: "onTouchStart",
+  touchend: "onTouchEnd",
+  touchcancel: "onTouchCancel",
+  touchmove: "onTouchMove",
+} as const;
+export type LayerEventName = keyof typeof eventNameToCallbackName;
+
+type LayerEvent = MapLayerMouseEvent | MapLayerTouchEvent;
+
+export type LayerCallbacks = {
+  /** MapCallbacks compatibles with `layerId` */
+  onMouseDown?: (e: MapLayerMouseEvent) => void;
+  onMouseUp?: (e: MapLayerMouseEvent) => void;
+  onMouseOver?: (e: MapLayerMouseEvent) => void;
+  onMouseOut?: (e: MapLayerMouseEvent) => void;
+  onMouseMove?: (e: MapLayerMouseEvent) => void;
+  onMouseEnter?: (e: MapLayerMouseEvent) => void;
+  onMouseLeave?: (e: MapLayerMouseEvent) => void;
+  onClick?: (e: MapLayerMouseEvent) => void;
+  onDblClick?: (e: MapLayerMouseEvent) => void;
+  onContextMenu?: (e: MapLayerMouseEvent) => void;
+  onTouchStart?: (e: MapLayerTouchEvent) => void;
+  onTouchEnd?: (e: MapLayerTouchEvent) => void;
+  onTouchCancel?: (e: MapLayerTouchEvent) => void;
+  onTouchMove?: (e: MapLayerTouchEvent) => void;
+};
+
+export type LayerProps = LayerOptions & LayerCallbacks;
+
+export type RLayerProps = LayerProps & {
   beforeId?: string;
 };
 
@@ -121,7 +169,13 @@ function updateLayer(
 
 export const RLayer = memo(
   forwardRef<StyleLayer | null, RLayerProps>(function RLayer(props, ref) {
-    const { beforeId, ...layerOptions } = props;
+    const { beforeId, ...layerProps } = props;
+
+    const [layerOptions, callbacks] = transformPropsToOptions(layerProps) as [
+      LayerOptions,
+      LayerCallbacks,
+    ];
+
     const id = layerOptions.id;
 
     const context = useContext(mapLibreContext);
@@ -149,6 +203,9 @@ export const RLayer = memo(
       throw new Error(`RLayer type should not change. "${props.type}" "${prevProps.type}"`);
     }
 
+    const callbacksRef = useRef<LayerCallbacks>();
+    callbacksRef.current = callbacks;
+
     useEffect(() => {
       map.on("styledata", reRender);
 
@@ -168,6 +225,37 @@ export const RLayer = memo(
         context.mapManager?.setControlledLayer(id, null);
       };
     }, [map, id, context, reRender]);
+
+    const nextEventsStr = prepareEventDep(eventNameToCallbackName, callbacks).join("-");
+
+    useEffect(() => {
+      function onLayerEvent(e: LayerEvent) {
+        const eventType = e.type as LayerEventName;
+        const callbackName = eventNameToCallbackName[eventType];
+        if (callbacksRef.current?.[callbackName]) {
+          // @ts-ignore
+          // the type of event depends on its nature and
+          // event subscribers expect specific and not generic events
+          callbacksRef.current[callbackName]?.(e);
+        } else {
+          console.info("not managed RLayer event", eventType, e);
+        }
+      }
+
+      const eventNames = nextEventsStr.split("-") as LayerEventName[];
+
+      eventNames.forEach((eventName) => {
+        // @ts-ignore
+        map.on(eventName, id, onLayerEvent);
+      });
+
+      return () => {
+        eventNames.forEach((eventName) => {
+          // @ts-ignore
+          map.on(eventName, id, onLayerEvent);
+        });
+      };
+    }, [nextEventsStr, id, map]);
 
     let layer = map.style?._loaded && map.getLayer(id);
 
