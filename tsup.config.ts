@@ -8,8 +8,14 @@ export default defineConfig((options) => {
     esbuildOptions(options) {
       options.external = ["react", "react-dom", "maplibre-gl", "@floating-ui/dom", "clsx"];
     },
+    outExtension: () => {
+      return {
+        js: options.minify ? ".min.js" : ".js",
+      };
+    },
     shims: true,
-    minify: !options.watch,
-    clean: !options.watch,
+
+    // only in the first phase of the build step
+    clean: Boolean(options.env?.TSUP_CLEAN_DIST ?? false),
   };
 });
