@@ -1,7 +1,7 @@
 import { cleanup, render, waitFor } from "@testing-library/react";
 import { CircleLayerSpecification, Map, Source } from "maplibre-gl";
 import { RefObject } from "react";
-import { afterEach, assertType, beforeEach, describe, test } from "vitest";
+import { afterEach, beforeEach, describe, test } from "vitest";
 import { RMap } from "../RMap";
 import { Point } from "geojson";
 import { RSource } from "../RSource";

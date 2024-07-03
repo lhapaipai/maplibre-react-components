@@ -28,7 +28,9 @@
     "test": "vitest",
     "test-run": "vitest --run",
     "lint:check": "eslint -c .eslintrc ./src",
-    "tsc:check": "tsc -p tsconfig.build.json --noEmit"
+    "tsc:check": "tsc -p tsconfig.build.json --noEmit",
+    "ci": "pnpm lint:check && pnpm tsc:check && pnpm test-run",
+    "prepare": "husky"
   },
   "files": [
     "dist/",
@@ -70,6 +72,7 @@
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "husky": "^9.0.11",
     "jsdom": "^24.1.0",
     "maplibre-gl": "^4.5.0",
     "msw": "^2.3.1",
