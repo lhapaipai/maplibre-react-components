@@ -14,11 +14,11 @@ export default defineConfig({
   },
   test: {
     environment: "jsdom",
-    setupFiles: [
-      "vitest-webgl-canvas-mock",
-      "./tests/vitest-setup.ts",
-      "./tests/mocks/web-worker.ts",
-    ],
+    // slow but no canvas getContext error...
+    // https://github.com/vitest-dev/vitest/issues/740
+    minWorkers: 1,
+    maxWorkers: 1,
+    setupFiles: ["vitest-webgl-canvas-mock", "./tests/setup/dom.ts", "./tests/setup/web-worker.ts"],
     include: ["src/components/**/*.test.ts?(x)"],
   },
 });

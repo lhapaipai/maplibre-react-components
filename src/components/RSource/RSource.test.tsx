@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe, test, vi } from "vitest";
-import { beforeMapTest } from "~tests/util";
+import { beforeMapTest } from "~tests/map-util";
 import { cleanup, render, waitFor } from "@testing-library/react";
 import { GeoJSONSource, Map, Source } from "maplibre-gl";
 import { RefObject } from "react";
