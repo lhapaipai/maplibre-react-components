@@ -14,8 +14,6 @@ then
     exit 1
 fi
 
-pnpm run ci
-
 VERSION_TYPE="$1"
 
 if [[ "$VERSION_TYPE" != "patch" && "$VERSION_TYPE" != "minor" && "$VERSION_TYPE" != "major" ]]; then

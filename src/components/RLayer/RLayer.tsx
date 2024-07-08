@@ -42,7 +42,6 @@ export type LayerEventName = keyof typeof eventNameToCallbackName;
 type LayerEvent = MapLayerMouseEvent | MapLayerTouchEvent;
 
 export type LayerCallbacks = {
-  /** MapCallbacks compatibles with `layerId` */
   onMouseDown?: (e: MapLayerMouseEvent) => void;
   onMouseUp?: (e: MapLayerMouseEvent) => void;
   onMouseOver?: (e: MapLayerMouseEvent) => void;

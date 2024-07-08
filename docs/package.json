@@ -14,7 +14,7 @@
     "@floating-ui/react": "^0.26.19",
     "clsx": "^2.1.1",
     "maplibre-gl": "^4.5.0",
-    "maplibre-react-components": "^0.0.7",
+    "maplibre-react-components": "^0.1.3",
     "maplibre-theme": "^0.1.0",
     "next": "14.2.4",
     "nprogress": "^0.2.0",
