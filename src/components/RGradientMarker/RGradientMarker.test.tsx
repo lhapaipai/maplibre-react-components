@@ -45,7 +45,9 @@ describe("RGradientMarker", () => {
       <div
         aria-label="Map marker"
         class="maplibregl-gradient-marker maplibregl-marker maplibregl-marker-anchor-bottom"
-        style="--marker-size: 50px; --marker-color: #ffe64b; transform: translate(-50%,-100%) translate(200px, 150px) rotateX(0deg) rotateZ(0deg);"
+        data-interactive=""
+        data-shape="pin"
+        style="--marker-scale: 1; --marker-color: #ffe64b; transform: translate(-50%,-100%) translate(200px, 150px) rotateX(0deg) rotateZ(0deg);"
         tabindex="0"
       >
         <div
@@ -74,7 +76,9 @@ describe("RGradientMarker", () => {
       <div
         aria-label="Map marker"
         class="maplibregl-gradient-marker maplibregl-marker maplibregl-marker-anchor-bottom draggable"
-        style="--marker-size: 50px; --marker-color: #ffe64b; transform: translate(-50%,-100%) translate(200px, 150px) rotateX(0deg) rotateZ(0deg); opacity: 1;"
+        data-interactive=""
+        data-shape="pin"
+        style="--marker-scale: 1; --marker-color: #ffe64b; transform: translate(-50%,-100%) translate(200px, 150px) rotateX(0deg) rotateZ(0deg); opacity: 1;"
         tabindex="0"
       >
         <div
