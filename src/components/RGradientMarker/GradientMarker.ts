@@ -1,9 +1,18 @@
-import { Map, MapMouseEvent, MapTouchEvent, Marker, MarkerOptions, Popup } from "maplibre-gl";
+import { Map, Marker, MarkerOptions } from "maplibre-gl";
 import { DOM } from "../../maplibre-core/util/dom";
 
-import { type FloatingPopup } from "../RFloatingPopup/FloatingPopup";
-import { arrowHeight } from "../RFloatingPopup/util";
+type MarkerShape = "pin" | "circle";
+
 export interface GradientMarkerOptions extends MarkerOptions {
+  /**
+   * when interactive
+   * cursor pointer
+   * hover effect
+   * we add .active class when clicking
+   * @default true
+   */
+  interactive?: boolean;
+  shape?: MarkerShape;
   icon?: string | HTMLElement | SVGSVGElement | (() => HTMLElement | SVGSVGElement);
   text?: string;
   className?: string;
@@ -13,11 +22,11 @@ const defaultColor = "#ffe64b";
 const defaultHeight = 50;
 
 export class GradientMarker extends Marker {
+  _interactive: boolean | "pending";
+  _shape: MarkerShape;
   _icon?: string | HTMLElement | SVGSVGElement | (() => HTMLElement | SVGSVGElement);
   _height = defaultHeight;
   _text?: string;
-  // @ts-ignore
-  _popup?: FloatingPopup | Popup;
 
   _circleElement: HTMLElement | null = null;
   _iconElement: HTMLElement | SVGSVGElement | null = null;
@@ -25,14 +34,11 @@ export class GradientMarker extends Marker {
   _markerElement?: HTMLElement;
 
   constructor(options?: GradientMarkerOptions) {
-    const useDefaultMarker = !options || !options.element;
-
-    if (useDefaultMarker) {
-      options ??= {};
-      options.element = DOM.create("div", "maplibregl-gradient-marker");
-      if (options.className) {
-        options.element.classList.add(options.className);
-      }
+    options ??= {};
+    /* for compatibility with MarkerOptions we keep element option but it is overloaded */
+    options.element = DOM.create("div", "maplibregl-gradient-marker");
+    if (options.className) {
+      options.element.classList.add(options.className);
     }
 
     super(options);
@@ -41,41 +47,43 @@ export class GradientMarker extends Marker {
       this._element.classList.add("draggable");
     }
 
-    this._anchor = (options && options.anchor) || "bottom";
-    this._color = (options && options.color) || defaultColor;
+    this._interactive = options && options.interactive === false ? false : "pending";
+    this._shape = (options && options.shape) ?? "pin";
+    this._color = (options && options.color) ?? defaultColor;
     this._icon = options && options.icon;
     this._text = options && options.text;
 
-    if (useDefaultMarker) {
-      this._defaultMarker = true;
+    this._defaultMarker = true;
 
-      this._element.setAttribute("aria-label", "Map marker");
-      this._element.setAttribute("tabindex", "0");
+    this._element.setAttribute("aria-label", "Map marker");
+    this._element.setAttribute("tabindex", "0");
 
-      this.setScale(this._scale);
-      this.setColor(this._color);
+    this.setScale(this._scale);
+    this.setColor(this._color);
 
-      this._markerElement = DOM.create("div", "marker");
-      if (this._text) {
-        this.setText(this._text);
-      } else if (this._icon) {
-        this.setIcon(this._icon);
-      }
+    this._markerElement = DOM.create("div", `marker`);
+    this.setShape(this._shape);
 
-      const target = DOM.create("div", "target");
-
-      this._element.appendChild(this._markerElement);
-      this._element.appendChild(target);
+    if (this._text) {
+      this.setText(this._text);
+    } else if (this._icon) {
+      this.setIcon(this._icon);
     }
+
+    const target = DOM.create("div", "target");
+
+    this._element.appendChild(this._markerElement);
+    this._element.appendChild(target);
   }
 
-  _onActive = (e: MapMouseEvent | MapTouchEvent) => {
-    if (this._element.contains(e.originalEvent.target as any)) {
-      this._map.once("mouseup", this._onInactive);
-      this._map.once("touchend", this._onInactive);
-
-      this._element.classList.add("active");
-    }
+  _onActive = () => {
+    /**
+     * draggable marker are pointer-events: none when dragging. we can't listen this._element.
+     * when listening this._map.getContainer() we don't have this issue
+     */
+    this._map.getContainer().addEventListener("mouseup", this._onInactive, { once: true });
+    this._map.getContainer().addEventListener("touchend", this._onInactive, { once: true });
+    this._element.classList.add("active");
   };
 
   _onInactive = () => {
@@ -84,16 +92,40 @@ export class GradientMarker extends Marker {
 
   addTo(map: Map): this {
     Marker.prototype.addTo.apply(this, [map]);
-    this._map.on("mousedown", this._onActive);
-    this._map.on("touchstart", this._onActive);
+    if (this._interactive === "pending") {
+      this.setInteractive(true);
+    }
 
     return this;
   }
 
+  setInteractive(interactive = true) {
+    if (this._interactive === interactive) {
+      return;
+    }
+    this._interactive = interactive;
+    if (interactive) {
+      this._element.dataset.interactive = "";
+    } else {
+      delete this._element.dataset.interactive;
+    }
+
+    if (interactive) {
+      this._element.addEventListener("mousedown", this._onActive);
+      this._element.addEventListener("touchstart", this._onActive);
+    } else {
+      this._element.removeEventListener("mousedown", this._onInactive);
+      this._element.removeEventListener("touchstart", this._onInactive);
+    }
+  }
+
+  getInteractive(): boolean | "pending" {
+    return this._interactive;
+  }
+
   remove(): this {
     if (this._map) {
-      this._map.off("mousedown", this._onActive);
-      this._map.off("touchstart", this._onActive);
+      this.setInteractive(false);
     }
 
     Marker.prototype.remove.apply(this);
@@ -170,7 +202,7 @@ export class GradientMarker extends Marker {
   setScale(scale = 1, markerHeight = defaultHeight): this {
     this._scale = scale;
     this._height = markerHeight * this._scale;
-    this._element.style.setProperty("--marker-size", `${this._height}px`);
+    this._element.style.setProperty("--marker-scale", scale.toString());
 
     return this;
   }
@@ -179,41 +211,17 @@ export class GradientMarker extends Marker {
     return this._scale;
   }
 
-  setPopup(popup?: FloatingPopup | Popup | null): this {
-    if (this._popup) {
-      this._popup.remove();
-      delete this._popup;
-      this._element.removeEventListener("keypress", this._onKeyPress);
+  setShape(shape?: MarkerShape): this {
+    this._shape = shape || "pin";
+    this._anchor = this._shape === "pin" ? "bottom" : "center";
+    this._element.dataset.shape = this._shape;
 
-      if (!this._originalTabIndex) {
-        this._element.removeAttribute("tabindex");
-      }
-    }
-
-    if (popup) {
-      if (!("offset" in popup.options)) {
-        // offset of FloatingPopup is typed as OffsetOptions
-        // not Offset like Popup
-        if (popup instanceof Popup) {
-          popup.options.offset = this._height + arrowHeight;
-        } else {
-          popup.options.offset = {
-            mainAxis: this._height + arrowHeight,
-          };
-        }
-      }
-
-      this._popup = popup;
-      if (this._lngLat) this._popup.setLngLat(this._lngLat);
-
-      this._originalTabIndex = this._element.getAttribute("tabindex") || "";
-      if (!this._originalTabIndex) {
-        this._element.setAttribute("tabindex", "0");
-      }
-      this._element.addEventListener("keypress", this._onKeyPress);
-    }
-
+    this._update();
     return this;
+  }
+
+  getShape() {
+    return this._shape;
   }
 
   setDraggable(shouldBeDraggable?: boolean | undefined): this {

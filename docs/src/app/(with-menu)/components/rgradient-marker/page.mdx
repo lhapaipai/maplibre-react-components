@@ -117,17 +117,20 @@ type GradientMarkerReactiveOptions = {
   className?: string;
   clickTolerance?: number;
   color?: string;
-  icon?: string | HTMLElement | SVGSVGElement | (() => HTMLElement | SVGSVGElement);
   draggable?: boolean;
+  icon?: string | HTMLElement | SVGSVGElement | (() => HTMLElement | SVGSVGElement);
+  interactive?: boolean;
   opacity?: string;
   opacityWhenCovered?: string;
   pitchAlignment?: Alignment;
   rotation?: number;
   rotationAlignment?: Alignment;
   scale?: number;
+  shape?: "pin" | "circle";
   text?: string;
 };
 ```
+
 ```ts
 type GradientMarkerCallbacks = {
   onDragStart?: (e: Event<Marker>) => void;
@@ -137,5 +140,10 @@ type GradientMarkerCallbacks = {
   // native DOM event
   onClick?: (e: MouseEvent) => void;
 }
+
 ```
 </div>
+
+
+For compatibility some options from `MarkerOptions` are not
+available : `element`, `anchor`, `offset`.

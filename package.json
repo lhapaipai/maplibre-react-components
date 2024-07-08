@@ -20,7 +20,7 @@
     "dev:lib": "pnpm build:css && node generate-public-package && tsup --watch",
     "dev:css": "postcss --watch -o dist/style.css src/style/index.css",
     "build:lib": "tsup --minify --env.TSUP_CLEAN_DIST 1 && tsup",
-    "build:css": "postcss -o dist/style.css src/style/index.css && postcss -o dist/fontello.css src/style/font/fontello.css",
+    "build:css": "postcss -o dist/style.css src/style/index.css",
     "build": "pnpm build:lib && pnpm build:css && node generate-public-package",
     "fontello": "fontello",
     "storybook": "storybook dev -p 6009",
@@ -29,6 +29,7 @@
     "test-run": "vitest --run",
     "lint:check": "eslint -c .eslintrc ./src",
     "tsc:check": "tsc -p tsconfig.build.json --noEmit",
+    "pre-commit": "pnpm lint:check && pnpm tsc:check",
     "ci": "pnpm lint:check && pnpm tsc:check && pnpm test-run",
     "prepare": "husky"
   },
@@ -99,7 +100,6 @@
     "clsx": "^2.1.1"
   },
   "peerDependencies": {
-    "@floating-ui/dom": "^1.0.0",
     "maplibre-gl": "^3.0.0 || ^4.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
@@ -107,9 +107,6 @@
   "peerDependenciesMeta": {
     "maplibre-gl": {
       "optional": false
-    },
-    "@floating-ui/dom": {
-      "optional": true
     }
   },
   "volta": {

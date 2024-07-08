@@ -14,10 +14,6 @@ delete pkgInfos.main;
 
 pkgInfos.main = "index.js";
 pkgInfos.types = "index.d.ts";
-pkgInfos.export = {
-  ".": "index.js",
-  "./RFloatingPopup": "components/RFloatingPopup/index.js",
-};
 
 writeFileSync(resolve(projectDir, "dist/package.json"), JSON.stringify(pkgInfos, undefined, 2));
 

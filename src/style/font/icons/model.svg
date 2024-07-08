@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    sodipodi:docname="model.svg"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   inkscape:version="1.3.2 (1:1.3.2+202311252150+091e20ef0f)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -30,37 +30,46 @@
      inkscape:snap-object-midpoints="true"
      inkscape:snap-center="true"
      inkscape:snap-grids="true"
-     inkscape:zoom="1.3558782"
-     inkscape:cx="175.53199"
-     inkscape:cy="299.80568"
-     inkscape:window-width="1680"
-     inkscape:window-height="992"
+     inkscape:zoom="1.9175013"
+     inkscape:cx="160.10419"
+     inkscape:cy="245.11065"
+     inkscape:window-width="1920"
+     inkscape:window-height="1022"
      inkscape:window-x="1920"
-     inkscape:window-y="30"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
-     inkscape:snap-bbox="true">
+     inkscape:current-layer="svg5"
+     inkscape:snap-bbox="true"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1">
     <inkscape:grid
        type="xygrid"
        id="grid824"
        empspacing="5"
        spacingx="2.6458334"
-       spacingy="2.6458334" />
+       spacingy="2.6458334"
+       originx="0"
+       originy="0"
+       units="px"
+       visible="true" />
     <sodipodi:guide
        position="46.302084,119.32709"
        orientation="1,0"
-       id="guide832" />
+       id="guide832"
+       inkscape:locked="false" />
     <sodipodi:guide
        position="46.302082,85.989587"
        orientation="0,-1"
-       id="guide946" />
+       id="guide946"
+       inkscape:locked="false" />
   </sodipodi:namedview>
   <defs
      id="defs2" />
   <g
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     style="display:none">
     <path
        id="path856"
        style="display:inline;opacity:0.522597;stroke-width:0.264583"
@@ -80,11 +89,23 @@
        d="m 46.302084,129.64584 c 6.614583,0 0.122813,-6.81349 9.48692,-24.61457 C 70.738368,76.612663 89.958335,74.083331 89.958336,46.302078 89.958337,22.191397 70.412767,2.6458278 46.302086,2.6458277 c -2e-6,26.4583353 -2e-6,52.9166693 -2e-6,127.0000123 z"
        sodipodi:nodetypes="csscc"
        inkscape:label="droite" />
+    <circle
+       style="display:inline;opacity:0.522597;fill:#000000;fill-opacity:0.541365;stroke-width:0.34925"
+       id="circle1"
+       cx="46.302082"
+       cy="46.302082"
+       r="43.656258"
+       inkscape:label="cercle extérieur" />
   </g>
   <path
      id="path2796"
-     style="display:inline;opacity:0.522597;stroke-width:0.999999"
+     style="display:none;opacity:0.522597;stroke-width:0.999999"
      inkscape:label="union"
      d="M 175,10 C 83.873017,10 9.9999958,83.873017 10,175 c 5e-6,105.00001 72.642998,114.55986 129.14453,221.96875 C 174.53643,464.24842 150,490 175,490 c 25,0 0.46357,-25.75158 35.85547,-93.03125 C 267.357,289.55984 340,280.00001 340,175 340,83.873017 266.12698,10 175,10 Z"
      transform="scale(0.26458333)" />
+  <path
+     id="path2796-6"
+     style="display:inline;opacity:0.522597;stroke-width:0.264583"
+     inkscape:label="union"
+     d="M 46.302083 2.6458333 C 22.191426 2.6458333 2.6458322 22.191426 2.6458333 46.302083 C 2.6458346 74.083308 21.865976 76.612746 36.815324 105.03132 C 46.179422 122.83238 39.687507 129.64583 46.302083 129.64583 C 52.91666 129.64583 46.424746 122.83238 55.788843 105.03132 C 70.738191 76.612741 89.958333 74.083308 89.958333 46.302083 C 89.958333 22.191426 70.412739 2.6458333 46.302083 2.6458333 z M 46.302083 13.229167 A 33.072918 33.072918 0 0 1 79.375 46.302083 A 33.072918 33.072918 0 0 1 46.302083 79.375 A 33.072918 33.072918 0 0 1 13.229167 46.302083 A 33.072918 33.072918 0 0 1 46.302083 13.229167 z " />
 </svg>

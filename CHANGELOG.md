@@ -1,3 +1,11 @@
+## v0.1.3
+
+- Remove floating-ui peerDependency
+- GradientMarker add interactive/shape options.
+
+- Doc : update RLayer MapLayerEvents
+- Doc : fix issue with MapLibre theme icons
+
 ## v0.1.2
 
 - RLayer MapLayerEvent implementation

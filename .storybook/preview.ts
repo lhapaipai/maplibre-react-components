@@ -1,8 +1,9 @@
 import type { Preview } from "@storybook/react";
 import { withThemeByClassName } from "@storybook/addon-themes";
-import "./storybook.css";
-import "../dist/fontello.css";
 import "./base.css";
+import "./storybook.css";
+import "../src/style/index.css";
+import "maplibre-gl/dist/maplibre-gl.css";
 
 // https://storybook.js.org/docs/react/configure/overview#configure-story-rendering
 const preview: Preview = {

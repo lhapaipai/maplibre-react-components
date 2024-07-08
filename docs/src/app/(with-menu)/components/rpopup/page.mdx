@@ -37,7 +37,7 @@ rather use these listeners on the `RPopup` component rather than on `RMap` becau
 import WithMarker from "./WithMarker.tsx";
 import withMarkerCode from "./WithMarker.extract.tsx?code";
 
-<TwoCols first={<ShikiContent html={withMarkerCode} />} second={<WithMarker />} />
+<TwoCols firstClassName="[&_pre]:max-h-96 [&_pre]:overflow-auto" first={<ShikiContent html={withMarkerCode} />} second={<WithMarker />} />
 
 you can import the `markerPopupOffset` utility object from the lib, based on default MapLibre Marker height.
 
@@ -97,6 +97,8 @@ type PopupCallbacks = {
   onMapMove?: (e: MapLibreEvent<MouseEvent | TouchEvent | WheelEvent | undefined>) => void;
 }
 
-
 ```
 </div>
+
+For compatibility some options from `PopupOptions` are not
+available : `closeButton`, `closeOnClick`, `closeOnMove`. see [Closable Popup](#closable-popup)

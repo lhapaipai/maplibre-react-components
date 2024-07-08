@@ -1,14 +1,30 @@
 .maplibregl-gradient-marker {
-  --marker-size: 50px;
-  --marker-height: var(--marker-size);
-  --marker-width: calc(var(--marker-size) * 0.7);
-  --marker-background-position-hovered: calc(var(--marker-size) * -0.3);
+  --marker-scale: 1;
+
+  &[data-shape="pin"] {
+    --marker-height: calc(var(--marker-scale) * 50px);
+    --marker-width: calc(var(--marker-scale) * 35px);
+
+    /**
+     * used to calculate size of text/circle/svg container
+     *  -> marker-height when landscape
+     *  -> marker-width when portrait
+     */
+    --marker-size: var(--marker-width);
+  }
+
+  &[data-shape="circle"] {
+    --marker-height: calc(var(--marker-scale) * 35px);
+    --marker-width: calc(var(--marker-scale) * 35px);
+
+    --marker-size: var(--marker-width);
+  }
 
   --marker-color: rgb(var(--color-yellow-3));
   --marker-color-dark: color-mix(in srgb, var(--marker-color), black 40%);
   --marker-color-gradient: linear-gradient(120deg, var(--marker-color), var(--marker-color-dark));
 
-  cursor: pointer;
+  --circle-color: color-mix(in srgb, var(--marker-color), white 75%);
 
   position: absolute;
   display: block;
@@ -16,125 +32,77 @@
   top: 0;
   left: 0;
 
+  &[data-interactive] {
+    cursor: pointer;
+  }
+
   &,
-  & > .marker,
-  & > .image {
+  & .marker {
     width: var(--marker-width);
     height: var(--marker-height);
   }
 
-  & > .marker,
-  & > .image {
+  & .marker {
     transition: transform 0.2s ease;
   }
 
-  .target {
-    width: calc(var(--marker-width) * 0.2);
-    height: calc(var(--marker-width) * 0.1);
-    background-color: #b4b4b4;
-    position: absolute;
-    left: calc(50% - var(--marker-width) * 0.1);
-    top: calc(100% - var(--marker-width) * 0.05);
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-
-    opacity: 0;
-    transform: scale(0.5);
-
-    transition:
-      transform 0.2s ease,
-      opacity 0.2s ease;
-
-    box-shadow: 0px 0px 2px #000;
-  }
-
-  &.geolocation .target {
-    animation: geolocation-dot-pulse 2s infinite;
-  }
-
-  &.draggable:active,
-  &.draggable.active {
-    & > .marker {
-      transform: translateY(-5px);
-    }
-
-    .target {
-      opacity: 0.5;
-      transform: scale(1);
-    }
-  }
-
-  & > .marker::before,
-  & > .marker::after {
+  & .marker::before,
+  & .marker::after {
     position: absolute;
     top: 0;
   }
 
-  /* shadow */
-  & > .marker::before {
-    left: 50%;
-    transform: translateX(-50%);
-
-    content: "";
-    background-image: url("b64---./src/style/assets/marker-shadow-centered.png---");
-    background-size: cover;
-    pointer-events: none;
-    width: var(--marker-size);
-    height: var(--marker-size);
-  }
-
-  /* marker */
-  & > .marker::after {
-    /* fe-marker */
-    left: 0;
-    content: "\e81c";
-    z-index: 1;
-
-    color: transparent;
-
-    /* legacy browser support */
-    background-color: var(--marker-color);
-    -webkit-background-clip: text;
-
-    background-image: var(--marker-color-gradient);
-    background-clip: text;
-
-    background-size: var(--marker-height) var(--marker-height);
-    background-position: var(--marker-background-position-hovered);
-    width: var(--marker-width);
-    height: var(--marker-height);
-  }
-
-  /* fontello default */
-  & > .marker::after,
+  & .marker::after,
   .inactive {
     font-family: "fontello-mrc", sans-serif;
   }
 
-  & > .marker::after,
-  .inactive,
-  i::before {
-    font-style: normal;
-    font-weight: normal;
+  /* pin / circle */
+  & .marker::after {
+    top: 0;
+    left: 0;
+    width: var(--marker-width);
+    height: var(--marker-height);
 
-    /* For safety - reset parent styles, that can break glyph codes*/
-    font-variant: normal;
-    /* text-transform: none; */
-    margin: 0;
-    display: inline-block;
-    text-decoration: inherit;
-    /* fix buttons height, for twitter bootstrap */
-    line-height: 1em;
+    font-size: var(--marker-height);
 
-    font-size: var(--marker-size) !important;
-    /* Font smoothing. That was taken from TWBS */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    transition: color 0.3s ease;
+    z-index: 2;
+
+    color: transparent;
+
+    /* legacy browser without background-clip support */
+    background-color: var(--marker-color);
+
+    background-image: var(--marker-color-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    background-size: calc(var(--marker-width) * 2) var(--marker-height);
+
+    transition: background-position 0.3s ease;
+    background-position: calc(var(--marker-width) * -1) 0;
   }
 
-  & > .marker::after {
-    transition: background-position 0.3s ease;
+  &[data-interactive].selected .marker::after,
+  &[data-interactive]:hover .marker::after {
+    background-position: calc(var(--marker-width) * -0.5) 0;
+  }
+
+  /* :active only for storybook */
+  &[data-interactive]:active .marker::after,
+  /* .active is added when we click/drag on the marker */
+  &[data-interactive].active .marker::after {
+    background-position: 0px;
+  }
+
+  /**
+   * get content value from src/style/font/fontello.css file.
+   */
+  &[data-shape="pin"] .marker::after {
+    content: "\e803";
+  }
+  &[data-shape="circle"] .marker::after {
+    content: "\e802";
   }
 
   & .circle,
@@ -143,39 +111,48 @@
   & svg,
   & .text {
     position: absolute;
-    left: calc(var(--marker-size) / 10);
-    top: calc(var(--marker-size) / 10);
-    width: calc(var(--marker-size) / 2) !important;
-    height: calc(var(--marker-size) / 2) !important;
+    left: calc(var(--marker-size) / 2);
+    top: calc(var(--marker-size) / 2);
+    transform: translate(-50%, -50%);
   }
 
   & .circle {
-    z-index: 2;
+    z-index: 1;
+    width: calc(var(--marker-size) * 0.8);
+    height: calc(var(--marker-size) * 0.8);
     border-radius: 50%;
     background-color: rgb(var(--color-gray-0));
     transition: background-color 0.3s ease;
   }
 
-  /* icon */
+  &[data-interactive]:hover .circle {
+    background-color: var(--circle-color);
+  }
+
   & i {
+    z-index: 3;
+    width: var(--marker-size);
+    height: var(--marker-size);
     display: flex;
     align-items: center;
     justify-content: center;
 
     &::before {
-      font-size: calc(var(--marker-size) / 3) !important;
-      z-index: 3;
+      font-size: calc(var(--marker-size) * 0.5);
       color: inherit;
     }
   }
 
   & svg {
     z-index: 3;
-    transform: scale(0.8);
+    width: calc(var(--marker-size) * 0.5);
+    height: calc(var(--marker-size) * 0.5);
   }
 
   & .text {
     z-index: 3;
+    width: calc(var(--marker-size) * 0.7);
+    height: calc(var(--marker-size) * 0.7);
     font-weight: 500;
     font-size: max(10px, calc(var(--marker-size) * 0.25));
     display: flex;
@@ -190,54 +167,82 @@
   }
 
   & .inactive {
+    width: calc(var(--marker-size) * 0.7);
+    height: calc(var(--marker-size) * 0.7);
+    z-index: 4;
     display: flex;
     align-items: center;
     justify-content: center;
 
     &::before {
-      z-index: 4;
-      font-size: calc(var(--marker-size) / 2) !important;
+      font-size: calc(var(--marker-size) * 0.8);
       content: "\e81f";
       color: rgb(var(--color-red-3));
     }
   }
 
-  &:hover > * {
-    /* marker */
-    &::after {
-      background-position: 0px;
-    }
-
-    .circle {
-      background-color: rgb(var(--color-gray-0) / 50%);
-    }
-  }
-
-  &:not(.draggable):active,
-  &:not(.draggable).active {
-    .circle {
-      background-color: rgb(var(--color-gray-0) / 1%);
-    }
-  }
-
-  &.selected > * {
-    /* marker */
-    &::after {
-      background-position: 0px;
-    }
-  }
-
-  &.disabled.disabled {
+  &.disabled {
     opacity: 1;
     pointer-events: none;
     user-select: none;
 
-    /* marker */
     & > .marker::after {
       /* fe-marker */
-      content: "\e81c";
       color: rgb(var(--color-gray-2));
     }
+  }
+
+  /* shadow */
+  &[data-shape="pin"] .marker::before {
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: var(--marker-height);
+    height: var(--marker-height);
+
+    content: "";
+    background-image: url("b64---./src/style/assets/marker-shadow-centered.png---");
+    background-size: cover;
+    pointer-events: none;
+  }
+
+  /* dragging feature */
+  /* for draggable marker shadow the position of the marker when dragging */
+  .target {
+    width: calc(var(--marker-size) * 0.2);
+    height: calc(var(--marker-size) * 0.1);
+    background-color: #b4b4b4;
+    position: absolute;
+    left: calc(50% - var(--marker-size) * 0.1);
+    top: calc(100% - var(--marker-size) * 0.05);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+
+    opacity: 0;
+    transform: scale(0.5);
+
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+
+    box-shadow: 0px 0px 2px #000;
+  }
+
+  &.draggable:active,
+  &.draggable.active {
+    & > .marker {
+      transform: translateY(-5px);
+    }
+
+    .target {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+  }
+
+  /* geolocation use same element "target" as draggable */
+  &.geolocation .target {
+    animation: geolocation-dot-pulse 2s infinite;
   }
 }
 

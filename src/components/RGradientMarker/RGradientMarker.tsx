@@ -24,21 +24,23 @@ export type GradientMarkerCallbacks = {
   onClick?: (e: MouseEvent) => void;
 };
 
-export const markerReactiveOptionNames = [
+export const gradientMarkerReactiveOptionNames = [
   "className",
   "clickTolerance",
   "color",
   "draggable",
   "icon",
+  "interactive",
   "opacity",
   "opacityWhenCovered",
   "pitchAlignment",
   "rotation",
   "rotationAlignment",
   "scale",
+  "shape",
   "text",
 ] as const;
-export type GradientMarkerReactiveOptionName = (typeof markerReactiveOptionNames)[number];
+export type GradientMarkerReactiveOptionName = (typeof gradientMarkerReactiveOptionNames)[number];
 export type GradientMarkerReactiveOptions = {
   [key in GradientMarkerReactiveOptionName]?: GradientMarkerOptions[key];
 };
@@ -137,12 +139,14 @@ export const RGradientMarker = memo(
       color,
       text,
       icon,
+      interactive,
       className,
       draggable,
       clickTolerance = 0,
       rotation,
       rotationAlignment,
       pitchAlignment,
+      shape,
       opacity,
       opacityWhenCovered,
     } = options;
@@ -155,6 +159,12 @@ export const RGradientMarker = memo(
         prevOptionsRef.current.className?.split(" ") || [],
         className?.split(" ") || [],
       );
+    }
+    if (marker.getInteractive() !== interactive) {
+      marker.setInteractive(interactive);
+    }
+    if (marker.getShape() !== shape) {
+      marker.setShape(shape);
     }
     if (marker.getLngLat().lng !== longitude || marker.getLngLat().lat !== latitude) {
       marker.setLngLat([longitude, latitude]);

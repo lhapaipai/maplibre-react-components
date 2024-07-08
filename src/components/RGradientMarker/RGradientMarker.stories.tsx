@@ -21,6 +21,12 @@ const meta = {
         max: 360,
       },
     },
+    shape: {
+      control: {
+        type: "select",
+      },
+      options: ["pin", "circle"],
+    },
     rotationAlignment: {
       control: {
         type: "select",
@@ -88,12 +94,14 @@ export const Basic: Story = {
     clickTolerance: 0,
     rotation: 0,
     rotationAlignment: "auto",
+    shape: "pin",
+    interactive: true,
     pitchAlignment: "auto",
     opacity: "1", // type string to be compatible with elt.style.opacity
     opacityWhenCovered: "0.2",
     longitude: 5,
     latitude: 45,
-    color: "green",
+    color: "#ffe64b",
     scale: 1,
     icon: "fe-star",
   },

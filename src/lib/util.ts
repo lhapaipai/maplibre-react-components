@@ -223,6 +223,19 @@ export const markerPopupOffset = {
   right: [-markerRadius, (markerHeight - markerRadius) * -1],
 } as Offset;
 
+const gradientMarkerHeight = 50;
+
+export const gradientMarkerPopupOffset = {
+  top: [0, 0],
+  "top-left": [0, 0],
+  "top-right": [0, 0],
+  bottom: [0, -gradientMarkerHeight],
+  "bottom-left": [linearOffset, (gradientMarkerHeight - markerRadius + linearOffset) * -1],
+  "bottom-right": [-linearOffset, (gradientMarkerHeight - markerRadius + linearOffset) * -1],
+  left: [markerRadius, (gradientMarkerHeight - markerRadius) * -1],
+  right: [-markerRadius, (gradientMarkerHeight - markerRadius) * -1],
+} as Offset;
+
 export const emptyStyle: StyleSpecification = {
   version: 8,
   name: "Empty",

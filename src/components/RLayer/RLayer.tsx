@@ -17,7 +17,7 @@ import {
   useState,
 } from "react";
 import { mapLibreContext } from "../../context";
-import { prepareEventDep, transformPropsToOptions } from "~/lib";
+import { prepareEventDep, transformPropsToOptions } from "../../lib";
 
 export type LayerOptions = LayerSpecification | CustomLayerInterface;
 

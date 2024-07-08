@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import * as maplibre from "maplibre-gl";
 import { GradientMarker } from "./GradientMarker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./GradientMarker.css";
+
 const meta = {
   title: "maplibre-react-components/GradientMarker",
 };
@@ -47,7 +47,7 @@ export const Graphics = () => (
     <div className="sb-icon-grid large">
       <div>
         <div
-          className="maplibregl-gradient-marker"
+          className="maplibregl-gradient-marker sample"
           style={{
             background: "var(--marker-color)",
           }}
@@ -56,18 +56,27 @@ export const Graphics = () => (
       </div>
       <div>
         <div
-          className="maplibregl-gradient-marker"
+          className="maplibregl-gradient-marker sample"
           style={{
             background: "var(--marker-color-dark)",
           }}
         ></div>
         <pre>--marker-color-dark</pre>
       </div>
-      <div>
+      <div className="sb-bg-gray">
         <div
-          className="maplibregl-gradient-marker"
+          className="maplibregl-gradient-marker sample"
           style={{
-            background: "var(--circle-color-hover)",
+            background: "rgb(var(--color-gray-0) / 100%)",
+          }}
+        ></div>
+        <pre>--circle-color</pre>
+      </div>
+      <div className="sb-bg-gray">
+        <div
+          className="maplibregl-gradient-marker sample"
+          style={{
+            background: "rgb(var(--color-gray-0) / 50%)",
           }}
         ></div>
         <pre>--circle-color-hover</pre>
@@ -76,42 +85,53 @@ export const Graphics = () => (
     <div className="sb-icon-grid large">
       <div>
         <div
-          className="maplibregl-gradient-marker"
+          className="maplibregl-gradient-marker sample"
           style={{
             backgroundImage: "var(--marker-color-gradient)",
-            backgroundSize: "var(--marker-height)",
-            backgroundPosition: -15,
+            backgroundSize: "calc(var(--marker-width) * 1.5) var(--marker-height)",
+            backgroundPosition: "calc(var(--marker-width) * -0.5) 0",
           }}
         ></div>
-        <pre>--marker-color-gradient</pre>
+        <pre>--marker-color-gradient normal</pre>
       </div>
       <div>
         <div
-          className="maplibregl-gradient-marker"
+          className="maplibregl-gradient-marker sample"
           style={{
             backgroundImage: "var(--marker-color-gradient)",
-            backgroundSize: "var(--marker-height)",
+            backgroundSize: "calc(var(--marker-width) * 1.5) var(--marker-height)",
             backgroundPosition: 0,
           }}
         ></div>
         <pre>--marker-color-gradient hover</pre>
       </div>
+    </div>
+    <div className="sb-icon-grid">
       <div>
-        <div
-          className="maplibregl-gradient-marker"
-          style={{
-            backgroundImage: "var(--marker-color-gradient)",
-            backgroundSize: "var(--marker-height)",
-            backgroundPosition: 0,
-          }}
-        ></div>
-        <pre>--marker-color-gradient selected</pre>
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+        <pre>shape pin</pre>
+      </div>
+      <div>
+        <div data-shape="circle" data-interactive className="maplibregl-gradient-marker">
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+        <pre>shape circle</pre>
       </div>
     </div>
 
     <div className="sb-icon-grid">
-      <div>
-        <div className="maplibregl-gradient-marker">
+      <div className="sb-bg-gray">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
           {/* i is wrapped so we can apply transform when active */}
           <div className="marker">
             <div className="circle"></div>
@@ -121,8 +141,8 @@ export const Graphics = () => (
         </div>
         <pre>default</pre>
       </div>
-      <div>
-        <div className="maplibregl-gradient-marker">
+      <div className="sb-bg-gray">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
           <div className="marker">
             <i className="fe-star"></i>
           </div>
@@ -130,8 +150,8 @@ export const Graphics = () => (
         </div>
         <pre>without circle</pre>
       </div>
-      <div>
-        <div className="maplibregl-gradient-marker">
+      <div className="sb-bg-gray">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
           <div className="marker">
             <div className="circle"></div>
             <FontAwesomeIcon icon={faHouse} />
@@ -140,8 +160,8 @@ export const Graphics = () => (
         </div>
         <pre>with svg fontawesome</pre>
       </div>
-      <div>
-        <div className="maplibregl-gradient-marker">
+      <div className="sb-bg-gray">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
           <div className="marker">
             <div className="circle"></div>
             <Svg {...mountainSvg} />
@@ -154,16 +174,17 @@ export const Graphics = () => (
 
     <div className="sb-icon-grid">
       <div>
-        <div className="maplibregl-gradient-marker">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
           <div className="marker">
             <div className="circle"></div>
             <i className="fe-heart"></i>
           </div>
           <div className="target"></div>
         </div>
+        <pre>default</pre>
       </div>
       <div>
-        <div className="maplibregl-gradient-marker selected">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker selected">
           <div className="marker">
             <div className="circle"></div>
             <i className="fe-heart"></i>
@@ -173,7 +194,29 @@ export const Graphics = () => (
         <pre>.selected</pre>
       </div>
       <div>
-        <div className="maplibregl-gradient-marker draggable">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker active">
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+        <pre>:active,.active</pre>
+      </div>
+    </div>
+    <div className="sb-icon-grid">
+      <div>
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker draggable">
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+        <pre>.draggable</pre>
+      </div>
+      <div>
+        <div data-shape="circle" data-interactive className="maplibregl-gradient-marker draggable">
           <div className="marker">
             <div className="circle"></div>
             <i className="fe-heart"></i>
@@ -183,10 +226,32 @@ export const Graphics = () => (
         <pre>.draggable</pre>
       </div>
     </div>
-
     <div className="sb-icon-grid">
       <div>
-        <div className="maplibregl-gradient-marker">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+        <pre>data-interactive</pre>
+      </div>
+      <div>
+        <div data-shape="pin" className="maplibregl-gradient-marker">
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+        <pre>not data-interactive</pre>
+      </div>
+    </div>
+
+    <div className="sb-icon-grid">
+      <div className="sb-bg-gray">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
           <div className="marker">
             <div className="circle"></div>
             <i className="fe-heart"></i>
@@ -194,8 +259,13 @@ export const Graphics = () => (
           <div className="target"></div>
         </div>
       </div>
-      <div>
-        <div className="maplibregl-gradient-marker" style={{ "--marker-color": "#9ed24d" }}>
+      <div className="sb-bg-gray">
+        <div
+          data-shape="pin"
+          data-interactive
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-color": "#9ed24d" }}
+        >
           <div className="marker">
             <div className="circle"></div>
             <i className="fe-heart"></i>
@@ -203,8 +273,13 @@ export const Graphics = () => (
           <div className="target"></div>
         </div>
       </div>
-      <div>
-        <div className="maplibregl-gradient-marker" style={{ "--marker-color": "#5fbcff" }}>
+      <div className="sb-bg-gray">
+        <div
+          data-shape="pin"
+          data-interactive
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-color": "#5fbcff" }}
+        >
           <div className="marker">
             <div className="circle"></div>
             <i className="fe-heart"></i>
@@ -212,8 +287,13 @@ export const Graphics = () => (
           <div className="target"></div>
         </div>
       </div>
-      <div>
-        <div className="maplibregl-gradient-marker" style={{ "--marker-color": "#ffa33d" }}>
+      <div className="sb-bg-gray">
+        <div
+          data-shape="pin"
+          data-interactive
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-color": "#ffa33d" }}
+        >
           <div className="marker">
             <div className="circle"></div>
             <i className="fe-heart"></i>
@@ -221,8 +301,13 @@ export const Graphics = () => (
           <div className="target"></div>
         </div>
       </div>
-      <div>
-        <div className="maplibregl-gradient-marker" style={{ "--marker-color": "#ff4d4d" }}>
+      <div className="sb-bg-gray">
+        <div
+          data-shape="pin"
+          data-interactive
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-color": "#ff4d4d" }}
+        >
           <div className="marker">
             <div className="circle"></div>
             <i className="fe-heart"></i>
@@ -230,8 +315,13 @@ export const Graphics = () => (
           <div className="target"></div>
         </div>
       </div>
-      <div>
-        <div className="maplibregl-gradient-marker" style={{ "--marker-color": "#c0c0c0" }}>
+      <div className="sb-bg-gray">
+        <div
+          data-shape="pin"
+          data-interactive
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-color": "#c0c0c0" }}
+        >
           <div className="marker">
             <div className="circle"></div>
             <i className="fe-heart"></i>
@@ -243,7 +333,89 @@ export const Graphics = () => (
 
     <div className="sb-icon-grid">
       <div>
-        <div className="maplibregl-gradient-marker">
+        <div data-shape="circle" data-interactive className="maplibregl-gradient-marker">
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+      </div>
+      <div>
+        <div
+          data-shape="circle"
+          data-interactive
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-color": "#9ed24d" }}
+        >
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+      </div>
+      <div>
+        <div
+          data-shape="circle"
+          data-interactive
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-color": "#5fbcff" }}
+        >
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+      </div>
+      <div>
+        <div
+          data-shape="circle"
+          data-interactive
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-color": "#ffa33d" }}
+        >
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+      </div>
+      <div>
+        <div
+          data-shape="circle"
+          data-interactive
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-color": "#ff4d4d" }}
+        >
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+      </div>
+      <div>
+        <div
+          data-shape="circle"
+          data-interactive
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-color": "#c0c0c0" }}
+        >
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+      </div>
+    </div>
+
+    <div className="sb-icon-grid">
+      <div>
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
           <div className="marker">
             <div className="circle"></div>
             <div className="text">A</div>
@@ -252,7 +424,7 @@ export const Graphics = () => (
         </div>
       </div>
       <div>
-        <div className="maplibregl-gradient-marker">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
           <div className="marker">
             <div className="circle"></div>
             <div className="text">5</div>
@@ -261,7 +433,7 @@ export const Graphics = () => (
         </div>
       </div>
       <div>
-        <div className="maplibregl-gradient-marker">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
           <div className="marker">
             <div className="circle"></div>
             <div className="text">15</div>
@@ -270,7 +442,7 @@ export const Graphics = () => (
         </div>
       </div>
       <div>
-        <div className="maplibregl-gradient-marker">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
           <div className="marker">
             <div className="circle"></div>
             <div className="text">105</div>
@@ -282,20 +454,20 @@ export const Graphics = () => (
 
     <div className="sb-icon-grid">
       <div>
-        <div className="maplibregl-gradient-marker disabled">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker disabled">
           <div className="marker">
             <div className="circle"></div>
-            <i className="fe-housenumber"></i>
+            <i className="fe-star"></i>
           </div>
           <div className="target"></div>
         </div>
         <pre>.disabled</pre>
       </div>
       <div>
-        <div className="maplibregl-gradient-marker">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
           <div className="marker">
             <div className="circle"></div>
-            <i className="fe-town"></i>
+            <i className="fe-star"></i>
             <div className="inactive"></div>
           </div>
           <div className="target"></div>
@@ -303,10 +475,10 @@ export const Graphics = () => (
         <pre>.inactive</pre>
       </div>
       <div>
-        <div className="maplibregl-gradient-marker geolocation">
+        <div data-shape="pin" data-interactive className="maplibregl-gradient-marker geolocation">
           <div className="marker">
             <div className="circle"></div>
-            <i className="fe-locate"></i>
+            <i className="fe-star"></i>
           </div>
           <div className="target"></div>
         </div>
@@ -316,202 +488,119 @@ export const Graphics = () => (
 
     <div className="sb-icon-grid">
       <div>
-        <div className="maplibregl-gradient-marker" style={{ "--marker-size": "30px" }}>
+        <div
+          data-shape="pin"
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-scale": "0.8" }}
+        >
           <div className="marker">
             <div className="circle"></div>
-            <i className="fe-route"></i>
+            <i className="fe-star"></i>
           </div>
           <div className="target"></div>
         </div>
-        <pre>--marker-size: 30px</pre>
+        <pre>--marker-scale: 0.8</pre>
       </div>
       <div>
-        <div className="maplibregl-gradient-marker" style={{ "--marker-size": "50px" }}>
+        <div
+          data-shape="pin"
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-scale": "1" }}
+        >
           <div className="marker">
             <div className="circle"></div>
-            <i className="fe-municipality"></i>
+            <i className="fe-star"></i>
           </div>
           <div className="target"></div>
         </div>
-        <pre>--marker-size: 50px</pre>
+        <pre>--marker-scale: 1</pre>
       </div>
       <div>
-        <div className="maplibregl-gradient-marker" style={{ "--marker-size": "70px" }}>
+        <div
+          data-shape="pin"
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-scale": "1.2" }}
+        >
           <div className="marker">
             <div className="circle"></div>
-            <i className="fe-globe"></i>
+            <i className="fe-star"></i>
           </div>
           <div className="target"></div>
         </div>
-        <pre>--marker-size: 70px</pre>
+        <pre>--marker-scale: 1.2</pre>
       </div>
       <div>
-        <div className="maplibregl-gradient-marker" style={{ "--marker-size": "90px" }}>
+        <div
+          data-shape="pin"
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-scale": "1.4" }}
+        >
           <div className="marker">
             <div className="circle"></div>
-            <i className="fe-climbing-outdoor"></i>
+            <i className="fe-star"></i>
           </div>
           <div className="target"></div>
         </div>
-        <pre>--marker-size: 90px</pre>
+        <pre>--marker-scale: 1.4</pre>
       </div>
     </div>
 
     <div className="sb-icon-grid">
       <div>
-        <div className="maplibregl-gradient-marker small-text" style={{ "--marker-size": "30px" }}>
+        <div
+          data-shape="pin"
+          className="maplibregl-gradient-marker small-text"
+          style={{ "--marker-scale": "0.8" }}
+        >
           <div className="marker">
             <div className="circle"></div>
             <div className="text">5</div>
           </div>
           <div className="target"></div>
         </div>
-        <pre>--marker-size: 30px</pre>
+        <pre>--marker-scale: 0.8</pre>
       </div>
       <div>
-        <div className="maplibregl-gradient-marker" style={{ "--marker-size": "50px" }}>
+        <div
+          data-shape="pin"
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-scale": "1" }}
+        >
           <div className="marker">
             <div className="circle"></div>
             <div className="text">12</div>
           </div>
           <div className="target"></div>
         </div>
-        <pre>--marker-size: 50px</pre>
+        <pre>--marker-scale: 1</pre>
       </div>
       <div>
-        <div className="maplibregl-gradient-marker" style={{ "--marker-size": "70px" }}>
+        <div
+          data-shape="pin"
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-scale": "1.2" }}
+        >
           <div className="marker">
             <div className="circle"></div>
             <div className="text">105</div>
           </div>
           <div className="target"></div>
         </div>
-        <pre>--marker-size: 70px</pre>
+        <pre>--marker-scale: 1.2</pre>
       </div>
       <div>
-        <div className="maplibregl-gradient-marker" style={{ "--marker-size": "90px" }}>
+        <div
+          data-shape="pin"
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-scale": "1.4" }}
+        >
           <div className="marker">
             <div className="circle"></div>
             <div className="text">130</div>
           </div>
           <div className="target"></div>
         </div>
-        <pre>--marker-size: 90px</pre>
-      </div>
-    </div>
-
-    <div className="sb-icon-grid">
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-0">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>0 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-1">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>22.5 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-2">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>45 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-3">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>67.5 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-4">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>90 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-5">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>112.5 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-6">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>135 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-7">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>157.5 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-8">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>180 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-9">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>202.5 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-10">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>225 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-11">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>247.5 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-12">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>270 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-13">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>292.5 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-14">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>315 deg.</pre>
-      </div>
-      <div>
-        <div className="maplibregl-gradient-marker pegman zone-15">
-          <div className="image"></div>
-          <div className="target"></div>
-        </div>
-        <pre>337.5 deg.</pre>
+        <pre>--marker-scale: 1.4</pre>
       </div>
     </div>
   </div>
@@ -532,7 +621,7 @@ export const Basic = () => {
     new GradientMarker({ color: "green" })
       .setLngLat({ lng: 3.154296874998977, lat: 42.65440425112374 })
       .addTo(map);
-    new GradientMarker({ text: "5" })
+    new GradientMarker({ text: "5", interactive: false, color: "#c0c0c0" })
       .setLngLat({ lng: -1.679687500000881, lat: 43.4890366431398 })
       .addTo(map);
     new GradientMarker({ scale: 0.5 })
