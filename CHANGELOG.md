@@ -1,3 +1,8 @@
+## v0.1.4
+
+- Rename ContextMenuEventDispatcher to ContextMenuEventAdapter
+- add possibility to prevent contextmenu to be fired.
+
 ## v0.1.3
 
 - Remove floating-ui peerDependency

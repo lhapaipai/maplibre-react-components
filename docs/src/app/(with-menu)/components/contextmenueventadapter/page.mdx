@@ -1,0 +1,108 @@
+MapLibre handlers (ex: `DragHandler`) listen for the "contextmenu" event.
+
+If you want to add a context menu you can't just listen to the native
+"contextmenu" event on your DOM element because you will conflict with the
+MapLibre Handlers. example: if you want to rotate the map you will use the right 
+button which will trigger a `contextmenu` event whereas in this case you 
+would not want this event to be triggered !
+
+To solve this issue, the solution is to use the `contextmenu` event on your `RMap`.
+
+```tsx
+function App() {
+  function handleContextMenu(e: MapLayerMouseEvent) {
+    // ...
+  }
+
+  return (
+    <RMap onContextmenu={handleContextMenu} />
+  )
+}
+```
+
+If you are not targeting touch screens this will be enough and you will not need to use this component.
+
+if you want to target touch media you will encounter another issue with maplibre which will
+not transmit the event.
+
+https://github.com/maplibre/maplibre-gl-js/issues/373
+
+you can use this component adapter which will transmit a DOM `CustomEvent` of type "contextmenu-maplibre" on your `<canvas />` element.
+
+this event will be caused by a `map.on("contextmenu", /*...*/)` for non-touch screens and a `map.on("click", /*...*/)` for touch screens.
+
+why using `click` event for touch screen and not `touchend` or `mouseup`. because `touchend` and `mouseup` can also conflict with
+handlers. `click` event is only fired when user is not panning the map.
+
+```tsx
+interface MaplibreContextmenuEventDetail {
+  originalEvent: MouseEvent;
+  point: Point;
+  lngLat: LngLat;
+  emulated: boolean;
+}
+
+type CustomMaplibreContextEvent = CustomEvent<MaplibreContextmenuEventDetail>;
+
+function App() {
+  const mapRef = useRef<Map>(null!);
+
+  const handleContextMenuStable = useEffectEvent(function (event: CustomEvent<MaplibreContextmenuEventDetail>) {
+    console.log("onContextmenu", event)
+  })
+
+  useEffect(() => {
+    const container = mapRef.current.getCanvasContainer();
+
+    container.addEventListener("contextmenu-maplibre", handleContextMenuStable)
+    return () => void container.removeEventListener("contextmenu-maplibre", handleContextMenuStable)
+  }, [mapRef])
+
+  return (
+    <RMap ref={mapRef}>
+      <ContextMenuEventAdapter customEventName="contextmenu-maplibre" />
+    </RMap>
+  )
+}
+```
+
+## Preventing custom `contextmenu` event.
+
+it's possible to prevent the ContextMenu
+
+
+```tsx
+import { RMap, ContextMenuEventAdapter, RLayer, MapLayerMouseEvent } from "maplibre-react-components";
+
+function App() {
+  const mapRef = useRef<Map>(null!);
+
+  const handleContextMenuStable = useEffectEvent(function (event: CustomEvent<MaplibreContextmenuEventDetail>) {
+    console.log("onContextmenu", event)
+  })
+
+  useEffect(() => {
+    const container = mapRef.current.getCanvasContainer();
+
+    container.addEventListener("contextmenu-maplibre", handleContextMenuStable)
+    return () => void container.removeEventListener("contextmenu-maplibre", handleContextMenuStable)
+  }, [mapRef])
+
+  function handleTouchScreenClick(evt: MapLayerMouseEvent) {
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      evt.preventDefault();
+    }
+  }
+
+  return (
+    <RMap ref={mapRef}>
+      <ContextMenuEventAdapter customEventName="contextmenu-maplibre" />
+      {/* some logic */}
+      <RLayer
+        type="line"
+        onClick={handleTouchScreenClick}
+      />
+    </RMap>
+  )
+}
+```

@@ -1,15 +1,12 @@
 import { useState } from "react";
-import {
-  ContextMenuEventDispatcher,
-  MaplibreContextmenuEventDetail,
-} from "./ContextMenuEventDispatcher";
+import { ContextMenuEventAdapter, MaplibreContextmenuEventDetail } from "./ContextMenuEventAdapter";
 import { Meta } from "@storybook/react";
 import { ContextMenu, ContextMenuItem, ContextMenuItemMouseEvent } from "pentatrion-design";
 import { RMap, RMarker, useMapAndCanvasRefs } from "..";
 
 const meta = {
   title: "maplibre-react-components/ContextMenu",
-  component: ContextMenuEventDispatcher,
+  component: ContextMenuEventAdapter,
   parameters: {
     layout: "fullscreen",
   },
@@ -22,7 +19,7 @@ const meta = {
       );
     },
   ],
-} satisfies Meta<typeof ContextMenuEventDispatcher>;
+} satisfies Meta<typeof ContextMenuEventAdapter>;
 export default meta;
 
 export const Basic = () => {
@@ -38,7 +35,7 @@ export const Basic = () => {
   return (
     <RMap ref={setMapAndCanvasRef}>
       {markerCoords && <RMarker longitude={markerCoords[0]} latitude={markerCoords[1]} />}
-      <ContextMenuEventDispatcher />
+      <ContextMenuEventAdapter />
       <ContextMenu targetRef={canvasRef} eventName="contextmenu-maplibre">
         <ContextMenuItem label="Add marker" onClick={handleClickBack} />
       </ContextMenu>

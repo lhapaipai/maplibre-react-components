@@ -6,6 +6,6 @@ export { RSource } from "./RSource";
 export { RTerrain } from "./RTerrain";
 export { RGradientMarker, GradientMarker } from "./RGradientMarker";
 export {
-  ContextMenuEventDispatcher,
+  ContextMenuEventAdapter,
   type MaplibreContextmenuEventDetail,
-} from "./ContextMenuEventDispatcher";
+} from "./ContextMenuEventAdapter";

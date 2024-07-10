@@ -16,7 +16,7 @@ interface Props {
   enabled?: boolean;
 }
 
-export function ContextMenuEventDispatcher({
+export function ContextMenuEventAdapter({
   customEventName = "contextmenu-maplibre",
   enabled = true,
 }: Props) {
@@ -30,20 +30,31 @@ export function ContextMenuEventDispatcher({
     /**
      * related issue: contextmenu not managed by Touch devices
      * https://github.com/maplibre/maplibre-gl-js/issues/373
+     *
+     * we use click for touch device because touchend/mouseup can conflict with handlers.
      */
     const eventName = window.matchMedia("(pointer: coarse)").matches ? "click" : "contextmenu";
 
-    function handleContextMenu({ originalEvent, point, lngLat }: MapMouseEvent) {
-      map.getCanvasContainer().dispatchEvent(
-        new CustomEvent<MaplibreContextmenuEventDetail>(customEventName, {
-          detail: {
-            originalEvent,
-            point,
-            lngLat,
-            emulated: eventName !== "contextmenu",
-          },
-        }),
-      );
+    function handleContextMenu(evt: MapMouseEvent) {
+      /**
+       * we put a setTimeout to give time for the event to propagate and possibly cancel it
+       */
+      setTimeout(() => {
+        if (evt.defaultPrevented) {
+          return;
+        }
+        const { originalEvent, point, lngLat } = evt;
+        map.getCanvasContainer().dispatchEvent(
+          new CustomEvent<MaplibreContextmenuEventDetail>(customEventName, {
+            detail: {
+              originalEvent,
+              point,
+              lngLat,
+              emulated: eventName !== "contextmenu",
+            },
+          }),
+        );
+      });
     }
 
     map.on(eventName, handleContextMenu);
