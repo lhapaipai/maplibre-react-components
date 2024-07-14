@@ -1,3 +1,8 @@
+## v0.1.5
+
+- GradientMarker remove circle hover backgroundcolor with color-mix.
+- GradientMarker text font-size enhancement
+
 ## v0.1.4
 
 - Rename ContextMenuEventDispatcher to ContextMenuEventAdapter

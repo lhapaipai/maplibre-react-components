@@ -6,7 +6,7 @@ html {
   color-scheme: normal;
 
   box-sizing: content-box;
-  font-family: sans-serif;
+  font-family: ui-sans-serif, system-ui, sans-serif;
 }
 .light {
   color-scheme: light;

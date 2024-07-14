@@ -445,7 +445,7 @@ export const Graphics = () => (
         <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
           <div className="marker">
             <div className="circle"></div>
-            <div className="text">105</div>
+            <div className="text">80</div>
           </div>
           <div className="target"></div>
         </div>
@@ -549,7 +549,7 @@ export const Graphics = () => (
       <div>
         <div
           data-shape="pin"
-          className="maplibregl-gradient-marker small-text"
+          className="maplibregl-gradient-marker"
           style={{ "--marker-scale": "0.8" }}
         >
           <div className="marker">
@@ -578,29 +578,29 @@ export const Graphics = () => (
         <div
           data-shape="pin"
           className="maplibregl-gradient-marker"
-          style={{ "--marker-scale": "1.2" }}
+          style={{ "--marker-scale": "1.5" }}
         >
           <div className="marker">
             <div className="circle"></div>
-            <div className="text">105</div>
+            <div className="text">50</div>
           </div>
           <div className="target"></div>
         </div>
-        <pre>--marker-scale: 1.2</pre>
+        <pre>--marker-scale: 1.5</pre>
       </div>
       <div>
         <div
           data-shape="pin"
           className="maplibregl-gradient-marker"
-          style={{ "--marker-scale": "1.4" }}
+          style={{ "--marker-scale": "2" }}
         >
           <div className="marker">
             <div className="circle"></div>
-            <div className="text">130</div>
+            <div className="text">180</div>
           </div>
           <div className="target"></div>
         </div>
-        <pre>--marker-scale: 1.4</pre>
+        <pre>--marker-scale: 2</pre>
       </div>
     </div>
   </div>

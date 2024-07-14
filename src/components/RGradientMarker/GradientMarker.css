@@ -1,5 +1,8 @@
 .maplibregl-gradient-marker {
   --marker-scale: 1;
+  --marker-color: rgb(var(--color-yellow-3));
+  --marker-color-dark: color-mix(in srgb, var(--marker-color), black 40%);
+  --marker-color-gradient: linear-gradient(120deg, var(--marker-color), var(--marker-color-dark));
 
   &[data-shape="pin"] {
     --marker-height: calc(var(--marker-scale) * 50px);
@@ -19,13 +22,9 @@
 
     --marker-size: var(--marker-width);
   }
+}
 
-  --marker-color: rgb(var(--color-yellow-3));
-  --marker-color-dark: color-mix(in srgb, var(--marker-color), black 40%);
-  --marker-color-gradient: linear-gradient(120deg, var(--marker-color), var(--marker-color-dark));
-
-  --circle-color: color-mix(in srgb, var(--marker-color), white 75%);
-
+.maplibregl-gradient-marker {
   position: absolute;
   display: block;
 
@@ -125,10 +124,6 @@
     transition: background-color 0.3s ease;
   }
 
-  &[data-interactive]:hover .circle {
-    background-color: var(--circle-color);
-  }
-
   & i {
     z-index: 3;
     width: var(--marker-size);
@@ -154,7 +149,7 @@
     width: calc(var(--marker-size) * 0.7);
     height: calc(var(--marker-size) * 0.7);
     font-weight: 500;
-    font-size: max(10px, calc(var(--marker-size) * 0.25));
+    font-size: min(26px, calc(1rem * var(--marker-scale)));
     display: flex;
     align-items: center;
     justify-content: center;

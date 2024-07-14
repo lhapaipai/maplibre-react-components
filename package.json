@@ -85,6 +85,7 @@
     "postcss-inline-base64": "^7.3.1",
     "postcss-inline-svg": "^6.0.0",
     "postcss-load-config": "^6.0.1",
+    "postcss-nesting": "^12.1.5",
     "prettier": "^3.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
