@@ -34,16 +34,22 @@ Like the Vanilla MapLibre library, you will need to add one MapLibre compatible 
 import "maplibre-gl/dist/maplibre-gl.css";
 ```
 
-If you want to add one modern stylesheet, you can install `maplibre-theme`.
+If you want to use the `RGradientMarker` component, you will need to add an additional stylesheet.
+
+```ts
+import "maplibre-react-components/style.css";
+```
+
+
+Optional : If you want to add one modern stylesheet, you can install `maplibre-theme`. And use his `modern` style.
 
 ```bash
 npm install maplibre-theme
 ```
-
-And use his `modern` style.
-
-```tsx
-import "maplibre-theme/modern.css";
+```diff
+- import "maplibre-gl/dist/maplibre-gl.css";
++ import "maplibre-theme/icons.default.css";
++ import "maplibre-theme/modern.css";
 ```
 
 ## Compatibility

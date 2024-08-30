@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "name": "docs",
+      "path": "./docs",
+    },
+    {
+      "name": "sandbox",
+      "path": "./sandbox",
+    },
+    {
+      "name": "maplibre-react-components",
+      "path": ".",
+    },
+  ],
+}

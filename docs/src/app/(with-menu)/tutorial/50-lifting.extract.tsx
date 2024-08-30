@@ -1,4 +1,5 @@
 import "maplibre-gl/dist/maplibre-gl.css";
+import "maplibre-theme/icons.default.css";
 import "maplibre-theme/modern.css";
 
 // we needed this for the RGradientMap component

@@ -24,16 +24,12 @@ fi
 # vX.Y.Z
 VERSION=$(npm --no-git-tag-version --allow-same-version version $VERSION_TYPE)
 
-# we remove the v
-VERSION=${VERSION:1}
-
-
 pnpm build
 
 git add .
-git commit -m "change version v$VERSION"
+git commit -m "change version $VERSION"
 
-git tag -a "v$VERSION" -m "v$VERSION"
+git tag -a "$VERSION" -m "$VERSION"
 
 git push origin
 
