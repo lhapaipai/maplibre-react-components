@@ -1,3 +1,7 @@
+## v0.1.6
+
+- RLayer fix removing listeners in cleanup function
+
 ## v0.1.5
 
 - GradientMarker remove circle hover backgroundcolor with color-mix.

@@ -251,7 +251,7 @@ export const RLayer = memo(
       return () => {
         eventNames.forEach((eventName) => {
           // @ts-ignore
-          map.on(eventName, id, onLayerEvent);
+          map.off(eventName, id, onLayerEvent);
         });
       };
     }, [nextEventsStr, id, map]);
