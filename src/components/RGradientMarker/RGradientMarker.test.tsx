@@ -30,6 +30,7 @@ describe("RGradientMarker", () => {
         | "element"
         | "anchor"
         | "offset"
+        | "subpixelPositioning"
       >
     >(Object);
   });

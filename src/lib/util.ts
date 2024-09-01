@@ -66,7 +66,7 @@ export function prepareEventDep(
   return activeEvents.sort();
 }
 
-/* eslint-disable complexity */
+ 
 /**
  * from : react-map-gl/src/utils/deep-equal.ts
  * Compare any two objects
