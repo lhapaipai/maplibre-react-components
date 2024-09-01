@@ -29,7 +29,7 @@
     "test-run": "vitest --run",
     "lint:check": "eslint -c .eslintrc ./src",
     "tsc:check": "tsc -p tsconfig.build.json --noEmit",
-    "pre-commit": "pnpm lint:check && pnpm tsc:check",
+    "pre-commit": "pnpm lint:check",
     "ci": "pnpm lint:check && pnpm tsc:check && pnpm test-run",
     "prepare": "husky"
   },
