@@ -27,15 +27,16 @@ export type GradientMarkerCallbacks = {
 export const gradientMarkerReactiveOptionNames = [
   "className",
   "clickTolerance",
+  "rotation",
+  "rotationAlignment",
+  "pitchAlignment",
+  "opacity",
+  "opacityWhenCovered",
+  "subpixelPositioning",
   "color",
   "draggable",
   "icon",
   "interactive",
-  "opacity",
-  "opacityWhenCovered",
-  "pitchAlignment",
-  "rotation",
-  "rotationAlignment",
   "scale",
   "shape",
   "text",
@@ -145,6 +146,7 @@ export const RGradientMarker = memo(
       clickTolerance = 0,
       rotation,
       rotationAlignment,
+      subpixelPositioning = false,
       pitchAlignment,
       shape,
       opacity,
@@ -186,6 +188,9 @@ export const RGradientMarker = memo(
     }
     if (marker._opacity !== opacity || marker._opacityWhenCovered !== opacityWhenCovered) {
       marker.setOpacity(opacity, opacityWhenCovered);
+    }
+    if (marker.setSubpixelPositioning && marker._subpixelPositioning !== subpixelPositioning) {
+      marker.setSubpixelPositioning(subpixelPositioning);
     }
     if (marker.getColor() !== color) {
       marker.setColor(color);

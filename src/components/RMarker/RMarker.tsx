@@ -52,6 +52,7 @@ export const markerReactiveOptionNames = [
   "pitchAlignment",
   "opacity",
   "opacityWhenCovered",
+  "subpixelPositioning",
 ] as const;
 export type MarkerReactiveOptionName = (typeof markerReactiveOptionNames)[number];
 export type MarkerReactiveOptions = {
@@ -154,6 +155,7 @@ export const RMarker = memo(
       clickTolerance = 0,
       rotation,
       rotationAlignment,
+      subpixelPositioning = false,
       pitchAlignment,
       opacity,
       opacityWhenCovered,
@@ -191,6 +193,9 @@ export const RMarker = memo(
     }
     if (marker._opacity !== opacity || marker._opacityWhenCovered !== opacityWhenCovered) {
       marker.setOpacity(opacity, opacityWhenCovered);
+    }
+    if (marker.setSubpixelPositioning && marker._subpixelPositioning !== subpixelPositioning) {
+      marker.setSubpixelPositioning(subpixelPositioning);
     }
 
     prevOptionsRef.current = options;

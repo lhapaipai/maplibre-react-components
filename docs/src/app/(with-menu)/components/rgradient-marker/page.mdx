@@ -122,15 +122,16 @@ type RMarkerProps =
 type GradientMarkerReactiveOptions = {
   className?: string;
   clickTolerance?: number;
+  rotation?: number;
+  rotationAlignment?: Alignment;
+  pitchAlignment?: Alignment;
+  opacity?: string;
+  opacityWhenCovered?: string;
+  subpixelPositioning?: boolean; // v4.5.1+
   color?: string;
   draggable?: boolean;
   icon?: string | HTMLElement | SVGSVGElement | (() => HTMLElement | SVGSVGElement);
   interactive?: boolean;
-  opacity?: string;
-  opacityWhenCovered?: string;
-  pitchAlignment?: Alignment;
-  rotation?: number;
-  rotationAlignment?: Alignment;
   scale?: number;
   shape?: "pin" | "circle";
   text?: string;

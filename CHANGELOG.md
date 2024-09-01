@@ -1,3 +1,7 @@
+## v0.1.7
+
+- RMarker/RGradientMarker add subpixelPositioning reactive option.
+
 ## v0.1.6
 
 - RLayer fix removing listeners in cleanup function

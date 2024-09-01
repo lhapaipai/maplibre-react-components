@@ -36,6 +36,8 @@ function App() {
   const [showMarker, setShowMarker] = useState(true);
   const [showPopup, setShowPopup] = useState(true);
   const [lonOffset, setLonOffset] = useState(0);
+  const [subPixelPosition, setSubPixelPosition] = useState(false);
+
   useLayoutEffect(() => {
     console.log(mapRef);
   });
@@ -59,6 +61,7 @@ function App() {
             latitude={marignier.lat}
             draggable={true}
             onDragEnd={handleDragEnd}
+            subpixelPositioning={subPixelPosition}
             onClick={(e) => {
               console.log("onClick Marker");
               e.stopPropagation();
@@ -133,6 +136,16 @@ function App() {
               type="checkbox"
               onChange={() => setShowMarker((s) => !s)}
               checked={showMarker}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            subpixel position Marignier
+            <input
+              type="checkbox"
+              onChange={() => setSubPixelPosition((s) => !s)}
+              checked={subPixelPosition}
             />
           </label>
         </div>
