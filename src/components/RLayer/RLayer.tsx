@@ -16,7 +16,7 @@ import {
   useState,
 } from "react";
 import { prepareEventDep, transformPropsToOptions } from "../../lib";
-import { useMapManager } from "~/hooks/useMapManager";
+import { useMapManager } from "../../hooks/useMapManager";
 
 export type LayerOptions = LayerSpecification | CustomLayerInterface;
 

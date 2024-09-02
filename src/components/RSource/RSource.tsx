@@ -21,7 +21,7 @@ import {
   memo,
   useCallback,
 } from "react";
-import { useMapManager } from "~/hooks/useMapManager";
+import { useMapManager } from "../../hooks/useMapManager";
 
 export type RSourceProps = SourceSpecification & {
   readonly id: string;

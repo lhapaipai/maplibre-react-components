@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { RMapContext } from "~/contexts/RMapContextProvider";
-import { CurrentMapIdContext } from "~/contexts/CurrentMapIdContext";
-import { MapManager } from "~/lib";
+import { RMapContext } from "../contexts/RMapContextProvider";
+import { CurrentMapIdContext } from "../contexts/CurrentMapIdContext";
+import { MapManager } from "../lib";
 
 export function useMapManager(): MapManager;
 export function useMapManager(id: string): MapManager | null;
