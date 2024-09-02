@@ -1,26 +1,26 @@
 export const metadata = {
-  title: 'useMap',
-  description: 'hook to get map instance inside or outside RMap'
+  title: 'useMapManager',
+  description: 'hook to get mapManager instance inside or outside RMap'
 };
 
 import { Flash } from "pentatrion-design/components/flash"
 
-# useMap
+# useMapManager
 
-Hook to get map instance inside or outside RMap.
+Hook to get mapManager instance inside or outside RMap.
 
-
+This hook is used a lot internally to control the map instance. You probably 
+won't need to use it.
 
 ## Usage inside RMap
 
 ```tsx
-import { type Map } from "maplibre-gl";
-import { RMap, useMap } from "maplibre-react-components";
+import { RMap, useMapManager, type MapManager } from "maplibre-react-components";
 
 function ChildComponent() {
   // This component is inside RMap
-  // your MapLibre map instance is always available
-  const map: Map = useMap();
+  // your mapManager instance is always available
+  const mapManager: MapManager = useMapManager();
 
   return null;
 }
@@ -36,8 +36,8 @@ export default function App() {
 ```
 
 <Flash color="yellow">
-If you use `useMap` inside `<RMap />` and you're using TypeScript it is better not to specify an `id` because 
-you will not have to handle the `null` case. But keep in mind that this is just for TypeScript because map is 
+If you use `useMapManager` inside `<RMap />` and you're using TypeScript it is better not to specify an `id` because 
+you will not have to handle the `null` case. But keep in mind that this is just for TypeScript because useMapManager is 
 **always** available when you are in `<RMap />`.
 </Flash>
 
@@ -45,7 +45,7 @@ you will not have to handle the `null` case. But keep in mind that this is just 
 
 If you want to access your map instance outside of RMap you must wrap your application in 
 a `<RMapContextProvider />` component. Moreover you must give an `id` to `<RMap />` and 
-provide this same `id` to `useMap`.
+provide this same `id` to `useMapManager`.
 
 <Flash color="orange">
 This might seem useless if your application contains only one map instance but this precaution allows TypeScript to return the correct type.
@@ -54,18 +54,17 @@ This might seem useless if your application contains only one map instance but t
 
 
 ```tsx
-import { type Map } from "maplibre-gl";
-import { RMapContextProvider, RMap, useMap } from "maplibre-react-components";
+import { RMapContextProvider, RMap, useMapManager, type MapManager } from "maplibre-react-components";
 
 function ChildComponent() {
   // This component contain <RMap /> or <RMap /> is a child of this component
   // your MapLibre map instance is not always available
   // you need to provide your <RMap /> id
-  const map: Map | null = useMap("my-map");
+  const mapManager: MapManager | null = useMapManager("my-map");
 
   return (
     <div>
-      <div>map is {map !== null ? "available": "not available"}</div>
+      <div>mapManager is {mapManager !== null ? "available": "not available"}</div>
       <RMap id="my-map"></RMap>
     </div>
   );}
@@ -84,11 +83,11 @@ export default function App() {
 ## Reference
 
 ```ts
-import { type Map} from "maplibre-gl";
+import { type MapManager } from "maplibre-react-components";
 
 // use inside <RMap />
-export function useMap(): Map;
+export function useMapManager(): MapManager;
 
 // use outside <RMap />
-export function useMap(id: string): Map | null;
+export function useMapManager(id: string): MapManager | null;
 ```

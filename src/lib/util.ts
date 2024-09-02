@@ -66,7 +66,6 @@ export function prepareEventDep(
   return activeEvents.sort();
 }
 
- 
 /**
  * from : react-map-gl/src/utils/deep-equal.ts
  * Compare any two objects
@@ -242,3 +241,15 @@ export const emptyStyle: StyleSpecification = {
   sources: {},
   layers: [],
 };
+
+export function uniqueId(): string {
+  const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+
+  for (let i = 0; i < 8; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    result += characters[randomIndex];
+  }
+
+  return result;
+}

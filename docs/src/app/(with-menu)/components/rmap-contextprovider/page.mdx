@@ -1,0 +1,35 @@
+export const metadata = {
+  title: 'RMapContextProvider',
+  description: 'A context provider which allows access to your instances outside the scope of RMap'
+}
+
+# RMapContextProvider
+
+If you need to access your `map` or `mapManager` instance(s) outside the scope of `RMap`,
+you'll need to wrap your App inside this component.
+
+The component internally acts on the [`useMap`](/hooks/usemap) and [`useMapManager`](/hooks/useMapManager) hooks. 
+Read their dedicated page to see details about the implementation.
+
+```tsx
+import { RMapContextProvider, RMap, useMap } from "maplibre-react-components";
+
+function ChildComponent() {
+  const map: Map | null = useMap("my-map");
+
+  return (
+    <div>
+      {/* your components */}
+      <RMap id="my-map"></RMap>
+    </div>
+  );}
+
+export default function App() {
+  return (
+    <RMapContextProvider>
+      <ChildComponent />
+    </RMapContextProvider>
+  );
+}
+
+```

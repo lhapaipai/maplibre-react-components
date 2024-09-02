@@ -13,10 +13,9 @@
  */
 
 export * from "./components";
+export * from "./contexts";
 export * from "./controls";
 export * from "./hooks";
 export * from "./lib";
 
 export type * from "./types.d";
-
-export { mapLibreContext, type MapLibreContext } from "./context";

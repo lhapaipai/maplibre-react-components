@@ -1,21 +1,17 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import { mapLibreContext } from "../../context";
+import { useCallback, useEffect, useState } from "react";
 import { TerrainSpecification } from "maplibre-gl";
+import { useMapManager } from "~/hooks/useMapManager";
 
 export type RTerrainProps = TerrainSpecification;
 
 export const RTerrain = (props: RTerrainProps) => {
   const terrainOptions = props;
 
-  const context = useContext(mapLibreContext);
+  const mapManager = useMapManager();
 
-  if (!context.mapManager) {
-    throw new Error("use <RTerrain /> component inside <RMap />");
-  }
+  const map = mapManager.map;
 
-  const map = context.mapManager.map;
-
-  const prevOptions = context.mapManager.getControlledTerrain() ?? props;
+  const prevOptions = mapManager.getControlledTerrain() ?? props;
 
   const [, setVersion] = useState(0);
   const reRender = useCallback(() => setVersion((v) => v + 1), []);
@@ -36,9 +32,9 @@ export const RTerrain = (props: RTerrainProps) => {
         map.setTerrain(null);
       }
 
-      context.mapManager?.setControlledTerrain(null);
+      mapManager?.setControlledTerrain(null);
     };
-  }, [map, context, reRender]);
+  }, [map, mapManager, reRender]);
 
   // when map not loaded getTerrain return null event if map style contain terrain
   // specification.
@@ -59,7 +55,7 @@ export const RTerrain = (props: RTerrainProps) => {
     }
   }
 
-  context.mapManager.setControlledTerrain(props);
+  mapManager.setControlledTerrain(props);
 
   return null;
 };

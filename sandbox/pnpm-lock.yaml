@@ -35,6 +35,9 @@ importers:
       d3-shape:
         specifier: ^3.2.0
         version: 3.2.0
+      ign-tms-styles:
+        specifier: ^0.0.4
+        version: 0.0.4
       immutable:
         specifier: 5.0.0-beta.5
         version: 5.0.0-beta.5
@@ -1297,6 +1300,9 @@ packages:
 
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
+
+  ign-tms-styles@0.0.4:
+    resolution: {integrity: sha512-CRcqBHT9Qi5zGblqLFp7ha6ngsxo2lgLM34t6Fx5/Y1jpVKUzPSANdaNi6ElNLzcI4LbuEKAlxaD5Axs8zCAYg==}
 
   immer@10.1.1:
     resolution: {integrity: sha512-s2MPrmjovJcoMaHtx6K11Ra7oD05NT97w1IC5zpMkT6Atjr7H8LjaDd81iIxUYpMKSRRNMJE703M1Fhr/TctHw==}
@@ -3876,6 +3882,8 @@ snapshots:
       function-bind: 1.1.2
 
   ieee754@1.2.1: {}
+
+  ign-tms-styles@0.0.4: {}
 
   immer@10.1.1: {}
 

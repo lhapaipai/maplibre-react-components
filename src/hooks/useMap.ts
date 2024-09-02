@@ -1,12 +1,9 @@
-import { useContext } from "react";
-import { mapLibreContext } from "../context";
+import { Map } from "maplibre-gl";
+import { useMapManager } from "./useMapManager";
 
-export function useMap() {
-  const context = useContext(mapLibreContext);
-
-  if (!context.mapManager) {
-    throw new Error("use useMap in components inside <RMap />");
-  }
-
-  return context.mapManager.map;
+export function useMap(): Map;
+export function useMap(id: string): Map | null;
+export function useMap(optionalId?: string) {
+  // @ts-ignore optionalId expected type: string | undefined
+  return useMapManager(optionalId)?.map ?? null;
 }

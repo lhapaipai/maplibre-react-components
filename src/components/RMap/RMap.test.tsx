@@ -36,13 +36,14 @@ describe("RMap", () => {
 
   test("Render identically than vanilla Maplibre", async ({ expect }) => {
     const { container } = render(
-      <RMap mapStyle={emptyStyle} initialAttributionControl={false}></RMap>,
+      <RMap id="my-map" mapStyle={emptyStyle} initialAttributionControl={false}></RMap>,
     );
 
     expect(container).toMatchInlineSnapshot(`
       <div>
         <div
           class="maplibregl-map"
+          id="my-map"
           style="position: relative; width: 100%; height: 100%;"
         >
           <div

@@ -18,11 +18,10 @@ import {
   useRef,
   useState,
   useImperativeHandle,
-  useContext,
   memo,
   useCallback,
 } from "react";
-import { mapLibreContext } from "../../context";
+import { useMapManager } from "~/hooks/useMapManager";
 
 export type RSourceProps = SourceSpecification & {
   readonly id: string;
@@ -119,13 +118,9 @@ export const RSource = memo(
   forwardRef<Source | null, RSourceProps>(function RSource(props, ref) {
     const { id, ...sourceOptions } = props;
 
-    const context = useContext(mapLibreContext);
+    const mapManager = useMapManager();
 
-    if (!context.mapManager) {
-      throw new Error("use <RSource /> component inside <RMap />");
-    }
-
-    const map = context.mapManager.map;
+    const map = mapManager.map;
 
     const initialId = useRef(id);
 
@@ -135,7 +130,7 @@ export const RSource = memo(
       );
     }
 
-    const { id: _, ...prevOptions } = context.mapManager.getControlledSource(id) ?? props;
+    const { id: _, ...prevOptions } = mapManager.getControlledSource(id) ?? props;
 
     if (sourceOptions.type !== prevOptions.type) {
       throw new Error(
@@ -184,9 +179,9 @@ export const RSource = memo(
           }
           map.removeSource(id);
         }
-        context.mapManager?.setControlledSource(id, null);
+        mapManager?.setControlledSource(id, null);
       };
-    }, [map, id, context, reRender]);
+    }, [map, id, mapManager, reRender]);
 
     let source = map.style?._loaded && map.getSource(id);
 
@@ -202,7 +197,7 @@ export const RSource = memo(
     // @ts-ignore
     useImperativeHandle(ref, () => source || null, [source]);
 
-    context.mapManager.setControlledSource(id, props);
+    mapManager.setControlledSource(id, props);
 
     return null;
   }),

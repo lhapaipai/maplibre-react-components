@@ -46,6 +46,10 @@ const links: NavLink[] = [
         title: "RMap",
       },
       {
+        url: "/components/rmap-contextprovider",
+        title: "RMapContextProvider",
+      },
+      {
         url: "/components/rmarker",
         title: "RMarker",
       },
@@ -77,6 +81,10 @@ const links: NavLink[] = [
       {
         url: "/hooks/usemap",
         title: "useMap",
+      },
+      {
+        url: "/hooks/usemapmanager",
+        title: "useMapManager",
       },
     ],
   },
@@ -140,7 +148,7 @@ export default function NavBar() {
         <nav className="flex flex-col gap-1">
           <Link
             href="/"
-            className="mb-4 grid min-h-32 place-content-center transition-colors hover:text-gray-7 active:text-gray-6"
+            className="grid mb-4 min-h-32 place-content-center transition-colors hover:text-gray-7 active:text-gray-6"
           >
             <MapLibreReactLogo height={100} />
           </Link>

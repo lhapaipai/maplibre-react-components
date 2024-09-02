@@ -19,6 +19,6 @@ export default defineConfig({
     minWorkers: 1,
     maxWorkers: 1,
     setupFiles: ["vitest-webgl-canvas-mock", "./tests/setup/dom.ts", "./tests/setup/web-worker.ts"],
-    include: ["src/components/**/*.test.ts?(x)"],
+    include: ["src/(components|contexts)/**/*.test.ts?(x)"],
   },
 });

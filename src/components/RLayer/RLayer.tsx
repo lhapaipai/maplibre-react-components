@@ -10,14 +10,13 @@ import {
   forwardRef,
   memo,
   useCallback,
-  useContext,
   useEffect,
   useImperativeHandle,
   useRef,
   useState,
 } from "react";
-import { mapLibreContext } from "../../context";
 import { prepareEventDep, transformPropsToOptions } from "../../lib";
+import { useMapManager } from "~/hooks/useMapManager";
 
 export type LayerOptions = LayerSpecification | CustomLayerInterface;
 
@@ -177,13 +176,13 @@ export const RLayer = memo(
 
     const id = layerOptions.id;
 
-    const context = useContext(mapLibreContext);
+    const mapManager = useMapManager();
 
-    if (!context.mapManager) {
+    if (!mapManager) {
       throw new Error("use <RLayer /> component inside <RMap />");
     }
 
-    const map = context.mapManager.map;
+    const map = mapManager.map;
 
     const initialLayerId = useRef(id);
 
@@ -193,7 +192,7 @@ export const RLayer = memo(
       );
     }
 
-    const prevProps = context.mapManager.getControlledLayer(id) ?? props;
+    const prevProps = mapManager.getControlledLayer(id) ?? props;
 
     const [, setVersion] = useState(0);
     const reRender = useCallback(() => setVersion((v) => v + 1), []);
@@ -221,9 +220,9 @@ export const RLayer = memo(
           map.removeLayer(id);
         }
 
-        context.mapManager?.setControlledLayer(id, null);
+        mapManager?.setControlledLayer(id, null);
       };
-    }, [map, id, context, reRender]);
+    }, [map, id, mapManager, reRender]);
 
     const nextEventsStr = prepareEventDep(eventNameToCallbackName, callbacks).join("-");
 
@@ -269,7 +268,7 @@ export const RLayer = memo(
 
     useImperativeHandle(ref, () => layer || null, [layer]);
 
-    context.mapManager.setControlledLayer(id, props);
+    mapManager.setControlledLayer(id, props);
 
     return null;
   }),

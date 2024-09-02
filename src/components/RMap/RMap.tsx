@@ -3,8 +3,10 @@
 import { Map } from "maplibre-gl";
 import {
   CSSProperties,
+  MutableRefObject,
   ReactNode,
   forwardRef,
+  useContext,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -12,8 +14,11 @@ import {
 } from "react";
 
 import { MapManager, type ManagerOptions, type MapProps } from "../../lib/MapManager";
-import { MapLibreContext, mapLibreContext } from "../../context";
 import { useIsomorphicLayoutEffect } from "../../hooks/useIsomorphicLayoutEffect";
+import { uniqueId } from "../../lib";
+import { RMapContext } from "../../contexts/RMapContextProvider";
+import { CurrentMapIdContext } from "../../contexts/CurrentMapIdContext";
+import { MapManagers } from "../../lib/MapManagers";
 
 type RMapComponentProps = {
   children?: ReactNode;
@@ -34,7 +39,7 @@ export const RMap = forwardRef<Map | null, RMapProps>(function RMap(
     /* RMapProps */
     children,
     style,
-    id,
+    id: propsId,
     className,
     onMounted,
 
@@ -51,38 +56,52 @@ export const RMap = forwardRef<Map | null, RMapProps>(function RMap(
 ) {
   const containerRef = useRef<HTMLDivElement>(null!);
 
-  const maplibreRef = useRef<MapLibreContext>({
-    mapManager: undefined,
-  });
-
   const needPropsUpdate = useRef(true);
+
+  const idRef = useRef(propsId ?? uniqueId());
+  if (propsId && propsId !== idRef.current) {
+    throw new Error(
+      `RMap id should not change. "${propsId}" "${idRef.current}". If you defined id as const string add a "key" prop to your RMap component`,
+    );
+  }
+  const id = idRef.current;
+
+  const externalMapManagersRef = useContext(RMapContext);
+  const localMapManagersRef = useRef<MapManagers>();
+
+  if (!externalMapManagersRef && !localMapManagersRef.current) {
+    localMapManagersRef.current = new MapManagers();
+  }
+
+  const mapManagers = (
+    externalMapManagersRef ? externalMapManagersRef.current : localMapManagersRef.current
+  ) as MapManagers;
 
   const [, reRender] = useState(0);
 
   /**
-   * we need to init maplibreRef.current.mapManager before useImperativeHandle call
+   * we need to init mapManager before useImperativeHandle call
    * so necessary inside useLayoutEffect
    * (useLayoutEffect and useImperativeHandle are called in same priority)
    * parent component will have access to reference in useLayoutEffect / useEffect hooks
    */
   useIsomorphicLayoutEffect(() => {
-    if (!maplibreRef.current.mapManager) {
-      maplibreRef.current.mapManager = new MapManager(
+    const mapManager = mapManagers.get(id);
+    if (!mapManager) {
+      const instance = new MapManager(
         { mapStyle, styleDiffing, padding },
         mapProps,
         containerRef.current,
       );
+      mapManagers.add(id, instance);
 
-      onMounted && onMounted(maplibreRef.current.mapManager.map);
+      onMounted && onMounted(instance.map);
       reRender((v) => v + 1);
       needPropsUpdate.current = false;
     } else {
       if (needPropsUpdate.current) {
         // console.log("mapManager setProps");
-        maplibreRef.current.mapManager.setProps(
-          { mapStyle, padding, styleDiffing, styleTransformStyle },
-          mapProps,
-        );
+        mapManager.setProps({ mapStyle, padding, styleDiffing, styleTransformStyle }, mapProps);
       } else {
         needPropsUpdate.current = true;
       }
@@ -91,15 +110,16 @@ export const RMap = forwardRef<Map | null, RMapProps>(function RMap(
 
   useIsomorphicLayoutEffect(() => {
     return () => {
-      if (maplibreRef.current.mapManager) {
-        maplibreRef.current.mapManager.destroy();
-        maplibreRef.current.mapManager = undefined;
+      const mapManager = mapManagers.get(id);
+      if (mapManager) {
+        mapManager.destroy();
+        mapManagers.remove(id);
       }
     };
   }, []);
 
   // @ts-ignore
-  useImperativeHandle(ref, () => maplibreRef.current.mapManager?.map || null, []);
+  useImperativeHandle(ref, () => mapManagers.get(id)?.map || null, [id, mapManagers]);
 
   /**
    * container class attribute must not be controlled by React
@@ -129,12 +149,20 @@ export const RMap = forwardRef<Map | null, RMapProps>(function RMap(
 
   return (
     <div ref={containerRef} id={id} style={completeStyle}>
-      {maplibreRef.current.mapManager && (
-        <mapLibreContext.Provider value={maplibreRef.current}>
-          <div className="maplibregl-children" style={childContainerStyle}>
-            {children}
-          </div>
-        </mapLibreContext.Provider>
+      {mapManagers.get(id) && (
+        <CurrentMapIdContext.Provider value={id}>
+          {externalMapManagersRef ? (
+            <div className="maplibregl-children" style={childContainerStyle}>
+              {children}
+            </div>
+          ) : (
+            <RMapContext.Provider value={localMapManagersRef as MutableRefObject<MapManagers>}>
+              <div className="maplibregl-children" style={childContainerStyle}>
+                {children}
+              </div>
+            </RMapContext.Provider>
+          )}
+        </CurrentMapIdContext.Provider>
       )}
     </div>
   );
