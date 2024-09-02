@@ -18,8 +18,8 @@ import { type Map } from "maplibre-gl";
 import { RMap, useMap } from "maplibre-react-components";
 
 function ChildComponent() {
-  // This component is inside RMap
-  // your MapLibre map instance is always available
+  // This component is inside RMap.
+  // your MapLibre map instance is always defined and cannot be null.
   const map: Map = useMap();
 
   return null;
@@ -36,7 +36,7 @@ export default function App() {
 ```
 
 <Flash color="yellow">
-If you use `useMap` inside `<RMap />` and you're using TypeScript it is better not to specify an `id` because 
+If you use `useMap` inside `<RMap />` and you're using TypeScript it is better not to specify an `id` for your `useMap` hook because 
 you will not have to handle the `null` case. But keep in mind that this is just for TypeScript because map is 
 **always** available when you are in `<RMap />`.
 </Flash>
@@ -48,7 +48,7 @@ a `<RMapContextProvider />` component. Moreover you must give an `id` to `<RMap 
 provide this same `id` to `useMap`.
 
 <Flash color="orange">
-This might seem useless if your application contains only one map instance but this precaution allows TypeScript to return the correct type.
+This might seem useless to provide an `id` if your application contains only one map instance but this precaution help TypeScript to return the correct type.
 </Flash>
 
 
@@ -58,9 +58,9 @@ import { type Map } from "maplibre-gl";
 import { RMapContextProvider, RMap, useMap } from "maplibre-react-components";
 
 function ChildComponent() {
-  // This component contain <RMap /> or <RMap /> is a child of this component
-  // your MapLibre map instance is not always available
-  // you need to provide your <RMap /> id
+  // If you use `useMap` outside <RMap /> you need to set the <RMap> `id` prop
+  // and specify this id in your hook.
+  // your map instance can be null.
   const map: Map | null = useMap("my-map");
 
   return (
@@ -86,9 +86,9 @@ export default function App() {
 ```ts
 import { type Map} from "maplibre-gl";
 
-// use inside <RMap />
+// when used inside <RMap />
 export function useMap(): Map;
 
-// use outside <RMap />
+// when used outside <RMap />
 export function useMap(id: string): Map | null;
 ```

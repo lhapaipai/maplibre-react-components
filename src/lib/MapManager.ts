@@ -370,12 +370,6 @@ export class MapManager {
       this._map.setStyle(nextStyle, {
         diff: options.diff,
         transformStyle: (prevStyle, nextStyle) => {
-          // console.log(
-          //   `merge controlled sources/layers ${prevStyle?.name} ${nextStyle.name}`,
-          //   this.controlledSources,
-          //   this.controlledLayers,
-          // );
-
           const prevControlledSources = prevStyle
             ? Object.fromEntries(
                 Object.entries(prevStyle?.sources).filter(

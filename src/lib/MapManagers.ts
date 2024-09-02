@@ -12,11 +12,8 @@ export class MapManagers {
   } = {};
 
   add(id: string, mapManager: MapManager) {
-    // console.log("MapManager add", id, mapManager);
-
     this._maps[id] = mapManager;
     this._listeners[id]?.forEach(([mounted, setMounted]) => {
-      // console.log(mounted);
       if (!mounted) {
         setMounted(true);
       }
@@ -24,8 +21,6 @@ export class MapManagers {
   }
 
   remove(id: string) {
-    // console.log("MapManager remove", id);
-
     delete this._maps[id];
     this._listeners[id]?.forEach(([mounted, setMounted]) => {
       if (mounted) {
@@ -41,8 +36,6 @@ export class MapManagers {
     return this._maps[id] ?? null;
   }
   addListener(id: string, mountedState: MountedState) {
-    // console.log("MapManager addListener", id);
-
     if (this._listeners[id]) {
       this._listeners[id].push(mountedState);
     } else {

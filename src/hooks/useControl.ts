@@ -23,12 +23,10 @@ export function useControl({
   const onRemoveStable = useEventCallback(onRemove || null);
 
   useEffect(() => {
-    // console.log("mount");
     if (!map.hasControl(ctrl)) {
       map.addControl(ctrl, position);
     }
     return () => {
-      // console.log("unmount");
       onRemoveStable && onRemoveStable(map);
 
       // if <RMap /> is unmounted, RMap cleanup has been called

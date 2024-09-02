@@ -18,8 +18,8 @@ won't need to use it.
 import { RMap, useMapManager, type MapManager } from "maplibre-react-components";
 
 function ChildComponent() {
-  // This component is inside RMap
-  // your mapManager instance is always available
+  // This component is inside RMap.
+  // your mapManager instance is always defined and cannot be null.
   const mapManager: MapManager = useMapManager();
 
   return null;
@@ -36,7 +36,7 @@ export default function App() {
 ```
 
 <Flash color="yellow">
-If you use `useMapManager` inside `<RMap />` and you're using TypeScript it is better not to specify an `id` because 
+If you use `useMapManager` inside `<RMap />` and you're using TypeScript it is better not to specify an `id` for your `useMapManager` hook because 
 you will not have to handle the `null` case. But keep in mind that this is just for TypeScript because useMapManager is 
 **always** available when you are in `<RMap />`.
 </Flash>
@@ -48,7 +48,7 @@ a `<RMapContextProvider />` component. Moreover you must give an `id` to `<RMap 
 provide this same `id` to `useMapManager`.
 
 <Flash color="orange">
-This might seem useless if your application contains only one map instance but this precaution allows TypeScript to return the correct type.
+This might seem useless to provide an `id` if your application contains only one map instance but this precaution help TypeScript to return the correct type.
 </Flash>
 
 
@@ -57,9 +57,9 @@ This might seem useless if your application contains only one map instance but t
 import { RMapContextProvider, RMap, useMapManager, type MapManager } from "maplibre-react-components";
 
 function ChildComponent() {
-  // This component contain <RMap /> or <RMap /> is a child of this component
-  // your MapLibre map instance is not always available
-  // you need to provide your <RMap /> id
+  // If you use `useMapManager` outside <RMap /> you need to set the <RMap> `id` prop
+  // and specify this id in your hook.
+  // your mapManager instance can be null.
   const mapManager: MapManager | null = useMapManager("my-map");
 
   return (
@@ -85,9 +85,9 @@ export default function App() {
 ```ts
 import { type MapManager } from "maplibre-react-components";
 
-// use inside <RMap />
+// when used inside <RMap />
 export function useMapManager(): MapManager;
 
-// use outside <RMap />
+// when used outside <RMap />
 export function useMapManager(id: string): MapManager | null;
 ```

@@ -29,12 +29,16 @@ export function useMapManager(optionalId?: string) {
       throw new Error("mapManagers can't disappear");
     }
 
-    // console.log("before addListener", mountedState, mapManager);
     mapManagers.addListener(id, mountedState);
 
     return () => {
       mapManagers.removeListener(id, mountedState);
     };
+
+    // when mountedState value change,
+    // listener with old state value is removed and a new listener is registered.
+    // I think it doesn't matter for performance
+    // Otherwise it would be necessary to put this in a reference
   }, [id, mapManagersRef, mountedState, mapManager]);
 
   return mapManager;

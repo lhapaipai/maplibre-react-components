@@ -100,7 +100,6 @@ export const RMap = forwardRef<Map | null, RMapProps>(function RMap(
       needPropsUpdate.current = false;
     } else {
       if (needPropsUpdate.current) {
-        // console.log("mapManager setProps");
         mapManager.setProps({ mapStyle, padding, styleDiffing, styleTransformStyle }, mapProps);
       } else {
         needPropsUpdate.current = true;
