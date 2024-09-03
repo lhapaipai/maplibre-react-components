@@ -49,6 +49,18 @@
       "src": "entypo"
     },
     {
+      "uid": "c9bef3dc67fea47e94c4a5030ea64dad",
+      "css": "clipboard",
+      "code": 59397,
+      "src": "elusive"
+    },
+    {
+      "uid": "c8585e1e5b0467f28b70bce765d5840c",
+      "css": "copy",
+      "code": 61637,
+      "src": "fontawesome"
+    },
+    {
       "uid": "c4ab4e02333d10843cd478dfb390028f",
       "css": "circle-exclamation",
       "code": 59416,
