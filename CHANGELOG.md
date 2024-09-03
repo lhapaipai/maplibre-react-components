@@ -1,5 +1,8 @@
 ## v0.1.7
 
+- new RMapContextProvider component
+- new useMapManager hook
+- update useMap hook
 - RMarker/RGradientMarker add subpixelPositioning reactive option.
 
 ## v0.1.6

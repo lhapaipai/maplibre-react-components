@@ -81,7 +81,7 @@ map.on('the-event-name', 'poi-label', (e) => {
 
 ```
 
-With MapLibre React Components, you define these listeners directly has props of your `<RLayer />`.
+With MapLibre React Components, you define these listeners directly as props of your `<RLayer />`.
 
 ```tsx
 import { MapLayerMouseEvent } from "maplibre-gl";
@@ -119,10 +119,12 @@ why see [Tips: key vs id](/tips#error-id-should-not-change-key-vs-id).
 
 ## Reference
 
-`RLayer` accept same props as `Layer` options plus `beforeId`.
+`RLayer` accept same props as `Layer` options plus `beforeId`. Check the MapLibre [Layers](https://maplibre.org/maplibre-style-spec/layers/) reference page for details.
 
 ```ts
-type RLayerProps = LayerOptions & LayerCallbacks {
+import { CustomLayerInterface, LayerSpecification } from "maplibre-gl";
+
+type RLayerProps = LayerOptions & LayerCallbacks & {
   beforeId?: string;
 };
 

@@ -31,7 +31,11 @@ Generally speaking, you use `RTerrain` if you want to benefit from reactivity
 
 `RTerrain` accept same props as `TerrainSpecification`, all his props are reactives.
 
+Check the MapLibre [Terrain](https://maplibre.org/maplibre-style-spec/terrain/) reference page for details.
+
 ```ts
+import { TerrainSpecification } from "maplibre-gl";
+
 type RTerrainProps = TerrainSpecification;
 
 type TerrainSpecification = {

@@ -89,6 +89,11 @@ export const mountainIconFactory = () => {
 
 ## Reference
 
+RGradientMarker extends RMarker, he therefore shares many of his options and has new ones. Check the MapLibre [MarkerOptions](https://maplibre.org/maplibre-gl-js/docs/API/type-aliases/MarkerOptions/) reference page for details of `MarkerInitialOptions` and `MarkerReactiveOptions`.
+
+However, for compatibility reasons, some options from `MarkerOptions` are not
+available : `element`, `anchor`, `offset`.
+
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
 <div className="row-span-2">
 ```ts
@@ -150,7 +155,3 @@ type GradientMarkerCallbacks = {
 
 ```
 </div>
-
-
-For compatibility some options from `MarkerOptions` are not
-available : `element`, `anchor`, `offset`.
