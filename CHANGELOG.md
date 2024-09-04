@@ -1,3 +1,7 @@
+## v0.1.8
+
+-  fix: check map.style before accessing properties #6 (@andrejilderda)
+
 ## v0.1.7
 
 - new RMapContextProvider component
