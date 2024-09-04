@@ -207,7 +207,7 @@ export const RLayer = memo(
     useEffect(() => {
       map.on("styledata", reRender);
 
-      if (map.style._loaded) {
+      if (map.style && map.style._loaded) {
         // in case layer is loaded between first render and useEffect call
         // like RSource
         reRender();

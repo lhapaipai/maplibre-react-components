@@ -153,7 +153,7 @@ export const RSource = memo(
        */
       map.on("styledata", reRender);
 
-      if (map.style._loaded) {
+      if (map.style && map.style._loaded) {
         // in case style is loaded between first render and useEffect call
         // our styledata listener arrives too late we have to force a new
         // render to add our source
