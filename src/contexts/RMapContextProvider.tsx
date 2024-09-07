@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, MutableRefObject, ReactNode, useRef } from "react";
 import { MapManagers } from "../lib/MapManagers";
 

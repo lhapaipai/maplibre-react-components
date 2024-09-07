@@ -49,13 +49,13 @@ const completeStyle: CSSProperties = useMemo(
 );
 ```
 
-The `mapStyle` is a reactive value. You can specify the url of a style file or directly an object. If we propose an object
-be careful to give a stable object for performance reasons the verification is done with a strict equal and not a deepEqual.
+The `mapStyle` is a reactive value. You can specify the url of a style file or directly an object. If you propose an object
+be careful to give a **stable** object for performance reasons the verification is done with a strict equal and not a deepEqual.
 
 ## `MapProps` vs `MapOptions`
 
-You can use all options from the MapLibre `MapOptions` type as props for the `RMap` component. Some of these options are responsive and some are not. To distinguish them, non-reactive options have been prefixed with `initial` and event handlers are prefixed with `on`.
-This set constitutes a new type : `MapProps`.
+You can use all options from the MapLibre `MapOptions` type as props for the `RMap` component. Some of these options are reactives and some are not. To distinguish them, non-reactive options have been prefixed with `initial` and event handlers are prefixed with `on`.
+This set constitutes a new type : `MapProps` (see [below](#reference) for complete reference).
 
 import Options from "./Options.tsx";
 import optionsCode from "./Options.extract.tsx?code";
@@ -65,7 +65,7 @@ import optionsCode from "./Options.extract.tsx?code";
 <Flash>
 For performance reasons, if your prop is an array or an object, define your variable outside your component if it's a readonly value or inside a `useMemo` to skip re-rendering of components.
 
-You can free yourself from this rule for callbacks (type `MapCallbacks`). They were implemented following the React principle of [useEffectEvents](https://react.dev/reference/react/experimental_useEffectEvent).
+You don't need to follow this rule with callbacks (type `MapCallbacks`). They were implemented following the React principle of [useEffectEvents](https://react.dev/reference/react/experimental_useEffectEvent).
 </Flash>
 
 ## Manipulating the map instance
