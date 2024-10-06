@@ -18,14 +18,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
           version: 9
 
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: "20"
+          node-version: 20
           cache: "pnpm"
 
       - name: "Install JS dependencies"

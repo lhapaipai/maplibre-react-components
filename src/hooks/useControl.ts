@@ -1,4 +1,5 @@
-import { ControlPosition, IControl, Map } from "maplibre-gl";
+import type { ControlPosition, IControl, Map } from "maplibre-gl";
+
 import { useMap } from "./useMap";
 import { useEffect, useMemo } from "react";
 import { useEventCallback } from "./useEventCallback";

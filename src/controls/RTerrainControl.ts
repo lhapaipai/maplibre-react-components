@@ -1,4 +1,6 @@
-import { ControlPosition, IControl, TerrainControl, TerrainSpecification } from "maplibre-gl";
+import type { ControlPosition, IControl, TerrainSpecification } from "maplibre-gl";
+import maplibregl from "maplibre-gl";
+
 import { memo, forwardRef, useImperativeHandle } from "react";
 import { useControl } from "../hooks/useControl";
 
@@ -13,7 +15,7 @@ export const RTerrainControl = memo(
   ) {
     const control = useControl({
       position,
-      factory: () => new TerrainControl(controlOptions),
+      factory: () => new maplibregl.TerrainControl(controlOptions),
     });
     useImperativeHandle(ref, () => control);
     return null;

@@ -1,11 +1,8 @@
 import { forwardRef, memo, useImperativeHandle } from "react";
+import type { ControlPosition, IControl, NavigationControlOptions } from "maplibre-gl";
+import maplibregl from "maplibre-gl";
+
 import { useControl } from "../hooks/useControl";
-import {
-  ControlPosition,
-  IControl,
-  NavigationControl,
-  NavigationControlOptions,
-} from "maplibre-gl";
 
 type RNavigationControlProps = NavigationControlOptions & {
   position?: ControlPosition;
@@ -18,7 +15,7 @@ export const RNavigationControl = memo(
   ) {
     const control = useControl({
       position,
-      factory: () => new NavigationControl(controlOptions),
+      factory: () => new maplibregl.NavigationControl(controlOptions),
     });
 
     useImperativeHandle(ref, () => control);

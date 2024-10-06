@@ -1,4 +1,4 @@
-import {
+import type {
   FillLayerSpecification,
   CustomLayerInterface,
   Map,
@@ -6,6 +6,7 @@ import {
   MapLayerMouseEvent,
   MapLayerTouchEvent,
 } from "maplibre-gl";
+
 import {
   forwardRef,
   memo,

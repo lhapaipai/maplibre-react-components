@@ -1,4 +1,5 @@
-import { ControlPosition } from "maplibre-gl";
+import type { ControlPosition } from "maplibre-gl";
+
 import { memo, useState } from "react";
 import { useRControl } from "../hooks/useRControl";
 import { createPortal } from "react-dom";

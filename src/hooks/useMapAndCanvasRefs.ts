@@ -1,4 +1,5 @@
-import { Map } from "maplibre-gl";
+import type { Map } from "maplibre-gl";
+
 import { MutableRefObject, useCallback, useRef } from "react";
 
 type useMapAndCanvasRefsReturn = {

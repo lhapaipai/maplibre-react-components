@@ -1,22 +1,24 @@
-import {
+import type {
   Map,
-  type PaddingOptions,
-  type StyleSpecification,
-  type MapOptions,
-  type MapContextEvent,
-  type MapDataEvent,
-  type MapLayerMouseEvent,
-  type MapLayerTouchEvent,
-  type MapLibreEvent,
-  type MapLibreZoomEvent,
-  type MapSourceDataEvent,
-  type MapStyleDataEvent,
-  type MapStyleImageMissingEvent,
-  type MapTerrainEvent,
-  type MapWheelEvent,
+  PaddingOptions,
+  StyleSpecification,
+  MapOptions,
+  MapContextEvent,
+  MapDataEvent,
+  MapLayerMouseEvent,
+  MapLayerTouchEvent,
+  MapLibreEvent,
+  MapLibreZoomEvent,
+  MapSourceDataEvent,
+  MapStyleDataEvent,
+  MapStyleImageMissingEvent,
+  MapTerrainEvent,
+  MapWheelEvent,
   TransformStyleFunction,
   StyleSwapOptions,
 } from "maplibre-gl";
+import maplibregl from "maplibre-gl";
+
 import {
   deepEqual,
   filterMapProps,
@@ -305,7 +307,7 @@ export class MapManager {
       style: mapStyle,
     };
 
-    const map = new Map(mapOptions);
+    const map = new maplibregl.Map(mapOptions);
 
     map.style.on("error", this._onStyleError);
 

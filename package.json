@@ -19,7 +19,7 @@
   "scripts": {
     "dev:lib": "pnpm build:css && node generate-public-package && tsup --watch",
     "dev:css": "postcss --watch -o dist/style.css src/style/index.css",
-    "build:lib": "tsup --minify --env.TSUP_CLEAN_DIST 1 && tsup",
+    "build:lib": "tsup --clean",
     "build:css": "postcss -o dist/style.css src/style/index.css",
     "build": "pnpm build:lib && pnpm build:css && node generate-public-package",
     "fontello": "fontello",
@@ -29,7 +29,6 @@
     "test-run": "vitest --run",
     "lint:check": "eslint -c eslint.config.js ./src",
     "tsc:check": "tsc -p tsconfig.build.json --noEmit",
-    "pre-commit": "pnpm lint:check",
     "ci": "pnpm lint:check && pnpm tsc:check && pnpm test-run",
     "prepare": "husky"
   },

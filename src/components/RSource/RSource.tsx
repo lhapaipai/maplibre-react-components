@@ -1,4 +1,4 @@
-import {
+import type {
   CustomLayerInterface,
   GeoJSONSource,
   GeoJSONSourceSpecification,
@@ -12,6 +12,7 @@ import {
   VideoSource,
   VideoSourceSpecification,
 } from "maplibre-gl";
+
 import {
   forwardRef,
   useEffect,

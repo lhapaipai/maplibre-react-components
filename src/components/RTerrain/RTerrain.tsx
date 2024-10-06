@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { TerrainSpecification } from "maplibre-gl";
+import type { TerrainSpecification } from "maplibre-gl";
+
 import { useMapManager } from "../../hooks/useMapManager";
 
 export type RTerrainProps = TerrainSpecification;

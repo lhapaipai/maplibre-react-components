@@ -1,6 +1,7 @@
 "use client";
 
-import { Map } from "maplibre-gl";
+import type { Map } from "maplibre-gl";
+
 import {
   CSSProperties,
   MutableRefObject,

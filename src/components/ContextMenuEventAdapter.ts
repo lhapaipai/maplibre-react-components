@@ -1,4 +1,5 @@
-import { LngLat, type Map, MapMouseEvent } from "maplibre-gl";
+import type { LngLat, Map, MapMouseEvent } from "maplibre-gl";
+
 import { useEffect } from "react";
 import { useMap } from "../hooks/useMap";
 

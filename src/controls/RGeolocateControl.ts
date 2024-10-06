@@ -1,4 +1,6 @@
-import { ControlPosition, IControl, GeolocateControl, GeolocateControlOptions } from "maplibre-gl";
+import { ControlPosition, IControl, GeolocateControlOptions } from "maplibre-gl";
+import maplibregl from "maplibre-gl";
+
 import { memo, forwardRef, useImperativeHandle } from "react";
 import { useControl } from "../hooks/useControl";
 
@@ -13,7 +15,7 @@ export const RGeolocateControl = memo(
   ) {
     const control = useControl({
       position,
-      factory: () => new GeolocateControl(controlOptions),
+      factory: () => new maplibregl.GeolocateControl(controlOptions),
     });
     useImperativeHandle(ref, () => control);
     return null;

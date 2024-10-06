@@ -1,4 +1,6 @@
-import { LngLat } from "maplibre-gl";
+import type { LngLat } from "maplibre-gl";
+import maplibregl from "maplibre-gl";
+
 import type Point from "@mapbox/point-geometry";
 
 type Transform = any;
@@ -17,15 +19,15 @@ type Transform = any;
  * should wrap just enough to avoid doing so.
  */
 export function smartWrap(lngLat: LngLat, priorPos: Point, transform: Transform): LngLat {
-  const originalLngLat = new LngLat(lngLat.lng, lngLat.lat);
-  lngLat = new LngLat(lngLat.lng, lngLat.lat);
+  const originalLngLat = new maplibregl.LngLat(lngLat.lng, lngLat.lat);
+  lngLat = new maplibregl.LngLat(lngLat.lng, lngLat.lat);
 
   // First, try shifting one world in either direction, and see if either is closer to the
   // prior position. This preserves object constancy when the map center is auto-wrapped
   // during animations.
   if (priorPos) {
-    const left = new LngLat(lngLat.lng - 360, lngLat.lat);
-    const right = new LngLat(lngLat.lng + 360, lngLat.lat);
+    const left = new maplibregl.LngLat(lngLat.lng - 360, lngLat.lat);
+    const right = new maplibregl.LngLat(lngLat.lng + 360, lngLat.lat);
     const delta = transform.locationPoint(lngLat).distSqr(priorPos);
     if (transform.locationPoint(left).distSqr(priorPos) < delta) {
       lngLat = left;

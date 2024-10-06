@@ -1,4 +1,6 @@
-import { MapLayerMouseEvent, MapLibreEvent, Popup, PopupOptions } from "maplibre-gl";
+import type { MapLayerMouseEvent, MapLibreEvent, Popup, PopupOptions } from "maplibre-gl";
+import maplibregl from "maplibre-gl";
+
 import {
   ReactNode,
   forwardRef,
@@ -77,7 +79,7 @@ export const RPopup = memo(
     }, []);
 
     if (!popupRef.current) {
-      popupRef.current = new Popup({
+      popupRef.current = new maplibregl.Popup({
         ...options,
         closeButton: false,
         closeOnClick: false,

@@ -1,4 +1,6 @@
-import { Map, Marker, MarkerOptions } from "maplibre-gl";
+import type { MarkerOptions, Map } from "maplibre-gl";
+import maplibregl from "maplibre-gl";
+
 import { DOM } from "../../maplibre-core/util/dom";
 
 type MarkerShape = "pin" | "circle";
@@ -21,7 +23,7 @@ export interface GradientMarkerOptions extends MarkerOptions {
 const defaultColor = "#ffe64b";
 const defaultHeight = 50;
 
-export class GradientMarker extends Marker {
+export class GradientMarker extends maplibregl.Marker {
   _interactive: boolean | "pending";
   _shape: MarkerShape;
   _icon?: string | HTMLElement | SVGSVGElement | (() => HTMLElement | SVGSVGElement);
@@ -91,7 +93,7 @@ export class GradientMarker extends Marker {
   };
 
   addTo(map: Map): this {
-    Marker.prototype.addTo.apply(this, [map]);
+    maplibregl.Marker.prototype.addTo.apply(this, [map]);
     if (this._interactive === "pending") {
       this.setInteractive(true);
     }
@@ -128,7 +130,7 @@ export class GradientMarker extends Marker {
       this.setInteractive(false);
     }
 
-    Marker.prototype.remove.apply(this);
+    maplibregl.Marker.prototype.remove.apply(this);
 
     return this;
   }
@@ -225,7 +227,7 @@ export class GradientMarker extends Marker {
   }
 
   setDraggable(shouldBeDraggable?: boolean | undefined): this {
-    Marker.prototype.setDraggable.apply(this, [shouldBeDraggable]);
+    maplibregl.Marker.prototype.setDraggable.apply(this, [shouldBeDraggable]);
     this._element.classList.toggle("draggable", shouldBeDraggable);
     return this;
   }

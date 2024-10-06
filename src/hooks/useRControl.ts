@@ -1,4 +1,5 @@
-import { ControlPosition } from "maplibre-gl";
+import type { ControlPosition } from "maplibre-gl";
+
 import { useEffect, useRef } from "react";
 import { updateClassNames } from "../lib/util";
 import { useMap } from "./useMap";

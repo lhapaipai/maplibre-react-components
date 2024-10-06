@@ -1,4 +1,6 @@
-import { Marker, MarkerOptions } from "maplibre-gl";
+import type { Marker, MarkerOptions } from "maplibre-gl";
+import maplibregl from "maplibre-gl";
+
 import {
   ReactNode,
   forwardRef,
@@ -95,7 +97,7 @@ export const RMarker = memo(
         element: children ? document.createElement("div") : undefined,
       };
 
-      const mk = new Marker(completeOptions);
+      const mk = new maplibregl.Marker(completeOptions);
       mk.setLngLat([longitude, latitude]);
 
       return mk;

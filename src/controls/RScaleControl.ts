@@ -1,4 +1,6 @@
-import { ControlPosition, IControl, ScaleControl, ScaleControlOptions } from "maplibre-gl";
+import type { ControlPosition, IControl, ScaleControlOptions } from "maplibre-gl";
+import maplibregl from "maplibre-gl";
+
 import { memo, forwardRef, useImperativeHandle } from "react";
 import { useControl } from "../hooks/useControl";
 
@@ -13,7 +15,7 @@ export const RScaleControl = memo(
   ) {
     const control = useControl({
       position,
-      factory: () => new ScaleControl(controlOptions),
+      factory: () => new maplibregl.ScaleControl(controlOptions),
     });
     useImperativeHandle(ref, () => control);
     return null;

@@ -1,4 +1,6 @@
-import { LngLat, LngLatLike, Offset, PointLike, StyleSpecification } from "maplibre-gl";
+import type { LngLat, LngLatLike, Offset, PointLike, StyleSpecification } from "maplibre-gl";
+import maplibregl from "maplibre-gl";
+
 import {
   type MapCallbacks,
   type MapHandlerOptions,
@@ -137,8 +139,8 @@ export function areCoordsClose(coords1?: LngLatLike, coords2?: LngLatLike): bool
   if (!coords1 || !coords2) {
     return false;
   }
-  const lngLat1 = LngLat.convert(coords1);
-  const lngLat2 = LngLat.convert(coords2);
+  const lngLat1 = maplibregl.LngLat.convert(coords1);
+  const lngLat2 = maplibregl.LngLat.convert(coords2);
 
   return (
     Math.round(lngLat1.lng * 100000) === Math.round(lngLat2.lng * 100000) &&
