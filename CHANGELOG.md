@@ -1,3 +1,11 @@
+## v0.1.10
+
+- add React 19 as PeerDependency
+
+## v0.1.9
+
+- fix maplibre named export when library used with Astro
+
 ## v0.1.8
 
 -  fix: check map.style before accessing properties #6 (@andrejilderda)
