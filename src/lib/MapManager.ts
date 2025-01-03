@@ -170,6 +170,7 @@ export const mapReactiveOptionNames = [
   "maxPitch",
   "renderWorldCopies",
   "pixelRatio",
+  "centerClampedToGround",
 ] as const;
 export type MapReactiveOptionName = (typeof mapReactiveOptionNames)[number];
 export type MapReactiveOptions = {
@@ -183,11 +184,17 @@ export const mapNonReactiveOptionNames = [
   "attributionControl",
   "maplibreLogo",
   "logoPosition",
-  "failIfMajorPerformanceCaveat",
-  "preserveDrawingBuffer",
-  "antialias",
+  "canvasContextAttributes",
   "refreshExpiredTiles",
   "trackResize",
+
+  "center",
+  "elevation",
+  "zoom",
+  "bearing",
+  "pitch",
+  "roll",
+
   "maxTileCacheSize",
   "maxTileCacheZoomLevels",
   "transformRequest",
@@ -197,19 +204,15 @@ export const mapNonReactiveOptionNames = [
   "crossSourceCollisions",
   "collectResourceTiming",
   "clickTolerance",
-  "validateStyle",
-  "maxCanvasSize",
 
-  "center",
-  "zoom",
-  "bearing",
-  "pitch",
   "bounds", // overrides center and zoom
   "fitBoundsOptions", // only if bounds set and only for initial state
-
   "localIdeographFontFamily",
   "pitchWithRotate", // option for dragRotate handler (activate or not MousePitchHandler)
+  "rollEnabled",
 
+  "validateStyle",
+  "maxCanvasSize",
   "cancelPendingTileRequestsWhileZooming",
 ] as const;
 export type MapNonReactiveOptionName = (typeof mapNonReactiveOptionNames)[number];
@@ -260,7 +263,6 @@ export type ManagerOptions = {
   styleDiffing?: boolean;
   styleTransformStyle?: TransformStyleFunction;
   // terrain?: StyleSpecification["terrain"];
-  // interactiveLayerIds?: string[];
 };
 
 export type MapProps = MapReactiveOptions & MapHandlerOptions & MapInitialOptions & MapCallbacks;

@@ -205,6 +205,7 @@ type MapReactiveOptions = {
   maxPitch?: number | null;
   renderWorldCopies?: boolean;
   pixelRatio?: number;
+  centerClampedToGround?: boolean;
 }
 
 ```
@@ -293,11 +294,17 @@ type MapInitialOptions = {
   initialAttributionControl?: false | AttributionControlOptions;
   initialMaplibreLogo?: boolean;
   initialLogoPosition?: ControlPosition;
-  initialFailIfMajorPerformanceCaveat?: boolean;
-  initialPreserveDrawingBuffer?: boolean;
-  initialAntialias?: boolean;
+  initialCanvasContextAttributes?: WebGLContextAttributesWithType;
   initialRefreshExpiredTiles?: boolean;
   initialTrackResize?: boolean;
+
+  initialCenter?: LngLatLike;
+  initialElevation?: number;
+  initialZoom?: number;
+  initialBearing?: number;
+  initialPitch?: number;
+  initialRoll?: number;
+
   initialMaxTileCacheSize?: number;
   initialMaxTileCacheZoomLevels?: number;
   initialTransformRequest?: RequestTransformFunction;
@@ -307,17 +314,14 @@ type MapInitialOptions = {
   initialCrossSourceCollisions?: boolean;
   initialCollectResourceTiming?: boolean;
   initialClickTolerance?: number;
-  initialValidateStyle?: boolean;
-  initialMaxCanvasSize?: [number, number];
-  initialCancelPendingTileRequestsWhileZooming?: boolean;
-  initialCenter?: LngLatLike;
-  initialZoom?: number;
-  initialBearing?: number;
-  initialPitch?: number;
   initialBounds?: LngLatBoundsLike;
   initialFitBoundsOptions?: FitBoundsOptions;
   initialLocalIdeographFontFamily?: string | false;
   initialPitchWithRotate?: boolean;
+  initialRollEnabled?: boolean;
+  initialValidateStyle?: boolean;
+  initialMaxCanvasSize?: [number, number];
+  initialCancelPendingTileRequestsWhileZooming?: boolean;
 }
 ```
 </div>
