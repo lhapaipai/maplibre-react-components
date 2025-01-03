@@ -96,8 +96,12 @@ const links: NavLink[] = [
     title: "Extra",
     children: [
       {
-        url: "/tips",
+        url: "/extra/tips",
         title: "Tips",
+      },
+      {
+        url: "/extra/compatibility",
+        title: "Compatibility",
       },
     ],
   },

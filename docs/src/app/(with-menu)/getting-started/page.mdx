@@ -3,6 +3,9 @@ export const metadata = {
   description: 'Installation of Maplibre React components'
 };
 
+import { Flash } from "pentatrion-design/components/flash"
+import Link from "next/link";
+
 # Getting started
 
 
@@ -11,12 +14,16 @@ export const metadata = {
 This package requires to install this peer dependencies as prerequisite.
 
 ```bash
-# >= 4.0.0
+# >= 5.0.0
 npm install maplibre-gl
 
 # >= 16.8.0
 npm install react react-dom
 ```
+
+<Flash color="orange">
+If you want to use an earlier version of MapLibre look at the <Link href="/extra/compatibility">compatibility section</Link>.
+</Flash>
 
 ## Install
 
