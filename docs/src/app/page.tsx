@@ -18,21 +18,21 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="mx-auto max-w-96">
+      <div className="mx-auto max-w-[350px]">
         <RMap
-          className="maplibregl-theme-modern"
+          className="maplibregl-theme-modern overflow-hidden rounded-xl"
           style={{ minHeight: 384 }}
           mapStyle="/demotiles.json"
           initialAttributionControl={false}
         />
       </div>
-      <div className="m-auto flex h-[10vh] max-w-[24rem] items-center justify-center">
+      <div className="m-auto flex max-w-[24rem] items-center justify-center">
         <div className="w-full p-4">
           <NpmInput />
         </div>
       </div>
 
-      <div className="m-auto max-w-[70rem] p-4">
+      <div className="m-auto max-w-[70rem] px-4">
         <div className="grid mb-4 grid-cols-1 gap-4 lg:grid-cols-3">
           <SpotCard className="text-center">
             Lightweight : only 11kB gzipped
