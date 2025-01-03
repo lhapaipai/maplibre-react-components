@@ -1,5 +1,6 @@
 import { Map, MapLayerMouseEvent, MapStyleDataEvent } from "maplibre-gl";
-import "./App.scss";
+import "./App.css";
+import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
 import "maplibre-react-components/style.css";
 import { RLayer, RMap, RMarker, RSource } from "maplibre-react-components";

@@ -1,5 +1,6 @@
 import { Map, MapStyleDataEvent } from "maplibre-gl";
-import "./App.scss";
+import "./App.css";
+import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
 import "maplibre-react-components/style.css";
 import { RLayer, RMap, RMarker, RSource } from "maplibre-react-components";
@@ -10,7 +11,6 @@ const marignier = { lng: 6.498, lat: 46.089 };
 import standardUrl from "ign-tms-styles/PLAN.IGN/standard.json?url";
 import modernUrl from "ign-tms-styles/PLAN.IGN/modern.json?url";
 import modernDarkUrl from "ign-tms-styles/PLAN.IGN/modern-dark.json?url";
-
 
 const baseStyles = {
   standard: standardUrl,

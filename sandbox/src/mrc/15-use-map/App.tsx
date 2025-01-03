@@ -1,4 +1,5 @@
-import "./App.scss";
+import "./App.css";
+import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
 import "maplibre-react-components/style.css";
 import { RMap, useMap } from "maplibre-react-components";

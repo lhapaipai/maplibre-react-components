@@ -1,8 +1,9 @@
 import { useState } from "react";
-import "./App.scss";
+import "./App.css";
 
 import { RMap, RGradientMarker } from "maplibre-react-components";
 
+import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
 import "maplibre-react-components/style.css";
 import { getIndexLetter } from "pentatrion-design";

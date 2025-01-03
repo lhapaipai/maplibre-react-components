@@ -68,9 +68,6 @@ importers:
       react-sortablejs:
         specifier: ^6.1.4
         version: 6.1.4(@types/sortablejs@1.15.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sortablejs@1.15.2)
-      sass:
-        specifier: ^1.83.0
-        version: 1.83.0
     devDependencies:
       '@mapbox/point-geometry':
         specifier: ^1.1.0
@@ -3713,6 +3710,7 @@ snapshots:
   chokidar@4.0.3:
     dependencies:
       readdirp: 4.0.2
+    optional: true
 
   classnames@2.3.1: {}
 
@@ -3964,7 +3962,8 @@ snapshots:
 
   immutable@5.0.0-beta.5: {}
 
-  immutable@5.0.3: {}
+  immutable@5.0.3:
+    optional: true
 
   inherits@2.0.4: {}
 
@@ -4334,7 +4333,8 @@ snapshots:
     dependencies:
       picomatch: 2.3.1
 
-  readdirp@4.0.2: {}
+  readdirp@4.0.2:
+    optional: true
 
   redux-thunk@3.1.0(redux@5.0.1):
     dependencies:
@@ -4403,6 +4403,7 @@ snapshots:
       source-map-js: 1.2.0
     optionalDependencies:
       '@parcel/watcher': 2.5.0
+    optional: true
 
   scheduler@0.23.2:
     dependencies:
@@ -4422,7 +4423,8 @@ snapshots:
 
   sortablejs@1.15.2: {}
 
-  source-map-js@1.2.0: {}
+  source-map-js@1.2.0:
+    optional: true
 
   source-map-js@1.2.1: {}
 

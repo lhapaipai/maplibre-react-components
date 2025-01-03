@@ -1,5 +1,6 @@
 import { Map, Marker, Offset } from "maplibre-gl";
-import "./App.scss";
+import "./App.css";
+import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
 import "maplibre-react-components/style.css";
 import { Event, RMap, RMarker, RPopup } from "maplibre-react-components";

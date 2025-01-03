@@ -1,7 +1,8 @@
+import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
 import "maplibre-react-components/style.css";
 import { RMap, RGradientMarker } from "maplibre-react-components";
-import "./App.scss";
+import "./App.css";
 
 const marignier = { lng: 6.498, lat: 46.089 };
 const marignierChurch = { lng: 6.5001, lat: 46.091 };
