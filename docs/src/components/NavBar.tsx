@@ -33,6 +33,10 @@ const links: NavLink[] = [
     title: "Components",
     children: [
       {
+        url: "/components/rcontrols",
+        title: "RControls",
+      },
+      {
         url: "/components/rgradient-marker",
         title: "RGradientMarker",
       },

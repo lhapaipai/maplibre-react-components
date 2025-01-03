@@ -1,0 +1,136 @@
+export const metadata = {
+  title: 'RControls',
+  description: 'wrappers for each MapLibre control'
+};
+
+import TwoCols from "~/components/TwoCols.tsx";
+import ShikiContent from "~/components/ShikiContent";
+
+# RControls
+
+Each MapLibre control has its React component associated with it
+
+### RAttributionControl
+
+import Attribution from "./Attribution";
+import AttributionCode from "./Attribution.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={AttributionCode} />} second={<Attribution />} />
+
+```ts
+import { ControlPosition, AttributionControlOptions } from "maplibre-gl";
+
+type RAttributionControlProps = AttributionControlOptions & {
+  position?: ControlPosition;
+};
+```
+
+### RFullscreenControl
+
+import Fullscreen from "./Fullscreen";
+import FullscreenCode from "./Fullscreen.extract.tsx?code";
+
+<TwoCols foreground="second" second={<ShikiContent html={FullscreenCode} />} first={<Fullscreen />} />
+
+```ts
+import { ControlPosition, FullscreenControlOptions } from "maplibre-gl";
+
+type RFullscreenControlProps = FullscreenControlOptions & {
+  position?: ControlPosition;
+};
+```
+
+### RGeolocateControl
+
+import Geolocate from "./Geolocate";
+import GeolocateCode from "./Geolocate.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={GeolocateCode} />} second={<Geolocate />} />
+
+```ts
+import { ControlPosition, GeolocateControlOptions } from "maplibre-gl";
+
+type RGeolocateControlProps = GeolocateControlOptions & {
+  position?: ControlPosition;
+};
+```
+
+### RGlobeControl
+
+import Globe from "./Globe";
+import GlobeCode from "./Globe.extract.tsx?code";
+
+<TwoCols foreground="second" second={<ShikiContent html={GlobeCode} />} first={<Globe />} />
+
+```ts
+import { ControlPosition } from "maplibre-gl";
+
+type RGlobeControlProps = {
+  position?: ControlPosition;
+};
+
+```
+
+### RLogoControl / MrcLogoControl
+
+if you want to help this library to make itself known...
+
+import Logo from "./Logo";
+import LogoCode from "./Logo.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={LogoCode} />} second={<Logo />} />
+
+```ts
+import { ControlPosition, LogoControlOptions } from "maplibre-gl";
+
+type RLogoControlProps = LogoControlOptions & {
+  position?: ControlPosition;
+};
+```
+
+### RNavigationControl
+
+import Navigation from "./Navigation";
+import NavigationCode from "./Navigation.extract.tsx?code";
+
+<TwoCols foreground="second" second={<ShikiContent html={NavigationCode} />} first={<Navigation />} />
+
+```ts
+import type { ControlPosition, NavigationControlOptions } from "maplibre-gl";
+
+type RNavigationControlProps = NavigationControlOptions & {
+  position?: ControlPosition;
+};
+
+```
+
+### RScaleControl
+
+import Scale from "./Scale";
+import ScaleCode from "./Scale.extract.tsx?code";
+
+<TwoCols first={<ShikiContent html={ScaleCode} />} second={<Scale />} />
+
+```ts
+import type { ControlPosition, ScaleControlOptions } from "maplibre-gl";
+
+type RScaleControlProps = ScaleControlOptions & {
+  position?: ControlPosition;
+};
+
+```
+
+### RTerrainControl
+
+import Terrain from "./Terrain";
+import TerrainCode from "./Terrain.extract.tsx?code";
+
+<TwoCols foreground="second" second={<ShikiContent html={TerrainCode} />} first={<Terrain />} />
+
+```ts
+import type { ControlPosition, TerrainSpecification } from "maplibre-gl";
+
+type RTerrainControlProps = TerrainSpecification & {
+  position?: ControlPosition;
+};
+```
