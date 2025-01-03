@@ -18,8 +18,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       maplibre-react-components:
-        specifier: ^0.1.6
-        version: 0.1.6(maplibre-gl@5.0.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^0.2.0
+        version: 0.2.0(maplibre-gl@5.0.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       maplibre-theme:
         specifier: ^0.2.0
         version: 0.2.0
@@ -1662,12 +1662,12 @@ packages:
     resolution: {integrity: sha512-WG8IYFK2gfJYXvWjlqg1yavo/YO/JlNkblAJMt19sjIafP5oJzTgXFiOLUIYkjtrv5pKiAWuSYsx4CD3ithJqw==}
     engines: {node: '>=16.14.0', npm: '>=8.1.0'}
 
-  maplibre-react-components@0.1.6:
-    resolution: {integrity: sha512-lbv4KRS/EPtYrnxeHQoq0egGSEEj4771hPCy2yXyA6U0pBy2mPkLtS6pQGtU7sgJPjuuUtxYxzYfW3DktoCuwg==}
+  maplibre-react-components@0.2.0:
+    resolution: {integrity: sha512-odkwQUpi8AoGLmqgrEalJjfx7q94VI+6R/UklL2b/BAICE0xP5kpt2JGP1WoLsj6APgABpFGec9X3LfOvecQfQ==}
     peerDependencies:
-      maplibre-gl: ^3.0.0 || ^4.0.0
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
+      maplibre-gl: ^5.0.0
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
 
   maplibre-theme@0.2.0:
     resolution: {integrity: sha512-yeIc+Wwv53DyPk3yixHMa4a8w6Knl0+aEMUK0I8PBkAWY8dDk4oMT+l9soiKTf01fEMv4yvcxxey03UoX3QMWQ==}
@@ -3740,7 +3740,7 @@ snapshots:
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.9.0(eslint@8.57.0)
       eslint-plugin-react: 7.35.0(eslint@8.57.0)
       eslint-plugin-react-hooks: 4.6.2(eslint@8.57.0)
@@ -3771,7 +3771,7 @@ snapshots:
       is-bun-module: 1.1.0
       is-glob: 4.0.3
     optionalDependencies:
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
       - eslint-import-resolver-node
@@ -3789,7 +3789,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.0):
+  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0):
     dependencies:
       array-includes: 3.1.8
       array.prototype.findlastindex: 1.2.5
@@ -4629,7 +4629,7 @@ snapshots:
       tinyqueue: 3.0.0
       vt-pbf: 3.1.3
 
-  maplibre-react-components@0.1.6(maplibre-gl@5.0.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  maplibre-react-components@0.2.0(maplibre-gl@5.0.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       clsx: 2.1.1
       maplibre-gl: 5.0.0

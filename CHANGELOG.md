@@ -1,3 +1,7 @@
+## v0.2.0
+
+- update to be compatible with MapLibre v5
+
 ## v0.1.10
 
 - add React 19 as PeerDependency

@@ -1,6 +1,6 @@
 "use client";
 
-import { RMap } from "maplibre-react-components";
+import { RGlobeControl, RMap } from "maplibre-react-components";
 import { mapCSS } from "~/lib/map-util";
 
 const center: [number, number] = [-0.5, 47.5];
@@ -12,6 +12,8 @@ export default function App() {
       initialCenter={center}
       style={mapCSS}
       initialAttributionControl={false}
-    ></RMap>
+    >
+      <RGlobeControl position="top-left" />
+    </RMap>
   );
 }
