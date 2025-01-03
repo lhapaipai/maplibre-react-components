@@ -13,9 +13,9 @@
   "dependencies": {
     "@floating-ui/react": "^0.26.23",
     "clsx": "^2.1.1",
-    "maplibre-gl": "^4.6.0",
+    "maplibre-gl": "^5.0.0",
     "maplibre-react-components": "^0.1.6",
-    "maplibre-theme": "^0.1.1",
+    "maplibre-theme": "^0.2.0",
     "next": "14.2.7",
     "nprogress": "^0.2.0",
     "pentatrion-design": "^0.1.3",
