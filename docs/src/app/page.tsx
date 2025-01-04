@@ -7,7 +7,7 @@ import { RMap } from "maplibre-react-components";
 
 export default function Home() {
   return (
-    <div>
+    <div className="flex flex-col gap-4 px-4">
       <div className="grid min-h-[30vh] place-content-center">
         <LandingBackground />
         <div className="relative">
@@ -18,21 +18,20 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="mx-auto max-w-[350px]">
+      <div className="mx-auto w-full max-w-[350px]">
         <RMap
+          id="globe"
           className="maplibregl-theme-modern overflow-hidden rounded-xl"
           style={{ minHeight: 384 }}
           mapStyle="/demotiles.json"
           initialAttributionControl={false}
         />
       </div>
-      <div className="m-auto flex max-w-[24rem] items-center justify-center">
-        <div className="w-full p-4">
-          <NpmInput />
-        </div>
+      <div className="m-auto flex w-full max-w-2xl items-center justify-center lg:max-w-[22rem]">
+        <NpmInput />
       </div>
 
-      <div className="m-auto max-w-[70rem] px-4">
+      <div className="m-auto max-w-[68rem]">
         <div className="grid mb-4 grid-cols-1 gap-4 lg:grid-cols-3">
           <SpotCard className="text-center">
             Lightweight : only 11kB gzipped

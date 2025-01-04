@@ -15,7 +15,7 @@ export default function NpmInput() {
   return (
     <Input
       value={text}
-      className="bg-gray-0"
+      className="w-full bg-gray-0"
       readOnly
       suffix={
         <>
