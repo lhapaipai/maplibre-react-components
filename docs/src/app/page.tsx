@@ -3,7 +3,14 @@ import LinkButton from "~/components/LinkButton";
 import HomeLogo from "./HomeLogo";
 import NpmInput from "./NpmInput";
 import SpotCard from "~/components/SpotCard";
-import { RMap } from "maplibre-react-components";
+import { Metadata } from "next";
+import Globe from "./Globe";
+
+export const metadata: Metadata = {
+  title: "MapLibre React Components",
+  description:
+    "A set of React JS components to render a map using MapLibre GL JS v5. Lightweight : only 11kB gzipped, focused on performance.",
+};
 
 export default function Home() {
   return (
@@ -18,14 +25,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="mx-auto w-full max-w-[350px]">
-        <RMap
-          id="globe"
-          className="maplibregl-theme-modern overflow-hidden rounded-xl"
-          style={{ minHeight: 384 }}
-          mapStyle="/demotiles.json"
-          initialAttributionControl={false}
-        />
+      <div className="relative mx-auto w-full max-w-[350px]">
+        <Globe />
       </div>
       <div className="m-auto flex w-full max-w-2xl items-center justify-center lg:max-w-[22rem]">
         <NpmInput />
