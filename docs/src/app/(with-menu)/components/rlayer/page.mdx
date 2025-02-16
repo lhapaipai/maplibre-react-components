@@ -135,6 +135,8 @@ type LayerOptions = LayerSpecification | CustomLayerInterface;
 
 
 ```ts
+import { MapLayerMouseEvent, MapLayerTouchEvent } from "maplibre-gl";
+
 export type LayerCallbacks = {
   onMouseDown?: (e: MapLayerMouseEvent) => void;
   onMouseUp?: (e: MapLayerMouseEvent) => void;

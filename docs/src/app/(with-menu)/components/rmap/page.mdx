@@ -224,6 +224,21 @@ type MapHandlerOptions = {
 ```
 <div className="[&_pre]:max-h-96">
 ```ts
+import {
+  MapLayerMouseEvent,
+  MapLayerTouchEvent,
+  MapWheelEvent,
+  MapLibreZoomEvent,
+  MapLibreEvent,
+  MapContextEvent,
+  ErrorEvent,
+  MapDataEvent,
+  MapStyleDataEvent,
+  MapSourceDataEvent,
+  MapStyleImageMissingEvent,
+  MapTerrainEvent
+} from "maplibre-gl";
+
 type MapCallbacks = {
   /** Compatible with `layerId` */
   onMouseDown?: (e: MapLayerMouseEvent) => void;

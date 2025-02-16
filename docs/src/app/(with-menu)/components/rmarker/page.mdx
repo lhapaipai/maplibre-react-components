@@ -114,6 +114,8 @@ type MarkerReactiveOptions = {
 };
 ```
 ```ts
+import { Event } from "maplibre-react-components";
+
 type MarkerCallbacks = {
   onDragStart?: (e: Event<Marker>) => void;
   onDrag?: (e: Event<Marker>) => void;

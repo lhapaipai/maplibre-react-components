@@ -94,11 +94,12 @@ type PopupReactiveOptions = {
 
 ```
 ```ts
+import { MapLayerMouseEvent, MapLibreEvent } from "maplibre-gl";
+
 type PopupCallbacks = {
   onMapClick?: (e: MapLayerMouseEvent) => void;
   onMapMove?: (e: MapLibreEvent<MouseEvent | TouchEvent | WheelEvent | undefined>) => void;
 }
-
 ```
 </div>
 

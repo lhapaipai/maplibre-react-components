@@ -144,6 +144,8 @@ type GradientMarkerReactiveOptions = {
 ```
 
 ```ts
+import { Event } from "maplibre-react-components";
+
 type GradientMarkerCallbacks = {
   onDragStart?: (e: Event<Marker>) => void;
   onDrag?: (e: Event<Marker>) => void;
@@ -152,6 +154,5 @@ type GradientMarkerCallbacks = {
   // native DOM event
   onClick?: (e: MouseEvent) => void;
 }
-
 ```
 </div>
