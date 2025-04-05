@@ -36,10 +36,17 @@ export function filterMapProps(options: MapProps) {
   ] as const;
 }
 
-export function transformPropsToOptions(props: { [k: string]: unknown }) {
+export function transformPropsToOptions(
+  props: { [k: string]: unknown },
+  optionKeyWhiteList?: string[],
+) {
   const callbacks: { [k: string]: unknown } = {};
   const options: { [k: string]: unknown } = {};
   for (const key in props) {
+    if (optionKeyWhiteList?.includes(key)) {
+      options[key] = props[key];
+      continue;
+    }
     if (key.startsWith("on")) {
       callbacks[key] = props[key];
     } else {

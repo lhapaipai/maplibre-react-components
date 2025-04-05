@@ -13,4 +13,7 @@
       "path": ".",
     },
   ],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "maplibre-react-components",
+  },
 }

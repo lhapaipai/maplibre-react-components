@@ -170,7 +170,7 @@ export const RLayer = memo(
   forwardRef<StyleLayer | null, RLayerProps>(function RLayer(props, ref) {
     const { beforeId, ...layerProps } = props;
 
-    const [layerOptions, callbacks] = transformPropsToOptions(layerProps) as [
+    const [layerOptions, callbacks] = transformPropsToOptions(layerProps, ["onAdd"]) as [
       LayerOptions,
       LayerCallbacks,
     ];

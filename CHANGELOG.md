@@ -1,3 +1,7 @@
+## v0.2.1
+
+- fix custom layer with false callback as option
+
 ## v0.2.0
 
 - update to be compatible with MapLibre v5
