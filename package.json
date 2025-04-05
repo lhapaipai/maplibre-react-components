@@ -1,6 +1,6 @@
 {
   "name": "maplibre-react-components",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "React components for MapLibre GL JS",
   "private": true,
   "keywords": [
