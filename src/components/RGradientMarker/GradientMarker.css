@@ -1,6 +1,6 @@
 .maplibregl-gradient-marker {
   --marker-scale: 1;
-  --marker-color: rgb(var(--color-yellow-3));
+  --marker-color: var(--color-yellow-3);
   --marker-color-dark: color-mix(in srgb, var(--marker-color), black 40%);
   --marker-color-gradient: linear-gradient(120deg, var(--marker-color), var(--marker-color-dark));
 
