@@ -1,6 +1,6 @@
-import { IControl, Map } from "maplibre-gl";
+// import { IControl, Map } from "maplibre-gl";
 import { useControl } from "maplibre-react-components";
-import { GeolocateControl } from "./GeolocateControl";
+// import { GeolocateControl } from "./GeolocateControl";
 
 // class MyControl implements IControl {
 //   declare _container: HTMLDivElement;
@@ -24,9 +24,9 @@ import { GeolocateControl } from "./GeolocateControl";
 // }
 
 export default function RControl() {
-  const control = useControl({
-    position: "top-right",
-    factory: () => new GeolocateControl({}),
-  });
+  // const control = useControl({
+  //   position: "top-right",
+  //   factory: () => new GeolocateControl({}),
+  // });
   return null;
 }

@@ -2,7 +2,7 @@
 
 import { RLayer, RMap, RSource } from "maplibre-react-components";
 import { useMemo, useState } from "react";
-import { Button } from "pentatrion-design/components/button";
+import { Button } from "pentatrion-design/button";
 import { mapCSS } from "~/lib/map-util";
 const center = { lng: 6.53, lat: 46.09 };
 
@@ -35,7 +35,7 @@ export default function App() {
           paint={townPaintStyle}
         />
       </RMap>
-      <div className="absolute right-4 top-4">
+      <div className="absolute top-4 right-4">
         <Button onClick={() => setRed((r) => !r)}>
           {red ? "set Gray" : "set Red"}
         </Button>

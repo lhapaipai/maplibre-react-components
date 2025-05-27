@@ -2,8 +2,8 @@
 
 import { RGradientMarker, RMap } from "maplibre-react-components";
 import { useState } from "react";
-import { Button } from "pentatrion-design/components/button";
-import { Range } from "pentatrion-design/components/input/Range";
+import { Button } from "pentatrion-design/button";
+import { Range } from "pentatrion-design/input";
 import { hslToRgb } from "./util";
 import { mapCSS } from "~/lib/map-util";
 
@@ -30,7 +30,7 @@ export default function App() {
         color={color}
         scale={scale}
       />
-      <div className="absolute bottom-4 left-4 flex flex-col gap-2 rounded-2xl bg-gray-0 p-4">
+      <div className="bg-gray-0 absolute bottom-4 left-4 flex flex-col gap-2 rounded-2xl p-4">
         <div>
           <Button
             onClick={() => setCounter((c) => c + 1)}

@@ -3,7 +3,7 @@ import "maplibre-theme/icons.default.css";
 import "maplibre-theme/modern.css";
 
 // we needed this for the RGradientMap component
-import "maplibre-react-components/style.css";
+import "maplibre-react-components/dist/style.css";
 
 import {
   RGradientMarker,

@@ -1,5 +1,4 @@
 import {
-  CustomRenderMethod,
   CustomRenderMethodInput,
   Map,
   MercatorCoordinate,
@@ -7,7 +6,7 @@ import {
 import "./App.css";
 import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
-import "maplibre-react-components/style.css";
+import "maplibre-react-components/dist/style.css";
 import { RLayer, RMap } from "maplibre-react-components";
 import { useRef, useState } from "react";
 

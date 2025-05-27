@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-
+import tailwindcss from "@tailwindcss/vite";
 const projectDir = dirname(fileURLToPath(import.meta.url));
 
 function examplePath(dirname: string) {
@@ -14,7 +14,7 @@ export default defineConfig({
   optimizeDeps: {
     include: ["react", "react-dom/client", "maplibre-gl", "react-dom"],
   },
-  plugins: [react()],
+  plugins: [tailwindcss(), react()],
   build: {
     rollupOptions: {
       input: {

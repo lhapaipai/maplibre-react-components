@@ -1,10 +1,9 @@
 "use client";
 
 import { RLayer, RMap, RSource, RTerrain } from "maplibre-react-components";
-import { Toggle } from "pentatrion-design";
 import { useState } from "react";
 import { mapCSS } from "~/lib/map-util";
-import { Range } from "pentatrion-design/components/input/Range";
+import { Range, Toggle } from "pentatrion-design/input";
 
 const rasterDemTiles = [
   "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
@@ -40,7 +39,7 @@ export default function App() {
           <RTerrain source="terrarium" exaggeration={exaggeration} />
         </>
       )}
-      <div className="absolute right-4 top-4 rounded-2xl bg-gray-0 p-4">
+      <div className="bg-gray-0 absolute top-4 right-4 rounded-2xl p-4">
         <div className="flex justify-between">
           Terrain
           <Toggle

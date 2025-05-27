@@ -1,6 +1,6 @@
 import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
-import "maplibre-react-components/style.css";
+import "maplibre-react-components/dist/style.css";
 import { RMap, RGradientMarker } from "maplibre-react-components";
 import "./App.css";
 

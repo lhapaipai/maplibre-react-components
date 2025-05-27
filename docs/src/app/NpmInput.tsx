@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "pentatrion-design/components/button";
-import { Input } from "pentatrion-design/components/input";
+import { Button } from "pentatrion-design/button";
+import { Input } from "pentatrion-design/input";
 import { useCopyToClipboard } from "~/hooks/useCopyToClipboard";
 
 const text = "npm i maplibre-react-components";

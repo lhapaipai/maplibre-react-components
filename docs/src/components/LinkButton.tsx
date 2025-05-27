@@ -7,34 +7,16 @@ import {
   useRef,
 } from "react";
 import clsx from "clsx";
-import { ThemeColor } from "pentatrion-design";
 import { useRipple } from "pentatrion-design/hooks";
-import { buttonVariants } from "pentatrion-design/components/button";
+import { ButtonProps, buttonVariants } from "pentatrion-design/button";
 import Link from "next/link";
 
-export interface LinkButtonProps extends ComponentPropsWithRef<"a"> {
+export type LinkButtonProps = ComponentPropsWithRef<"a"> & Pick<ButtonProps, "withRipple" | "variant" | "size" | "color" | "selected" | "icon" | "disabled" | "width"> & {
   href: string;
-
-  withRipple?: boolean;
-
-  variant?: "contained" | "light" | "outlined" | "text" | "ghost";
-
-  size?: "small" | "medium" | "large" | "custom";
-
-  color?: ThemeColor;
 
   children?: React.ReactNode;
 
-  fullWidth?: boolean;
-
   focusable?: boolean;
-
-  /**
-   * For a selected item inside a group.
-   */
-  selected?: boolean;
-
-  icon?: boolean;
 }
 
 export default forwardRef<HTMLAnchorElement, LinkButtonProps>(function Button(
@@ -44,7 +26,7 @@ export default forwardRef<HTMLAnchorElement, LinkButtonProps>(function Button(
     color = "yellow",
     size = "medium",
     focusable = true,
-    fullWidth,
+    width,
     className,
     children,
     selected = false,
@@ -54,7 +36,7 @@ export default forwardRef<HTMLAnchorElement, LinkButtonProps>(function Button(
   },
   ref,
 ) {
-  const anchorRef = useRef<HTMLAnchorElement>(null);
+  const anchorRef = useRef<HTMLAnchorElement>(null!);
 
   useImperativeHandle<HTMLAnchorElement | null, HTMLAnchorElement | null>(
     ref,
@@ -71,13 +53,13 @@ export default forwardRef<HTMLAnchorElement, LinkButtonProps>(function Button(
       href={href}
       ref={anchorRef}
       className={clsx(
-        "relative inline-flex cursor-pointer items-center overflow-clip border-0 text-center leading-5 no-underline duration-300 focus-visible:outline focus-visible:outline-2 motion-safe:transition-color-shadow",
-        icon ? "rounded-full" : "rounded-2xl",
+        buttonVariants({
+          variant,
+          size,
+          width: icon ? "custom" : width,
+          icon: size === "custom" ? "custom" : icon,
+        }),
         className,
-        buttonVariants.size(icon, size),
-        buttonVariants.variant[variant](color),
-        icon && "justify-center [&_:last-child:not(i,img)]:pr-4",
-        fullWidth && "w-full",
         selected && "active",
       )}
       data-variant={variant}

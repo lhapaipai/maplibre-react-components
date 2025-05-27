@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { FloatingOverlay } from "@floating-ui/react";
-import { Button } from "pentatrion-design/components/button";
+import { Button } from "pentatrion-design/button";
 import MapLibreReactLogo from "./MapLibreReactLogo";
 import LinkButton from "./LinkButton";
 
@@ -117,7 +117,7 @@ export default function NavBar() {
 
   return (
     <>
-      <div className="absolute left-0 top-0 z-10 md:hidden">
+      <div className="absolute top-0 left-0 z-10 md:hidden">
         <Button
           icon
           onClick={() => setShowNavBar((s) => !s)}
@@ -137,11 +137,11 @@ export default function NavBar() {
       />
       <div
         className={clsx(
-          "fixed left-0 top-0 z-30 h-screen w-64 max-w-full flex-none overflow-y-auto overflow-x-hidden bg-gray-0 px-4 shadow dark:shadow-dark md:flex md:flex-col md:bg-transparent md:shadow-none md:dark:shadow-none",
+          "bg-gray-0 dark:shadow-dark fixed top-0 left-0 z-30 h-screen w-64 max-w-full flex-none overflow-x-hidden overflow-y-auto px-4 shadow md:flex md:flex-col md:bg-transparent md:shadow-none md:dark:shadow-none",
           !showNavBar && "hidden",
         )}
       >
-        <div className="absolute right-0 top-0 md:hidden">
+        <div className="absolute top-0 right-0 md:hidden">
           <Button
             icon
             onClick={() => setShowNavBar(false)}
@@ -156,7 +156,7 @@ export default function NavBar() {
         <nav className="flex flex-col gap-1">
           <Link
             href="/"
-            className="grid mb-4 min-h-32 place-content-center transition-colors hover:text-gray-7 active:text-gray-6"
+            className="hover:text-gray-7 active:text-gray-6 mb-4 grid min-h-32 place-content-center transition-colors"
           >
             <MapLibreReactLogo height={100} />
           </Link>
@@ -171,7 +171,7 @@ export default function NavBar() {
                         <LinkButton
                           key={url}
                           selected={pathname === url}
-                          fullWidth={true}
+                          width="full"
                           variant="text"
                           color="gray"
                           href={url}
@@ -187,7 +187,7 @@ export default function NavBar() {
                 <LinkButton
                   key={url}
                   selected={pathname === url}
-                  fullWidth={true}
+                  width="full"
                   variant="text"
                   color="gray"
                   href={url}
