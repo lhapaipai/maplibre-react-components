@@ -202,7 +202,7 @@ export const RLayer = memo(
       throw new Error(`RLayer type should not change. "${props.type}" "${prevProps.type}"`);
     }
 
-    const callbacksRef = useRef<LayerCallbacks>();
+    const callbacksRef = useRef<LayerCallbacks>(null!);
     callbacksRef.current = callbacks;
 
     useEffect(() => {

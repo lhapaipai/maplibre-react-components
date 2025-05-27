@@ -68,7 +68,7 @@ export const RMap = forwardRef<Map | null, RMapProps>(function RMap(
   const id = idRef.current;
 
   const externalMapManagersRef = useContext(RMapContext);
-  const localMapManagersRef = useRef<MapManagers>();
+  const localMapManagersRef = useRef<MapManagers>(null!);
 
   if (!externalMapManagersRef && !localMapManagersRef.current) {
     localMapManagersRef.current = new MapManagers();

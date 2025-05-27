@@ -33,8 +33,8 @@ afterEach(() => {
 
 describe("RSource", () => {
   test("RSource forward source ref", async ({ expect }) => {
-    const sourceRef: RefObject<Source> = { current: null };
-    const mapRef: RefObject<Map> = { current: null };
+    const sourceRef: RefObject<Source | null> = { current: null };
+    const mapRef: RefObject<Map | null> = { current: null };
 
     const data: Point = {
       coordinates: [0, 0],
@@ -58,8 +58,8 @@ describe("RSource", () => {
   });
 
   test("RSource mount and unmount correctly", async ({ expect }) => {
-    const sourceRef: RefObject<Source> = { current: null };
-    const mapRef: RefObject<Map> = { current: null };
+    const sourceRef: RefObject<Source | null> = { current: null };
+    const mapRef: RefObject<Map | null> = { current: null };
 
     const data: Point = {
       coordinates: [0, 0],
@@ -88,8 +88,8 @@ describe("RSource", () => {
   });
 
   test("RSource mount correctly when map style available after time", async ({ expect }) => {
-    const sourceRef: RefObject<Source> = { current: null };
-    const mapRef: RefObject<Map> = { current: null };
+    const sourceRef: RefObject<Source | null> = { current: null };
+    const mapRef: RefObject<Map | null> = { current: null };
 
     const data: Point = {
       coordinates: [0, 0],

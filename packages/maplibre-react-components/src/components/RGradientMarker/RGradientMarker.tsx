@@ -75,7 +75,7 @@ export const RGradientMarker = memo(
 
     const prevOptionsRef = useRef<Omit<GradientMarkerOptions, "element">>(options);
 
-    const currCallbacksRef = useRef<GradientMarkerCallbacks>();
+    const currCallbacksRef = useRef<GradientMarkerCallbacks>(null!);
     currCallbacksRef.current = markerCallbacks;
 
     const marker = useMemo(() => {

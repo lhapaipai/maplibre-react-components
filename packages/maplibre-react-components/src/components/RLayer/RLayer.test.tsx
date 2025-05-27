@@ -20,8 +20,8 @@ afterEach(() => {
 describe("RLayer", () => {
   test("RLayer forward layer ref", async ({ expect }) => {
     const layerRef: RefObject<StyleLayer> = { current: null };
-    const sourceRef: RefObject<Source> = { current: null };
-    const mapRef: RefObject<Map> = { current: null };
+    const sourceRef: RefObject<Source | null> = { current: null };
+    const mapRef: RefObject<Map | null> = { current: null };
 
     const data: Point = {
       coordinates: [0, 0],
@@ -60,8 +60,8 @@ describe("RLayer", () => {
     expect,
   }) => {
     const layerRef: RefObject<StyleLayer> = { current: null };
-    const sourceRef: RefObject<Source> = { current: null };
-    const mapRef: RefObject<Map> = { current: null };
+    const sourceRef: RefObject<Source | null> = { current: null };
+    const mapRef: RefObject<Map | null> = { current: null };
 
     const data: Point = {
       coordinates: [0, 0],
@@ -109,8 +109,8 @@ describe("RLayer", () => {
 
   test("RLayer mount correctly if RSource is added after RLayer", async ({ expect }) => {
     const layerRef: RefObject<StyleLayer> = { current: null };
-    const sourceRef: RefObject<Source> = { current: null };
-    const mapRef: RefObject<Map> = { current: null };
+    const sourceRef: RefObject<Source | null> = { current: null };
+    const mapRef: RefObject<Map | null> = { current: null };
 
     const data: Point = {
       coordinates: [0, 0],

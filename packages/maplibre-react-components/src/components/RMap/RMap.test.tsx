@@ -103,7 +103,7 @@ describe("RMap", () => {
   });
 
   test("RMap keep same reference between render", () => {
-    const ref: RefObject<Map> = { current: null };
+    const ref: RefObject<Map | null> = { current: null };
     const { rerender } = render(<RMap ref={ref} minZoom={10} />);
 
     const map1 = ref.current!;
@@ -125,7 +125,7 @@ describe("RMap", () => {
   });
 
   test("RMap update reactive options", () => {
-    const ref: RefObject<Map> = { current: null };
+    const ref: RefObject<Map | null> = { current: null };
     const { rerender } = render(
       <RMap mapStyle={emptyStyle} ref={ref} minZoom={10} maxZoom={14} pixelRatio={1} />,
     );
@@ -141,7 +141,7 @@ describe("RMap", () => {
   });
 
   test("RMap not updating initial options", () => {
-    const ref: RefObject<Map> = { current: null };
+    const ref: RefObject<Map | null> = { current: null };
     const { rerender } = render(<RMap mapStyle={emptyStyle} ref={ref} initialCenter={[1, 2]} />);
     const map = ref.current!;
 
@@ -153,7 +153,7 @@ describe("RMap", () => {
   });
 
   test("RMap handle events", () => {
-    const ref: RefObject<Map> = { current: null };
+    const ref: RefObject<Map | null> = { current: null };
     const handler1 = vi.fn();
     const handler2 = vi.fn();
 
@@ -183,7 +183,7 @@ describe("RMap", () => {
   });
 
   test("RMap listen to mapStyle updates", async () => {
-    const ref: RefObject<Map> = { current: null };
+    const ref: RefObject<Map | null> = { current: null };
     const styleDataHandler = vi.fn();
 
     const style1: StyleSpecification = {

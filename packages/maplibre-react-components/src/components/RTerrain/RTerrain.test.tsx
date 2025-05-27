@@ -20,8 +20,8 @@ afterEach(() => {
 
 describe("RTerrain", () => {
   test("Render correctly", async ({ expect }) => {
-    const mapRef: RefObject<Map> = { current: null };
-    const sourceRef: RefObject<Source> = { current: null };
+    const mapRef: RefObject<Map | null> = { current: null };
+    const sourceRef: RefObject<Source | null> = { current: null };
 
     render(
       <RMap ref={mapRef} mapStyle={emptyStyle} initialAttributionControl={false}>
@@ -52,8 +52,8 @@ describe("RTerrain", () => {
   });
 
   test("Not to throw error if Terrain RSource is defined after RTerrain", async ({ expect }) => {
-    const mapRef: RefObject<Map> = { current: null };
-    const sourceRef: RefObject<Source> = { current: null };
+    const mapRef: RefObject<Map | null> = { current: null };
+    const sourceRef: RefObject<Source | null> = { current: null };
 
     const loadedCb = vi.fn();
 

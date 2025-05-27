@@ -88,7 +88,7 @@ export const RMarker = memo(
 
     const prevOptionsRef = useRef(options);
 
-    const callbacksRef = useRef<MarkerCallbacks>();
+    const callbacksRef = useRef<MarkerCallbacks>(null!);
     callbacksRef.current = callbacks;
 
     const marker = useMemo(() => {

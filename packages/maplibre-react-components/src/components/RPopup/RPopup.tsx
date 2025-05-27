@@ -45,6 +45,7 @@ export const popupNonReactiveOptionNames = [
   "focusAfterOpen",
   "anchor",
   "subpixelPositioning",
+  "locationOccludedOpacity",
 ] as const;
 export type PopupNonReactiveOptionName = (typeof popupNonReactiveOptionNames)[number];
 export type PopupInitialOptionName = `initial${Capitalize<PopupNonReactiveOptionName>}`;
@@ -71,7 +72,7 @@ export const RPopup = memo(
 
     const popupRef = useRef<Popup>(null!);
     const prevOptionsRef = useRef<PopupOptions>(options);
-    const currCallbacksRef = useRef<PopupCallbacks>();
+    const currCallbacksRef = useRef<PopupCallbacks>(null!);
     currCallbacksRef.current = callbacks;
 
     const container = useMemo(() => {
