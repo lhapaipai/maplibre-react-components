@@ -1,16 +1,20 @@
 {
   "folders": [
     {
-      "name": "docs",
+      "name": "ROOT",
+      "path": ".",
+    },
+    {
       "path": "./docs",
     },
     {
-      "name": "sandbox",
-      "path": "./sandbox",
+      "path": "./packages/sandbox",
     },
     {
-      "name": "maplibre-react-components",
-      "path": ".",
+      "path": "./packages/mrc-tuto",
+    },
+    {
+      "path": "./packages/maplibre-react-components",
     },
   ],
   "settings": {

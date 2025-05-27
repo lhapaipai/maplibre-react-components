@@ -7,7 +7,5 @@ dist/
 
 Makefile
 
-mrc-tuto
+/packages/mrc-tuto/
 
-sandbox-common-esm-vanilla
-sandbox-common-esm-react

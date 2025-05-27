@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ContextMenuEventAdapter, MaplibreContextmenuEventDetail } from "./ContextMenuEventAdapter";
 import { Meta } from "@storybook/react";
-import { ContextMenu, ContextMenuItem, ContextMenuItemMouseEvent } from "pentatrion-design";
+import { ContextMenu, ContextMenuItem, ContextMenuItemMouseEvent } from "pentatrion-design/context-menu";
 import { RMap, RMarker, useMapAndCanvasRefs } from "..";
 
 const meta = {

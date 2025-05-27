@@ -1,0 +1,154 @@
+@import "./icons/fontello.css";
+
+html {
+  font-size: 16px;
+  line-height: 24px;
+  color-scheme: normal;
+
+  box-sizing: content-box;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+.light {
+  color-scheme: light;
+}
+.dark {
+  color-scheme: dark;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+:root {
+  --color-white: 255 255 255;
+  --color-black: 0 0 0;
+
+  /* bg outlined color */
+  --color-yellow-1: #fffac7;
+
+  /* bg outlined hovered color */
+  --color-yellow-2: #fff58e;
+  /* button default bgcolor */
+  --color-yellow-3: #ffe822;
+
+  /* text color, button hover bgcolor */
+  --color-yellow-4: #ffc80a;
+
+  /* text hover color, button active bgcolor */
+  --color-yellow-5: #f59e0b;
+  --color-yellow-text: var(--color-gray-7);
+
+  --color-green-1: #e8f5d4;
+  --color-green-2: #d1ebaa;
+  --color-green-3: #a2d757;
+  --color-green-4: #8ac842;
+  --color-green-5: #4f9e23;
+  --color-green-text: var(--color-gray-7);
+
+  --color-blue-1: #edf7ff;
+  --color-blue-2: #cbe8ff;
+  --color-blue-3: #83cbff;
+  --color-blue-4: #4ba7e6;
+  --color-blue-5: #257e9e;
+  --color-blue-text: var(--color-gray-7);
+
+  --color-orange-1: #fff4db;
+  --color-orange-2: #ffddb3;
+  --color-orange-3: #ffb064;
+  --color-orange-4: #e68c35;
+  --color-orange-5: #b35b26;
+  --color-orange-text: var(--color-gray-7);
+
+  --color-red-1: #ffdbdb;
+  --color-red-2: #ffb7b7;
+  --color-red-3: #ff6f6f;
+  --color-red-4: #e63e3e;
+  --color-red-5: #b32626;
+  --color-red-text: var(--color-gray-7);
+
+  /**
+   * to be overwritted with "data-color" attribute
+   */
+   --color-custom-0: var(--color-gray-0);
+   --color-custom-1: var(--color-gray-1);
+   --color-custom-2: var(--color-gray-2);
+   --color-custom-3: var(--color-gray-3);
+   --color-custom-4: var(--color-gray-4);
+   --color-custom-5: var(--color-gray-5);
+   --color-custom-text: var(--color-gray-text);
+ 
+   --color-gray-0: #ffffff;
+   --color-gray-1: #f2f2f2;
+   --color-gray-2: #e4e4e4;
+   --color-gray-3: #cccccc;
+   --color-gray-4: #b4b4b4;
+   --color-gray-5: #8c8c8c;
+   /* text-hint text-disabled */
+   --color-gray-6: #5a5a5a;
+   --color-gray-7: #323232;
+   --color-gray-8: #000000;
+   --color-gray-text: var(--color-gray-7);
+ 
+
+  --resize-grip: 10px;
+  --resize-indicator: 2px;
+
+  --step-circle-radius: 16px;
+}
+.dark {
+  /* text hover color, button active bgcolor */
+  --color-yellow-5: #fffac7;
+  /* text color, button hover bgcolor */
+  --color-yellow-4: #fff58e;
+  /* button default bgcolor */
+  --color-yellow-3: #ffe822;
+  /* bg outlined hovered color (with generally 50% transparency) */
+  --color-yellow-2: #fbbf24;
+  /* bg outlined color (with generally 50% transparency) */
+  --color-yellow-1: #f59e0b;
+
+  --color-yellow-text: var(--color-gray-0);
+
+  --color-green-5: #e8f5d4;
+  --color-green-4: #d1ebaa;
+  --color-green-3: #a2d757;
+  --color-green-2: #8ac842;
+  --color-green-1: #4f9e23;
+  --color-green-text: var(--color-gray-0);
+
+  --color-blue-5: #edf7ff;
+  --color-blue-4: #cbe8ff;
+  --color-blue-3: #83cbff;
+  --color-blue-2: #4ba7e6;
+  --color-blue-1: #257e9e;
+  --color-blue-text: var(--color-gray-0);
+
+  --color-orange-5: #fff4db;
+  --color-orange-4: #ffddb3;
+  --color-orange-3: #ffb064;
+  --color-orange-2: #e68c35;
+  --color-orange-1: #b35b26;
+  --color-orange-text: var(--color-gray-0);
+
+  --color-red-5: #ffdbdb;
+  --color-red-4: #ffb7b7;
+  --color-red-3: #ff6f6f;
+  --color-red-2: #e63e3e;
+  --color-red-1: #b32626;
+  --color-red-text: var(--color-gray-0);
+
+  --color-gray-8: #ffffff;
+  --color-gray-7: #dcdcdc;
+  /* text-hint text-disabled */
+  --color-gray-6: #b4b4b4;
+  --color-gray-5: #8c8c8c;
+  --color-gray-4: #646464;
+  --color-gray-3: #4b4b4b;
+  --color-gray-2: #323232;
+  --color-gray-1: #232323;
+  --color-gray-0: #151d1d;
+  --color-gray-text: var(--color-gray-8);
+}

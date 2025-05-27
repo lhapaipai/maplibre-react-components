@@ -1,6 +1,6 @@
 {
   "files.exclude": {
     "docs/": true,
-    "sandbox/": true
+    "packages/": true
   }
 }

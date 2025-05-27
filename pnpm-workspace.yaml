@@ -1,0 +1,25 @@
+packages:
+  - packages/*
+  - docs
+catalog:
+  "@eslint/js": "^9.27.0"
+  "@types/react": "^19.1.6"
+  "@types/react-dom": "^19.1.5"
+  "class-variance-authority": "^0.7.1"
+  "clsx": "^2.1.1"
+  "eslint": "^9.27.0"
+  "eslint-plugin-react-hooks": "^5.2.0"
+  "eslint-plugin-react-refresh": "^0.4.20"
+  "globals": "^16.2.0"
+  "maplibre-gl": "^5.0.0"
+  "maplibre-theme": "^1.0.0"
+  "pentatrion-design": "^1.0.1"
+  "pentatrion-fontello-cli": "^0.0.5"
+  "prettier": "^3.5.3"
+  "prettier-plugin-tailwindcss": "^0.6.11"
+  "react": "^19.1.0"
+  "react-dom": "^19.1.0"
+  "typescript": "^5.8.3"
+  "typescript-eslint": "^8.32.1"
+  "vite": "^6.3.5"
+  "vitest": "^3.1.4"
