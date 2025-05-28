@@ -2,21 +2,13 @@ import { Map } from "maplibre-gl";
 import "./App.css";
 import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
-import "maplibre-react-components/dist/style.css";
-import {
-  RMap,
-  RMarker,
-  RSource,
-  RTerrain,
-  RTerrainControl,
-} from "maplibre-react-components";
+import "maplibre-react-components/style.css";
+import { RMap, RMarker, RSource, RTerrain, RTerrainControl } from "maplibre-react-components";
 import { useRef, useState } from "react";
 
 const marignier = { lng: 6.498, lat: 46.089 };
 
-const rasterDemTiles = [
-  "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
-];
+const rasterDemTiles = ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"];
 
 function App() {
   const mapRef = useRef<Map>(null);
@@ -54,18 +46,12 @@ function App() {
           <button onClick={() => console.log(mapRef)}>info</button>
         </div>
         <div>
-          <button onClick={() => setCounter((c) => c + 1)}>
-            counter {counter}
-          </button>
+          <button onClick={() => setCounter((c) => c + 1)}>counter {counter}</button>
         </div>
         <div>
           <label>
             afficher carte
-            <input
-              type="checkbox"
-              onChange={() => setShowMap((s) => !s)}
-              checked={showMap}
-            />
+            <input type="checkbox" onChange={() => setShowMap((s) => !s)} checked={showMap} />
           </label>
         </div>
         <div>

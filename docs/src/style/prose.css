@@ -1,0 +1,145 @@
+.prose {
+  p {
+    @apply mt-0 mb-5;
+  }
+  p:last-child {
+    @apply mb-0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-gray-8 relative font-semibold;
+  }
+  h1 {
+    @apply text-h1 mt-0 mb-8;
+  }
+  h2 {
+    @apply text-h2 mt-6 mb-2;
+  }
+  h3 {
+    @apply text-h3 mt-6 mb-2;
+  }
+  h4 {
+    @apply text-h4 mt-6 mb-2;
+  }
+  h5 {
+    @apply text-h5 mt-6 mb-2;
+  }
+  h6 {
+    @apply text-h6 mt-6 mb-2;
+  }
+  img {
+    @apply my-8;
+  }
+  picture {
+    @apply my-8;
+  }
+  picture > img {
+    @apply my-0;
+  }
+  video {
+    @apply my-8;
+  }
+
+  code {
+    @apply text-body-sm;
+  }
+
+  /*-------*/
+  pre {
+    @apply dark:shadow-dark text-body-sm relative overflow-x-auto rounded-2xl px-0 py-4 shadow-sm;
+  }
+
+  [data-line] {
+    padding: 0 1rem;
+  }
+
+  pre::before {
+    @apply text-gray-3 text-body-xs absolute top-1 right-3;
+    content: attr(data-language);
+  }
+
+  code::before,
+  code::after {
+    content: none;
+  }
+
+  ol {
+    @apply my-5 list-decimal ps-7;
+  }
+  ul {
+    @apply my-5 list-disc ps-6;
+  }
+  li {
+    @apply my-2;
+  }
+  ol > li {
+    @apply marker:text-gray-5 ps-1.5;
+  }
+  ul > li {
+    @apply marker:text-gray-3 ps-1.5;
+  }
+  blockquote {
+    @apply border-s-gray-3 text-gray-8 my-8 border-s-4 ps-5 italic;
+  }
+  hr + * {
+    @apply mt-0;
+  }
+  h2 + * {
+    @apply mt-0;
+  }
+  h3 + * {
+    @apply mt-0;
+  }
+  h4 + * {
+    @apply mt-0;
+  }
+
+  figure {
+    @apply my-8;
+  }
+  figure > * {
+    @apply my-0;
+  }
+  figcaption {
+    @apply text-body-sm mt-3;
+  }
+
+  a {
+    @apply text-gray-8 decoration-gray-8 visited:text-gray-8 hover:decoration-yellow-5 active:text-yellow-5 underline hover:decoration-2;
+  }
+  mark {
+    @apply bg-yellow-1 text-gray-8;
+  }
+  abbr {
+    @apply cursor-help underline decoration-dashed;
+  }
+}
+/** floating-ui typo source-code
+  * https://github.com/floating-ui/floating-ui/blob/master/website/tailwind.config.js
+  */
+
+:is(.grid, .columns-2) figure[data-rehype-pretty-code-figure] {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.maplibregl-map {
+  @apply rounded-2xl shadow-sm;
+}
+
+.maplibregl-map a {
+  font-weight: 400;
+}
+
+.mdx-header i {
+  @apply text-gray-5 hover:text-gray-text invisible transition-colors;
+}
+
+.mdx-header:hover i {
+  visibility: visible;
+}

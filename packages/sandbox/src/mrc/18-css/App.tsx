@@ -1,6 +1,6 @@
 import { Map, StyleSpecification } from "maplibre-gl";
 import "./App.css";
-import "maplibre-react-components/dist/style.css";
+import "maplibre-react-components/style.css";
 import style from "./style.json";
 const mapStyle = style as StyleSpecification;
 
@@ -33,9 +33,7 @@ import clsx from "clsx";
 const marignier = { lng: 6.498, lat: 46.089 };
 const marignier2 = { lng: 6.2, lat: 46.089 };
 const leman = { lng: 6.382560880284075, lat: 46.41406563675616 };
-const rasterDemTiles = [
-  "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
-];
+const rasterDemTiles = ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"];
 
 function MyCtrl() {
   const { container } = useRControl({
@@ -145,11 +143,7 @@ function CustomMap({
           encoding="terrarium"
           tileSize={256}
         />
-        <RMarker
-          longitude={leman.lng}
-          latitude={leman.lat}
-          initialAnchor="center"
-        >
+        <RMarker longitude={leman.lng} latitude={leman.lat} initialAnchor="center">
           <div
             className="maplibregl-user-location-accuracy-circle maplibregl-marker maplibregl-marker-anchor-center"
             style={accuracyCircleStyle}
@@ -166,8 +160,7 @@ function CustomMap({
           Hello world !
         </RPopup>
         <RPopup longitude={5.74} latitude={45.95}>
-          Hello world !
-          <button className="maplibregl-popup-close-button">×</button>
+          Hello world !<button className="maplibregl-popup-close-button">×</button>
         </RPopup>
 
         <MrcLogoControl position="top-left" />

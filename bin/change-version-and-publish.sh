@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR="$(dirname "$(readlink -f "$BASH_SOURCE")")"
-PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
+PACKAGE_DIR="$WORKSPACE_DIR/packages/maplibre-react-components"
 
 set -e
 
-cd "$PROJECT_DIR"
+cd "$WORKSPACE_DIR"
 
 # Make sure the working directory is clear.
 if [[ ! -z "$(git status --porcelain)" ]]
@@ -24,7 +25,13 @@ fi
 # vX.Y.Z
 VERSION=$(npm --no-git-tag-version --allow-same-version version $VERSION_TYPE)
 
+cd "$PACKAGE_DIR"
+
+npm --no-git-tag-version --allow-same-version version "$VERSION"
+
 pnpm build
+
+cd "$WORKSPACE_DIR"
 
 git add .
 git commit -m "change version $VERSION"

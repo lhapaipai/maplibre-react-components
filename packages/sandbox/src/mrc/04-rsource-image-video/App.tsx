@@ -2,7 +2,7 @@ import { Coordinates, Map, MapStyleDataEvent } from "maplibre-gl";
 import "./App.css";
 import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
-import "maplibre-react-components/dist/style.css";
+import "maplibre-react-components/style.css";
 import { RLayer, RMap, RMarker, RSource } from "maplibre-react-components";
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
 
@@ -75,15 +75,10 @@ function App() {
           <button onClick={() => console.log(mapRef)}>info</button>
         </div>
         <div>
-          <button onClick={() => setCounter((c) => c + 1)}>
-            counter {counter}
-          </button>
+          <button onClick={() => setCounter((c) => c + 1)}>counter {counter}</button>
         </div>
         <div>
-          <button onClick={() => setShow((s) => !s)}>
-            {" "}
-            {show ? "masquer" : "afficher"}
-          </button>
+          <button onClick={() => setShow((s) => !s)}> {show ? "masquer" : "afficher"}</button>
         </div>
         <div>
           opacité

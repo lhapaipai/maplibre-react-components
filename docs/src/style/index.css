@@ -1,5 +1,31 @@
-@import "./vars.css";
-@import "./tailwind.css";
+@import "tailwindcss";
+
+@source "../../node_modules/pentatrion-design/dist/lib";
+@source "../../node_modules/pentatrion-design/dist/components";
+@source "../../node_modules/pentatrion-design/dist/hooks";
+
+@source inline("bg-gray-1");
+@import "pentatrion-design/tailwind/variants.css";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@import "./theme.css" layer(theme);
+
+@import "pentatrion-design/tailwind/base.css" layer(base);
+@import "./prose.css" layer(base);
+
+@import "pentatrion-design/tailwind/components-input-outline.css"
+  layer(components);
+@import "pentatrion-design/tailwind/components-range.css" layer(components);
+/* @import "pentatrion-design/tailwind/components-resize-area.css" layer(components);
+@import "pentatrion-design/tailwind/components-step.css" layer(components); */
+@import "pentatrion-design/tailwind/components.css" layer(components);
+
+/* @import "pentatrion-design/tailwind/utilities.css";
+@import "pentatrion-design/tailwind/utilities-dialog.css" layer(utilities); */
+
+@import "./utilities.css";
+@import "./icons/fontello.css";
+
 @import "./layout.css";
 
 @import "./icons/fontello.css";
@@ -8,6 +34,20 @@
 @import "maplibre-theme/icons.default.css";
 @import "maplibre-theme/extra/modern.scoped.css";
 @import "maplibre-theme/extra/classic.scoped.css";
-@import "maplibre-react-components/dist/style.css";
+@import "maplibre-react-components/style.css";
 
 @import "./maplibre-extra.css";
+
+html {
+  color-scheme: light;
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+}
+
+html {
+  font-size: 16px;
+  line-height: 24px;
+  color-scheme: normal;
+}

@@ -1,3 +1,8 @@
+## v0.2.2
+
+- migrate code base to React 19, tailwindcss 4
+- RPopup : add initialLocationOccludedOpacity
+
 ## v0.2.1
 
 - fix custom layer with false callback as option

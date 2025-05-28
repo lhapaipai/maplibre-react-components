@@ -28,12 +28,12 @@ export default function Home() {
       <div className="relative mx-auto w-full max-w-[350px]">
         <Globe />
       </div>
-      <div className="m-auto flex w-full max-w-2xl items-center justify-center lg:max-w-[22rem]">
+      <div className="m-auto w-full max-w-2xl lg:max-w-[22rem]">
         <NpmInput />
       </div>
 
       <div className="m-auto max-w-[68rem]">
-        <div className="grid mb-4 grid-cols-1 gap-4 lg:grid-cols-3">
+        <div className="mb-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
           <SpotCard className="text-center">
             Lightweight : only 11kB gzipped
             <br />

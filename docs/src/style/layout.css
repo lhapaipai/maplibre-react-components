@@ -3,9 +3,6 @@ html {
   line-height: 24px;
   color-scheme: normal;
 }
-body {
-  @apply bg-gray-0 font-sans text-gray-7;
-}
 
 body:not(.dark) {
   background-image: conic-gradient(

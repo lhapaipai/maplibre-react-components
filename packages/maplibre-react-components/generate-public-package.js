@@ -14,8 +14,17 @@ delete pkgInfos.scripts;
 // to show all infos at the end
 delete pkgInfos.main;
 
-pkgInfos.main = "index.js";
-pkgInfos.types = "index.d.ts";
+pkgInfos.main = "./index.js";
+pkgInfos.types = "./index.d.ts";
+pkgInfos.dependencies.clsx = "^2.1.1";
+pkgInfos.exports = {
+  ".": {
+    import: "./index.js",
+    types: "./index.d.ts",
+  },
+  "./package.json": "./package.json",
+  "./style.css": "./style.css",
+};
 
 writeFileSync(resolve(projectDir, "dist/package.json"), JSON.stringify(pkgInfos, undefined, 2));
 

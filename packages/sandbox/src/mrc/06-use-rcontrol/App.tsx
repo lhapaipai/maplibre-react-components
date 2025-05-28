@@ -2,13 +2,8 @@ import { Map, NavigationControl } from "maplibre-gl";
 import "./App.css";
 import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
-import "maplibre-react-components/dist/style.css";
-import {
-  RMap,
-  RMarker,
-  RNavigationControl,
-  useRControl,
-} from "maplibre-react-components";
+import "maplibre-react-components/style.css";
+import { RMap, RMarker, RNavigationControl, useRControl } from "maplibre-react-components";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -64,29 +59,19 @@ function App() {
               <button onClick={() => console.log(mapRef)}>info</button>
             </div>
             <div>
-              <button onClick={() => setCounter((c) => c + 1)}>
-                counter {counter}
-              </button>
+              <button onClick={() => setCounter((c) => c + 1)}>counter {counter}</button>
             </div>
 
             <div>
               <label>
                 afficher carte
-                <input
-                  type="checkbox"
-                  onChange={() => setShowMap((s) => !s)}
-                  checked={showMap}
-                />
+                <input type="checkbox" onChange={() => setShowMap((s) => !s)} checked={showMap} />
               </label>
             </div>
             <div>
               <label>
                 afficher controle
-                <input
-                  type="checkbox"
-                  onChange={() => setShowCtrl((s) => !s)}
-                  checked={showCtrl}
-                />
+                <input type="checkbox" onChange={() => setShowCtrl((s) => !s)} checked={showCtrl} />
               </label>
             </div>
           </div>

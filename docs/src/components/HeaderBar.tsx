@@ -16,12 +16,12 @@ export default function HeaderBar() {
         <span className="block md:hidden">
           <MapLibreReactLogo height={42} />
         </span>
-        <span className="font-title hidden text-2xl md:block">
+        <span className="font-title text-body-2xl hidden md:block">
           <span>
             Map
             <span className="libre text-blue-3 transition-colors">Libre</span>
           </span>{" "}
-          React <span className="text-xl">components</span>
+          React <span className="text-body-xl">components</span>
         </span>
       </Link>
       <span className="ml-auto">
@@ -37,7 +37,7 @@ export default function HeaderBar() {
         size="large"
         href="https://github.com/lhapaipai/maplibre-react-components"
       >
-        <i className="fe-github text-3xl"></i>
+        <i className="fe-github text-body-3xl"></i>
       </LinkButton>
     </header>
   );

@@ -49,8 +49,9 @@
     "@vitejs/plugin-react-swc": "^3.10.0",
     "maplibre-gl": "catalog:",
     "pentatrion-fontello-cli": "catalog:",
+    "prettier": "catalog:",
     "prettier-plugin-tailwindcss": "catalog:",
-    "tailwindcss": "^4.1.7",
+    "tailwindcss": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:"
   }

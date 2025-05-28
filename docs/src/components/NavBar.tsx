@@ -137,7 +137,7 @@ export default function NavBar() {
       />
       <div
         className={clsx(
-          "bg-gray-0 dark:shadow-dark fixed top-0 left-0 z-30 h-screen w-64 max-w-full flex-none overflow-x-hidden overflow-y-auto px-4 shadow md:flex md:flex-col md:bg-transparent md:shadow-none md:dark:shadow-none",
+          "bg-gray-0 dark:shadow-dark fixed top-0 left-0 z-30 h-screen w-64 max-w-full flex-none overflow-x-hidden overflow-y-auto px-4 shadow-sm md:flex md:flex-col md:bg-transparent md:shadow-none md:dark:shadow-none",
           !showNavBar && "hidden",
         )}
       >
@@ -171,7 +171,8 @@ export default function NavBar() {
                         <LinkButton
                           key={url}
                           selected={pathname === url}
-                          width="full"
+                          width="custom"
+                          className="w-full"
                           variant="text"
                           color="gray"
                           href={url}
@@ -187,7 +188,8 @@ export default function NavBar() {
                 <LinkButton
                   key={url}
                   selected={pathname === url}
-                  width="full"
+                  width="custom"
+                  className="w-full"
                   variant="text"
                   color="gray"
                   href={url}

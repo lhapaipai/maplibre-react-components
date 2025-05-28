@@ -11,13 +11,24 @@ import { useRipple } from "pentatrion-design/hooks";
 import { ButtonProps, buttonVariants } from "pentatrion-design/button";
 import Link from "next/link";
 
-export type LinkButtonProps = ComponentPropsWithRef<"a"> & Pick<ButtonProps, "withRipple" | "variant" | "size" | "color" | "selected" | "icon" | "disabled" | "width"> & {
-  href: string;
+export type LinkButtonProps = ComponentPropsWithRef<"a"> &
+  Pick<
+    ButtonProps,
+    | "withRipple"
+    | "variant"
+    | "size"
+    | "color"
+    | "selected"
+    | "icon"
+    | "disabled"
+    | "width"
+  > & {
+    href: string;
 
-  children?: React.ReactNode;
+    children?: React.ReactNode;
 
-  focusable?: boolean;
-}
+    focusable?: boolean;
+  };
 
 export default forwardRef<HTMLAnchorElement, LinkButtonProps>(function Button(
   {
@@ -62,6 +73,7 @@ export default forwardRef<HTMLAnchorElement, LinkButtonProps>(function Button(
         className,
         selected && "active",
       )}
+      data-color={color}
       data-variant={variant}
       {...props}
     >

@@ -2,7 +2,7 @@ import { Map } from "maplibre-gl";
 import "./App.css";
 import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
-import "maplibre-react-components/dist/style.css";
+import "maplibre-react-components/style.css";
 import { RMap, RMarker } from "maplibre-react-components";
 import { useRef, useState } from "react";
 
@@ -25,14 +25,10 @@ function App() {
           <button onClick={() => console.log(mapRef)}>info</button>
         </div>
         <div>
-          <button onClick={() => setCounter((c) => c + 1)}>
-            counter {counter}
-          </button>
+          <button onClick={() => setCounter((c) => c + 1)}>counter {counter}</button>
         </div>
         <div>
-          <button onClick={() => setShowMap((s) => !s)}>
-            {showMap ? "masquer" : "afficher"}
-          </button>
+          <button onClick={() => setShowMap((s) => !s)}>{showMap ? "masquer" : "afficher"}</button>
         </div>
       </div>
     </>

@@ -1,6 +1,6 @@
 import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
-import "maplibre-react-components/dist/style.css";
+import "maplibre-react-components/style.css";
 import { RMap, RGradientMarker } from "maplibre-react-components";
 import "./App.css";
 
@@ -15,17 +15,10 @@ function App() {
         initialZoom={14}
         mapStyle="/assets/styles/ign/PLAN.IGN/standard.json"
       >
-        <RGradientMarker
-          longitude={marignierChurch.lng}
-          latitude={marignierChurch.lat}
-        />
-        <RGradientMarker
-          longitude={marignier.lng}
-          latitude={marignier.lat}
-          icon="fe-star"
-        />
+        <RGradientMarker longitude={marignierChurch.lng} latitude={marignierChurch.lat} />
+        <RGradientMarker longitude={marignier.lng} latitude={marignier.lat} icon="fe-star" />
       </RMap>
-      <div className="absolute left-5 top-5">
+      <div className="absolute top-5 left-5">
         <i className="fe-star"></i>
       </div>
     </>

@@ -15,7 +15,12 @@
   },
   "homepage": "https://maplibre-react-components.pentatrion.com",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./package.json": "./package.json",
+    "./style.css": "./dist/style.css"
+  },
   "scripts": {
     "dev:lib": "pnpm build:css && node generate-public-package && tsup --watch",
     "dev:css": "postcss --watch -o dist/style.css src/style/index.css",

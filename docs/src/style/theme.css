@@ -1,0 +1,332 @@
+/* @import "pentatrion-design/tailwind/index.css"; */
+
+@theme {
+}
+
+@theme {
+  --color-*: initial;
+
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* bg outlined color */
+  --color-yellow-1: #fffac7;
+
+  /* bg outlined hovered color */
+  --color-yellow-2: #fff58e;
+  /* button default bgcolor */
+  --color-yellow-3: #ffe822;
+
+  /* text color, button hover bgcolor */
+  --color-yellow-4: #ffc80a;
+
+  /* text hover color, button active bgcolor */
+  --color-yellow-5: #f59e0b;
+  --color-yellow-text: var(--color-gray-7);
+
+  --color-green-1: #e8f5d4;
+  --color-green-2: #d1ebaa;
+  --color-green-3: #a2d757;
+  --color-green-4: #8ac842;
+  --color-green-5: #4f9e23;
+  --color-green-text: var(--color-gray-7);
+
+  --color-blue-1: #edf7ff;
+  --color-blue-2: #cbe8ff;
+  --color-blue-3: #83cbff;
+  --color-blue-4: #4ba7e6;
+  --color-blue-5: #257e9e;
+  --color-blue-text: var(--color-gray-7);
+
+  --color-orange-1: #fff4db;
+  --color-orange-2: #ffddb3;
+  --color-orange-3: #ffb064;
+  --color-orange-4: #e68c35;
+  --color-orange-5: #b35b26;
+  --color-orange-text: var(--color-gray-7);
+
+  --color-red-1: #ffdbdb;
+  --color-red-2: #ffb7b7;
+  --color-red-3: #ff6f6f;
+  --color-red-4: #e63e3e;
+  --color-red-5: #b32626;
+  --color-red-text: var(--color-gray-7);
+
+  /**
+   * to be overwritted with "data-color" attribute
+   */
+  --color-custom-0: var(--color-gray-0);
+  --color-custom-1: var(--color-gray-1);
+  --color-custom-2: var(--color-gray-2);
+  --color-custom-3: var(--color-gray-3);
+  --color-custom-4: var(--color-gray-4);
+  --color-custom-5: var(--color-gray-5);
+  --color-custom-text: var(--color-gray-text);
+
+  --color-gray-0: #ffffff;
+  --color-gray-1: #f2f2f2;
+  --color-gray-2: #e4e4e4;
+  --color-gray-3: #cccccc;
+  --color-gray-4: #b4b4b4;
+  --color-gray-5: #8c8c8c;
+  /* text-hint text-disabled */
+  --color-gray-6: #5a5a5a;
+  --color-gray-7: #323232;
+  --color-gray-8: #000000;
+  --color-gray-text: var(--color-gray-7);
+
+  --shadow-*: initial;
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.1);
+  --shadow-xs-active: 0 0px 2px 0 rgb(0 0 0 / 0.1);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.15), 0 1px 2px -1px rgb(0 0 0 / 0.15);
+  --shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.15);
+  --shadow-md-active:
+    0 3px 6px -1px rgb(0 0 0 / 0.15), 0 1px 4px -2px rgb(0 0 0 / 0.15);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.15), 0 4px 6px -2px rgb(0 0 0 / 0.15);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.15), 0 8px 10px -6px rgb(0 0 0 / 0.15);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.35);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.1);
+  --shadow-dark: 0 0 0 1px var(--color-gray-2);
+  --shadow-none: none;
+
+  --font-*: initial;
+  --font-sans: "ui-sans-serif", "system-ui", "sans-serif";
+  --font-fontello: "fontello";
+  /* serif: defaultTheme.fontFamily.serif,
+  mono: defaultTheme.fontFamily.mono, */
+
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+
+  --text-*: initial;
+  /** 80px size / 84px high / bold */
+  --text-mega: 5rem;
+  --text-mega--line-height: 5.25rem;
+  --text-mega--font-weight: 700;
+  /** 56px size / 62px high / bold */
+  --text-h1: 2.25em;
+  --text-h1--line-height: 1.1;
+  --text-h1--font-weight: 700;
+  /** 40px size / 48px high / bold */
+  --text-h2: 1.5em;
+  --text-h2--line-height: 1.3;
+  --text-h2--font-weight: 700;
+  /** 32px size / 36px high / bold */
+  --text-h3: 1.25em;
+  --text-h3--line-height: 1.6;
+  --text-h3--font-weight: 500;
+  /** 28px size / 36px high / bold */
+  --text-h4: 1.1em;
+  --text-h4--line-height: 1.5;
+  --text-h4--font-weight: 500;
+  /** 24px size / 32px high / bold */
+  --text-h5: 1em;
+  --text-h5--line-height: 1.5;
+  --text-h5--font-weight: 500;
+  /** 16px size / 20px high / bold */
+  --text-h6: 1em;
+  --text-h6--line-height: 1.5;
+  --text-h6--font-weight: 500;
+
+  --text-prose-base: 16px;
+  --text-prose-base--line-height: 24px;
+
+  /** 32px size / 36px high / normal */
+  --text-body-6xl: 3.75rem;
+  --text-body-6xl--line-height: 4rem;
+  /** 32px size / 36px high / normal */
+  --text-body-5xl: 3rem;
+  --text-body-5xl--line-height: 7rem;
+  /** 32px size / 36px high / normal */
+  --text-body-4xl: 2.25rem;
+  --text-body-4xl--line-height: 2.5rem;
+  /** 32px size / 36px high / normal */
+  --text-body-3xl: 1.875rem;
+  --text-body-3xl--line-height: 2.25rem;
+  /** 32px size / 36px high / normal */
+  --text-body-2xl: 1.5rem;
+  --text-body-2xl--line-height: 2rem;
+  /** 28px size / 36px high / normal */
+  --text-body-xl: 1.5rem;
+  --text-body-xl--line-height: 2rem;
+  /** 24px size / 32px high / normal */
+  --text-body-lg: 1.25rem;
+  --text-body-lg--line-height: 1.75rem;
+  /** 20px size / 28px high / normal */
+  --text-body-md: 1.125rem;
+  --text-body-md--line-height: 1.5rem;
+  /** 16px size / 28px high / normal */
+  --text-body-base: 1rem;
+  --text-body-base--line-height: 1.5rem;
+  /** 14px size / 18px high / normal */
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.125rem;
+  /** 12px size / 16px high / normal */
+  --text-body-xs: 0.75rem;
+  --text-body-xs--line-height: 1rem;
+
+  --text-body-2xs: 0.688rem;
+  --text-body-2xs--line-height: 1rem;
+
+  --text-body-3xs: 0.5rem;
+  --text-body-3xs--line-height: 0.8rem;
+
+  --drop-shadow-arrow: 0 1px 3px var(--color-gray-3);
+  --drop-shadow-arrow-dark: 0 1px 0 var(--color-gray-2);
+
+  --animate-ripple: ripple 0.9s linear;
+  --animate-fade-in: fade-in 150ms ease both;
+  --animate-fade-in-list: fade-in-list 150ms ease both;
+  --animate-fade-out: fade-out 250ms ease both;
+  --animate-fade-in-opacity: fade-in-opacity 250ms ease both;
+  --animate-flash: flash 1000ms ease both infinite;
+  --animate-loader-stroke: loader-stroke 1s linear infinite;
+
+  --default-transition-duration: 0.2s;
+
+  --breakpoint-3sm: 22.5rem;
+  /* 480px mobile landscape */
+  --breakpoint-2sm: 30rem;
+  /* 1920px */
+  --breakpoint-3xl: 120rem;
+}
+
+:root {
+  --resize-grip: 10px;
+  --resize-indicator: 2px;
+
+  --step-circle-radius: 16px;
+}
+
+.dark {
+  color-scheme: dark;
+  /* text hover color, button active bgcolor */
+  --color-yellow-5: #fffac7;
+  /* text color, button hover bgcolor */
+  --color-yellow-4: #fff58e;
+  /* button default bgcolor */
+  --color-yellow-3: #ffe822;
+  /* bg outlined hovered color (with generally 50% transparency) */
+  --color-yellow-2: #fbbf24;
+  /* bg outlined color (with generally 50% transparency) */
+  --color-yellow-1: #f59e0b;
+
+  --color-yellow-text: var(--color-gray-0);
+
+  --color-green-5: #e8f5d4;
+  --color-green-4: #d1ebaa;
+  --color-green-3: #a2d757;
+  --color-green-2: #8ac842;
+  --color-green-1: #4f9e23;
+  --color-green-text: var(--color-gray-0);
+
+  --color-blue-5: #edf7ff;
+  --color-blue-4: #cbe8ff;
+  --color-blue-3: #83cbff;
+  --color-blue-2: #4ba7e6;
+  --color-blue-1: #257e9e;
+  --color-blue-text: var(--color-gray-0);
+
+  --color-orange-5: #fff4db;
+  --color-orange-4: #ffddb3;
+  --color-orange-3: #ffb064;
+  --color-orange-2: #e68c35;
+  --color-orange-1: #b35b26;
+  --color-orange-text: var(--color-gray-0);
+
+  --color-red-5: #ffdbdb;
+  --color-red-4: #ffb7b7;
+  --color-red-3: #ff6f6f;
+  --color-red-2: #e63e3e;
+  --color-red-1: #b32626;
+  --color-red-text: var(--color-gray-0);
+
+  --color-gray-8: #ffffff;
+  --color-gray-7: #dcdcdc;
+  --color-gray-6: #b4b4b4;
+  --color-gray-5: #8c8c8c;
+  --color-gray-4: #646464;
+  --color-gray-3: #4b4b4b;
+  --color-gray-2: #32363f;
+  --color-gray-1: #414853;
+  --color-gray-0: #111725;
+  --color-gray-text: var(--color-gray-8);
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-list {
+  from {
+    transform: scaleY(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes loader-stroke {
+  from {
+    stroke-dashoffset: 43.699;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}

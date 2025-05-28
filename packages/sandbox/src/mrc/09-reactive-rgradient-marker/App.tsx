@@ -5,7 +5,7 @@ import { RMap, RGradientMarker } from "maplibre-react-components";
 
 import "maplibre-theme/icons.default.css";
 import "maplibre-theme/classic.css";
-import "maplibre-react-components/dist/style.css";
+import "maplibre-react-components/style.css";
 import { getIndexLetter } from "pentatrion-design";
 
 function hue2rgb(p: number, q: number, t: number) {
@@ -67,9 +67,7 @@ function App() {
           <button onClick={() => setShow((show) => !show)}>toggle map</button>
         </div>
         <div>
-          <button onClick={handleChangeMarkerCoords}>
-            change marker cords
-          </button>
+          <button onClick={handleChangeMarkerCoords}>change marker cords</button>
         </div>
         <div>
           <button onClick={() => setCounter((c) => c + 1)}>
