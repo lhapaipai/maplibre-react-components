@@ -44,6 +44,61 @@ const Svg = ({
 
 export const Graphics = () => (
   <div>
+    <div className="sb-icon-grid">
+      <div>
+        <div
+          data-shape="pin"
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-scale": "0.8" }}
+        >
+          <div className="marker">
+            <img src="/lhapaipai.webp" width="56" height="56" />
+          </div>
+          <div className="target"></div>
+        </div>
+        <pre>--marker-scale: 0.8</pre>
+      </div>
+      <div>
+        <div
+          data-shape="pin"
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-scale": "1" }}
+        >
+          <div className="marker">
+            <img src="/lhapaipai.webp" width="56" height="56" />
+          </div>
+          <div className="target"></div>
+        </div>
+        <pre>--marker-scale: 1</pre>
+      </div>
+      <div>
+        <div
+          data-shape="pin"
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-scale": "1.2" }}
+        >
+          <div className="marker">
+            <img src="/lhapaipai.webp" width="56" height="56" />
+          </div>
+          <div className="target"></div>
+        </div>
+        <pre>--marker-scale: 1.2</pre>
+      </div>
+      <div>
+        <div
+          data-shape="pin"
+          className="maplibregl-gradient-marker"
+          style={{ "--marker-scale": "1.4" }}
+        >
+          <div className="marker">
+            <img src="/lhapaipai.webp" width="56" height="56" />
+          </div>
+          <div className="target"></div>
+        </div>
+        <pre>--marker-scale: 1.4</pre>
+      </div>
+    </div>
+
     <div className="sb-icon-grid large">
       <div>
         <div
@@ -127,6 +182,26 @@ export const Graphics = () => (
         </div>
         <pre>shape circle</pre>
       </div>
+      <div>
+        <div data-shape="portrait" data-interactive className="maplibregl-gradient-marker">
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+        <pre>shape portrait</pre>
+      </div>
+      <div>
+        <div data-shape="landscape" data-interactive className="maplibregl-gradient-marker">
+          <div className="marker">
+            <div className="circle"></div>
+            <i className="fe-heart"></i>
+          </div>
+          <div className="target"></div>
+        </div>
+        <pre>shape landscape</pre>
+      </div>
     </div>
 
     <div className="sb-icon-grid">
@@ -150,6 +225,7 @@ export const Graphics = () => (
         </div>
         <pre>without circle</pre>
       </div>
+
       <div className="sb-bg-gray">
         <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
           <div className="marker">
@@ -248,7 +324,6 @@ export const Graphics = () => (
         <pre>not data-interactive</pre>
       </div>
     </div>
-
     <div className="sb-icon-grid">
       <div className="sb-bg-gray">
         <div data-shape="pin" data-interactive className="maplibregl-gradient-marker">
@@ -638,6 +713,39 @@ export const Basic = () => {
     i.classList.add("fe-star");
     new GradientMarker({ icon: i })
       .setLngLat({ lng: 9.82244387969439, lat: 43.03804240806406 })
+      .addTo(map);
+
+    const img1 = document.createElement("img");
+    img1.src = "/lhapaipai.webp";
+    img1.width = 56;
+    img1.height = 56;
+    new GradientMarker({ icon: img1, scale: 1.5 })
+      .setLngLat({
+        lng: -1.4161,
+        lat: 46.0555,
+      })
+      .addTo(map);
+
+    const img2 = document.createElement("img");
+    img2.src = "/portrait.webp";
+    img2.width = 41;
+    img2.height = 59;
+    new GradientMarker({ icon: img2, scale: 1.5, shape: "portrait" })
+      .setLngLat({
+        lng: 13.7969,
+        lat: 45.6232,
+      })
+      .addTo(map);
+
+    const img3 = document.createElement("img");
+    img3.src = "/landscape.webp";
+    img3.width = 64;
+    img3.height = 43;
+    new GradientMarker({ icon: img3, scale: 1.5, shape: "landscape" })
+      .setLngLat({
+        lng: 8.3088,
+        lat: 41.106,
+      })
       .addTo(map);
 
     function iconFactory() {

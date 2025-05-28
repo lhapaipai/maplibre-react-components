@@ -1,11 +1,12 @@
 import { RMap } from "../RMap";
 import { Event } from "../../types.d";
-import { Meta, StoryObj, ReactRenderer } from "@storybook/react";
-import { useState } from "react";
+import { Meta, StoryObj } from "@storybook/react";
+import { useMemo, useState } from "react";
 
 import { RGradientMarker } from "./RGradientMarker";
-import { type GradientMarker } from "./GradientMarker";
-import { PartialStoryFn } from "@storybook/types";
+import { GradientMarkerOptions, type GradientMarker } from "./GradientMarker";
+
+const mapCenter: [number, number] = [5, 45];
 
 const meta = {
   title: "maplibre-react-components/RGradientMarker",
@@ -77,11 +78,11 @@ const meta = {
 
   decorators: [
     (Story) => (
-      <RMap style={{ height: "100vh" }}>
+      <RMap style={{ height: "100vh" }} initialCenter={mapCenter} initialZoom={4}>
         <Story />
       </RMap>
     ),
-  ] as ((story: PartialStoryFn<ReactRenderer, any>) => JSX.Element)[],
+  ],
 } satisfies Meta<typeof RGradientMarker>;
 export default meta;
 
@@ -105,6 +106,81 @@ export const Basic: Story = {
     scale: 1,
     icon: "fe-star",
   },
+};
+
+const items: {
+  id: string;
+  shape: GradientMarkerOptions["shape"];
+  image: { src: string; width: number; height: number };
+  geom: { lng: number; lat: number };
+}[] = [
+  {
+    id: "a",
+    shape: "pin",
+    image: {
+      src: "/lhapaipai.webp",
+      width: 56,
+      height: 56,
+    },
+    geom: {
+      lng: -1.4161,
+      lat: 46.0555,
+    },
+  },
+  {
+    id: "b",
+    shape: "portrait",
+    image: {
+      src: "/portrait.webp",
+      width: 41,
+      height: 59,
+    },
+    geom: {
+      lng: 13.7969,
+      lat: 45.6232,
+    },
+  },
+  {
+    id: "c",
+    shape: "landscape",
+    image: {
+      src: "/landscape.webp",
+      width: 64,
+      height: 43,
+    },
+    geom: {
+      lng: 8.3088,
+      lat: 41.106,
+    },
+  },
+];
+
+export const ShapeImage = () => {
+  // we suppose items can be dynamic in our React App
+  const factories = useMemo(() => {
+    return items.map(({ image }) => () => {
+      const elt = document.createElement("img");
+      elt.src = image.src;
+      elt.width = image.width;
+      elt.height = image.height;
+      return elt;
+    });
+  }, []);
+
+  return (
+    <>
+      {items.map(({ geom, shape, id }, idx) => (
+        <RGradientMarker
+          scale={1.5}
+          key={id}
+          icon={factories[idx]}
+          shape={shape}
+          longitude={geom.lng}
+          latitude={geom.lat}
+        />
+      ))}
+    </>
+  );
 };
 
 export const Draggable = () => {

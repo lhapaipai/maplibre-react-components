@@ -40,7 +40,7 @@ git tag -a "$VERSION" -m "$VERSION"
 
 git push origin
 
-cd "$PROJECT_DIR/dist"
+cd "$PACKAGE_DIR/dist"
 
 pnpm publish
 

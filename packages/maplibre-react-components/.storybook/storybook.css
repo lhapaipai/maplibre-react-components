@@ -14,7 +14,7 @@
   }
 
   & > div {
-    border: 1px solid rgb(var(--color-gray-4));
+    border: 1px solid var(--color-gray-4);
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
@@ -37,5 +37,5 @@
 }
 
 .sb-bg-gray {
-  background-color: rgb(var(--color-gray-1));
+  background-color: var(--color-gray-1);
 }

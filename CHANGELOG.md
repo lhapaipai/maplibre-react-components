@@ -1,3 +1,7 @@
+## v0.2.3
+
+- RGradientMarker : add extra shapes
+
 ## v0.2.2
 
 - migrate code base to React 19, tailwindcss 4

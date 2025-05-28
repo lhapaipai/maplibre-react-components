@@ -9,3 +9,6 @@ Makefile
 
 /packages/mrc-tuto/
 
+
+# Local Netlify folder
+.netlify

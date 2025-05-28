@@ -3,7 +3,7 @@ import maplibregl from "maplibre-gl";
 
 import { DOM } from "../../maplibre-core/util/dom";
 
-type MarkerShape = "pin" | "circle";
+type MarkerShape = "pin" | "circle" | "portrait" | "landscape";
 
 export interface GradientMarkerOptions extends MarkerOptions {
   /**
@@ -215,7 +215,7 @@ export class GradientMarker extends maplibregl.Marker {
 
   setShape(shape?: MarkerShape): this {
     this._shape = shape || "pin";
-    this._anchor = this._shape === "pin" ? "bottom" : "center";
+    this._anchor = this._shape === "circle" ? "center" : "bottom";
     this._element.dataset.shape = this._shape;
 
     this._update();
