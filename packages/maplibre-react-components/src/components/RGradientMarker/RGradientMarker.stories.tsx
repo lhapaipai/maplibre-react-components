@@ -171,7 +171,8 @@ export const ShapeImage = () => {
     <>
       {items.map(({ geom, shape, id }, idx) => (
         <RGradientMarker
-          scale={1.5}
+          subpixelPositioning={true}
+          scale={1.25}
           key={id}
           icon={factories[idx]}
           shape={shape}

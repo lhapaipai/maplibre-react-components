@@ -184,6 +184,9 @@
     border-radius: min(calc(var(--marker-bbox-width) / 2), calc(var(--marker-bbox-height) / 2));
     z-index: 1;
   }
+  &[data-shape="landscape"] img {
+    width: calc(var(--marker-bbox-width) * 0.9);
+  }
 
   &:is([data-shape="circle"], [data-shape="pin"]) :where(img, .circle) {
     aspect-ratio: 1/1;
@@ -229,7 +232,7 @@
   }
 
   /* shadow */
-  &[data-shape="pin"] .marker::before {
+  &:is(&[data-shape="pin"], &[data-shape="portrait"], &[data-shape="landscape"]) .marker::before {
     left: 50%;
     transform: translateX(-50%);
 

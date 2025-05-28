@@ -1,3 +1,8 @@
+## v0.2.4
+
+- RGradientMarker : fix pixel perfect for landscape/portrait shape
+- RGradientMarker : add shadow for landscape/portrait shape
+
 ## v0.2.3
 
 - RGradientMarker : add extra shapes
