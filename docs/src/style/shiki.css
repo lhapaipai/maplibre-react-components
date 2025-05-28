@@ -20,20 +20,20 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   width: 3rem;
 } */
 
-pre[data-theme*=" "],
+pre[data-theme],
 pre.shiki-themes {
   color: var(--shiki-light);
   background-color: var(--shiki-light-bg);
 }
-:is(pre[data-theme*=" "], pre.shiki-themes) :is(:scope, span) {
+:is(pre[data-theme], pre.shiki-themes) :is(:scope, span) {
   color: var(--shiki-light);
 }
 
-body.dark :is(pre[data-theme*=" "], pre.shiki-themes) {
+body.dark :is(pre[data-theme], pre.shiki-themes) {
   color: var(--shiki-dark);
   background-color: var(--shiki-dark-bg);
 }
-body.dark :is(pre[data-theme*=" "], pre.shiki-themes) :is(:scope, span) {
+body.dark :is(pre[data-theme], pre.shiki-themes) :is(:scope, span) {
   color: var(--shiki-dark);
 }
 

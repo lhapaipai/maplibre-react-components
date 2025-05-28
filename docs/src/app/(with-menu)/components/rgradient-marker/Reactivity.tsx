@@ -34,7 +34,7 @@ export default function App() {
         <div>
           <Button
             onClick={() => setCounter((c) => c + 1)}
-            fullWidth={true}
+            width="full"
             className="justify-center"
           >
             increment counter {counter}
@@ -45,7 +45,7 @@ export default function App() {
           <Range
             min={0}
             max={360}
-            showMinMax={false}
+            showMinMax="never"
             value={colorRange}
             showValue={false}
             onChange={(e) => {
