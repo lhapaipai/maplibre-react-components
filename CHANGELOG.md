@@ -1,3 +1,9 @@
+## v0.2.5
+
+- lint package.json
+- add commonjs build
+- change bundler to tsdown
+
 ## v0.2.4
 
 - RGradientMarker : fix pixel perfect for landscape/portrait shape

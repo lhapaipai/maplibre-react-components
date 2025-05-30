@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lhapaipai/maplibre-react-components.git"
+    "url": "git+https://github.com/lhapaipai/maplibre-react-components.git"
   },
   "homepage": "https://maplibre-react-components.pentatrion.com",
   "type": "module",
@@ -22,9 +22,9 @@
     "./style.css": "./dist/style.css"
   },
   "scripts": {
-    "dev:lib": "pnpm build:css && node generate-public-package && tsup --watch",
+    "dev:lib": "pnpm build:css && node generate-public-package && tsdown --watch",
     "dev:css": "postcss --watch -o dist/style.css src/style/index.css",
-    "build:lib": "tsup --clean",
+    "build:lib": "tsdown --clean",
     "build:css": "postcss -o dist/style.css src/style/index.css",
     "build": "pnpm build:lib && pnpm build:css && node generate-public-package",
     "fontello": "fontello",
@@ -33,6 +33,7 @@
     "test": "vitest",
     "test-run": "vitest --run",
     "lint:check": "eslint -c eslint.config.js ./src",
+    "lint:package": "publint --pack pnpm ./dist",
     "tsc:check": "tsc -p tsconfig.build.json --noEmit",
     "ci": "pnpm lint:check && pnpm tsc:check && pnpm test-run",
     "prepare": "husky"
@@ -90,11 +91,12 @@
     "postcss-load-config": "^6.0.1",
     "postcss-nesting": "^13.0.1",
     "prettier": "catalog:",
+    "publint": "^0.3.12",
     "react": "catalog:",
     "react-dom": "catalog:",
     "storybook": "^8.6.14",
     "ts-node": "^10.9.2",
-    "tsup": "^8.5.0",
+    "tsdown": "^0.12.5",
     "typescript": "catalog:",
     "typescript-eslint": "catalog:",
     "vite": "catalog:",

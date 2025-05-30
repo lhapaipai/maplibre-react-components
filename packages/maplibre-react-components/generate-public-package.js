@@ -20,7 +20,7 @@ pkgInfos.dependencies.clsx = "^2.1.1";
 pkgInfos.exports = {
   ".": {
     import: "./index.js",
-    types: "./index.d.ts",
+    require: "./index.cjs",
   },
   "./package.json": "./package.json",
   "./style.css": "./style.css",
